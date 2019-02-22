@@ -1,0 +1,44 @@
+﻿a) The Standard Breakpoints. Working with fluid images.
+
+
+@media all and (max-width: 1690px) { ...}
+@media all and (max-width: 1280px) { ...}
+@media all and (max-width: 980px) { ... }
+@media all and (max-width: 736px) { ... }
+@media all and (max-width: 480px) { ... }
+
+
+b) The Standard Breakpoints. But possibly this is a slightly complicated situation.
+
+@media all and (min-width:1200px){ ... }
+@media all and (min-width: 960px) and (max-width: 1199px) { ... }
+@media all and (min-width: 768px) and (max-width: 959px) { ... }
+@media all and (min-width: 480px) and (max-width: 767px){ ... }
+@media all and (max-width: 599px) { ... }
+@media all and (max-width: 479px) { ... }
+
+
+
+
+c) The Standard Bootstrap 3.x Breakpoints
+
+@media all and (max-width: 991px) { ... }
+@media all and (max-width: 768px) { ... }
+@media all and (max-width: 480px) { ... }
+
+d) The Standard Bootstrap 4.x Breakpoints
+@media all and (max-width: 1199px) { ... } 
+@media all and (max-width: 991px) { ... } 
+@media all and (max-width: 768px) { ... } 
+@media all and (max-width: 575px) { ... }
+ 
+e) The Material Design Lite (MDL) Breakpoints 
+
+@media all and (max-width: 1024px) { ... } 
+@media all and (max-width: 839px) { ... } 
+@media all and (max-width: 480px) { ... }
+
+
+f) Retina Breakpoints(@2x)
+
+@media(-webkit-min-device-pixel-ratio:1.5),(min--moz-device-pixel-ratio:1.5),(-o-min-device-pixel-ratio:3/2),(min-resolution:1.5dppx){ ... }
