@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
+import Routes from "../Routes";
+import { Link } from "react-router-dom";
+
 import './colors.scss';
 
 class App extends Component {
   render() {
-    console.log(process.env)
     return (
       <>
-        Learn React
-        {<pre>{process.env.REACT_APP_SECRET_NAME}</pre>}
-        {process.env.NODE_ENV}
+        <ul>
+          <li>
+            <Link to={`/home`}>Home</Link>
+          </li>
+          <li>
+            <Link to={`/login`}>Login</Link>
+          </li>
+        </ul>
+        <Routes />
       </>
     );
   }

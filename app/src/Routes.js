@@ -6,18 +6,18 @@ import asyncComponent from "./AsyncComponent";
 // import AuthenticatedRoute from "./components/AuthenticatedRoute";
 // import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
-const AsyncHome = asyncComponent(() => import("./containers/Home"));
-const AsyncLogin = asyncComponent(() => import("./containers/Login"));
-const AsyncLogout = asyncComponent(() => import("./containers/Logout"));
-const AsyncSignup = asyncComponent(() => import("./containers/Signup"));
-const AsyncMovies = asyncComponent(() => import("./containers/Movies"));
-const AsyncMovie = asyncComponent(() => import("./containers/Movie"));
-const AsyncSongs = asyncComponent(() => import("./containers/Songs"));
-const AsyncSearch = asyncComponent(() => import("./containers/Search"));
-const AsyncTop = asyncComponent(() => import("./containers/Top"));
-const Asyncfavorites = asyncComponent(() => import("./containers/favorites"));
-const AsyncSettings = asyncComponent(() => import("./containers/Settings"));
-const AsyncNotFound = asyncComponent(() => import("./containers/NotFound"));
+const AsyncHome = asyncComponent(() => import("./components/Home/Home"));
+const AsyncLogin = asyncComponent(() => import("./components/Login/Login"));
+// const AsyncLogout = asyncComponent(() => import("./components/Logout"));
+// const AsyncSignup = asyncComponent(() => import("./components/Signup"));
+// const AsyncMovies = asyncComponent(() => import("./components/Movies"));
+// const AsyncMovie = asyncComponent(() => import("./components/Movie"));
+// const AsyncSongs = asyncComponent(() => import("./components/Songs"));
+// const AsyncSearch = asyncComponent(() => import("./components/Search"));
+// const AsyncTop = asyncComponent(() => import("./components/Top"));
+// const Asyncfavorites = asyncComponent(() => import("./components/favorites"));
+// const AsyncSettings = asyncComponent(() => import("./components/Settings"));
+// const AsyncNotFound = asyncComponent(() => import("./components/NotFound"));
 
 
 
@@ -36,7 +36,7 @@ export default (childProps) => {
                 component={AsyncLogin}
                 props={childProps}
             />
-            <Route
+            {/* <Route
                 path="/logout"
                 exact
                 component={AsyncLogout}
@@ -90,7 +90,7 @@ export default (childProps) => {
                 component={AsyncSettings}
                 props={childProps}
             />
-            <Route component={AsyncNotFound} />
+            <Route component={AsyncNotFound} /> */}
         </Switch>
     )
 }
