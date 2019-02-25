@@ -20,7 +20,7 @@ export default class NavBar extends Component {
     // console.log(this.state)
     return (
       <React.Fragment>
-        < aside className={this.state.showMenu  ? "navigation navigation-hide " : "navigation "} >
+        < aside className={this.state.showMenu  ? "navigation " : "navigation navigation-hide "} >
           <nav>
             <ul>
               <li>
