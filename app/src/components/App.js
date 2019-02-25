@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
-import Routes from "../Routes";
-import { Link } from "react-router-dom";
-
-import './colors.scss';
+import MainContent from "./MainContent/MainContent"
+import Navigation from "./NavigationBar/NavBar"
+import './styles.scss';
 
 class App extends Component {
   render() {
     return (
-      <>
-        <ul>
-          <li>
-            <Link to={`/home`}>Home</Link>
-          </li>
-          <li>
-            <Link to={`/login`}>Login</Link>
-          </li>
-        </ul>
-        <Routes />
-      </>
+      <React.Fragment>
+        <Navigation />
+        <MainContent />
+      </React.Fragment>
     );
   }
 }

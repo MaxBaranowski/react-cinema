@@ -1,0 +1,23 @@
+.main-wrapper {
+  grid-column: 3/-1;
+}
+
+@media all and (max-width: 1199px) {
+  .main-wrapper {
+  }
+}
+
+@media all and (max-width: 991px) {
+  .main-wrapper {
+  }
+}
+
+@media all and (max-width: 768px) {
+  .main-wrapper {
+  }
+}
+
+@media all and (max-width: 575px) {
+  .main-wrapper {
+  }
+}

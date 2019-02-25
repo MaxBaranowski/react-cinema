@@ -6,10 +6,10 @@ import App from './components/App';
 import * as serviceWorker from './services/serviceWorker';
 
 ReactDOM.render(
-    <Router>
-        <App />
-    </Router>,
-    document.getElementById('root')
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById('app')
 );
 
 // If you want your app to work offline and load faster, you can change

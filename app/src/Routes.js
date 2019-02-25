@@ -6,8 +6,8 @@ import asyncComponent from "./AsyncComponent";
 // import AuthenticatedRoute from "./components/AuthenticatedRoute";
 // import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
-const AsyncHome = asyncComponent(() => import("./components/Home/Home"));
-const AsyncLogin = asyncComponent(() => import("./components/Login/Login"));
+const AsyncHome = asyncComponent(() => import("./components/Pages/Home/Home"));
+const AsyncLogin = asyncComponent(() => import("./components/Pages/Login/Login"));
 // const AsyncLogout = asyncComponent(() => import("./components/Logout"));
 // const AsyncSignup = asyncComponent(() => import("./components/Signup"));
 // const AsyncMovies = asyncComponent(() => import("./components/Movies"));
@@ -17,26 +17,26 @@ const AsyncLogin = asyncComponent(() => import("./components/Login/Login"));
 // const AsyncTop = asyncComponent(() => import("./components/Top"));
 // const Asyncfavorites = asyncComponent(() => import("./components/favorites"));
 // const AsyncSettings = asyncComponent(() => import("./components/Settings"));
-// const AsyncNotFound = asyncComponent(() => import("./components/NotFound"));
+const AsyncNotFound = asyncComponent(() => import("./components/Pages/NotFound/NotFound"));
 
 
 
 export default (childProps) => {
-    return (
-        <Switch>
-            <Route
-                path="/"
-                exact
-                component={AsyncHome}
-                props={childProps}
-            />
-            <Route
-                path="/login"
-                exact
-                component={AsyncLogin}
-                props={childProps}
-            />
-            {/* <Route
+  return (
+    <Switch>
+      <Route
+        path="/"
+        exact
+        component={AsyncHome}
+        props={childProps}
+      />
+      <Route
+        path="/login"
+        exact
+        component={AsyncLogin}
+        props={childProps}
+      />
+      {/* <Route
                 path="/logout"
                 exact
                 component={AsyncLogout}
@@ -89,8 +89,8 @@ export default (childProps) => {
                 exact
                 component={AsyncSettings}
                 props={childProps}
-            />
-            <Route component={AsyncNotFound} /> */}
-        </Switch>
-    )
+            />*/}
+      <Route component={AsyncNotFound} />
+    </Switch>
+  )
 }

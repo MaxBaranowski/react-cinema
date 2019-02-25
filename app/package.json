@@ -9,7 +9,8 @@
     "react-scripts": "2.1.5"
   },
   "scripts": {
-    "dev": "set HTTPS=true&&npm start",
+    "devWindows": "set HTTPS=true&&npm start",
+    "devMac": "HTTPS=true npm start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
