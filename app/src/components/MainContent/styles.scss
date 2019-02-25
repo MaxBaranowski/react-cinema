@@ -1,5 +1,18 @@
 .main-wrapper {
+  display: flex;
+  position: relative;
   grid-column: 3/-1;
+
+  .show-hide-nav {
+    display: flex !important;
+    align-self: center;
+    position: absolute;
+    left: -12.5px;
+    width: 25px;
+    height: 100px;
+    border: 1px solid red;
+    cursor: pointer;
+  }
 }
 
 @media all and (max-width: 1199px) {

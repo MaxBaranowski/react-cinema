@@ -6,37 +6,33 @@ export default class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showResults: false
+      showMenu: true,
+
     };
 
-    this.toggle = this.toggle.bind(this);
+    // this.toggle = this.toggle.bind(this);
+    // this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
-  toggle() {
-    this.setState({ showResults: !this.state.showResults });
-  }
 
-  getState() {
-    return this.state.showResults;
-  }
 
   render() {
-    console.log(this.state.showResults)
+    // console.log(this.state)
     return (
-      < aside className="navigation" >
-        <nav>
-          <ul>
-            <li>
-              <Link to={`/`}>Home</Link>
-            </li>
-            <li>
-              <Link to={`/login`}>Login</Link>
-            </li>
-          </ul>
-        </nav >
-        <button onClick={this.toggle}>Click</button>
-      </aside >
-
+      <React.Fragment>
+        < aside className={this.state.showMenu  ? "navigation navigation-hide " : "navigation "} >
+          <nav>
+            <ul>
+              <li>
+                <Link to={`/`}>Home</Link>
+              </li>
+              <li>
+                <Link to={`/login`}>Login</Link>
+              </li>
+            </ul>
+          </nav >
+        </aside >
+      </React.Fragment>
     )
   }
 }
