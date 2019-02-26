@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MainContent from "./MainContent/MainContent"
-import Navigation from "./NavigationBar/NavBar"
+import MainContent from "./MainContent"
+import Navigation from "./NavigationBar"
 import './styles.scss';
 
 class App extends Component {

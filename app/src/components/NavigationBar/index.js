@@ -1,26 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./styles.scss";
+import { store } from "../../store";
 
 export default class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showMenu: true,
 
     };
-
-    // this.toggle = this.toggle.bind(this);
-    // this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
-
-
   render() {
-    // console.log(this.state)
     return (
       <React.Fragment>
-        < aside className={this.state.showMenu  ? "navigation " : "navigation navigation-hide "} >
+        < aside className={store.getState().showMenu ? "navigation" : "navigation navigation-hide"} >
           <nav>
             <ul>
               <li>

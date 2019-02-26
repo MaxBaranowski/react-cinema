@@ -6,8 +6,8 @@ import asyncComponent from "./AsyncComponent";
 // import AuthenticatedRoute from "./components/AuthenticatedRoute";
 // import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
-const AsyncHome = asyncComponent(() => import("./components/Pages/Home/Home"));
-const AsyncLogin = asyncComponent(() => import("./components/Pages/Login/Login"));
+const AsyncHome = asyncComponent(() => import("./components/Pages/Home"));
+const AsyncLogin = asyncComponent(() => import("./components/Pages/Login"));
 // const AsyncLogout = asyncComponent(() => import("./components/Logout"));
 // const AsyncSignup = asyncComponent(() => import("./components/Signup"));
 // const AsyncMovies = asyncComponent(() => import("./components/Movies"));
@@ -17,7 +17,7 @@ const AsyncLogin = asyncComponent(() => import("./components/Pages/Login/Login")
 // const AsyncTop = asyncComponent(() => import("./components/Top"));
 // const Asyncfavorites = asyncComponent(() => import("./components/favorites"));
 // const AsyncSettings = asyncComponent(() => import("./components/Settings"));
-const AsyncNotFound = asyncComponent(() => import("./components/Pages/NotFound/NotFound"));
+const AsyncNotFound = asyncComponent(() => import("./components/Pages/NotFound"));
 
 
 

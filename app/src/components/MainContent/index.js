@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import Routes from "../../Routes";
+import { store } from "../../store";
+import { showHideNavigation } from "../../actions"
 import "./styles.scss";
 
 export default class MainContent extends Component {
   constructor(props) {
     super(props);
-    this.state ={
-      showMenu: true,
+    this.state = {
       windowBreakpoint: 1440,
       windowWidth: 0,
       windowHeight: 0
     }
-
     this.toggle = this.toggle.bind(this);
   }
 
@@ -29,13 +29,12 @@ export default class MainContent extends Component {
   }
 
   toggle() {
-    this.setState({ showMenu: !this.state.showMenu });
-    console.log(this.state)
+    store.dispatch(showHideNavigation(store.getState().showMenu));
   }
 
   render() {
     return (
-      <main className="main-wrapper">
+      <main className={store.getState().showMenu ? "main-wrapper" : "main-wrapper main-wrapper-full"}>
         {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}>></span>}
         <Routes />
       </main>

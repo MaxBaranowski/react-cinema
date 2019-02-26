@@ -10,14 +10,14 @@
   nav {
     width: 100%;
   }
-
-
 }
 
-
 .navigation-hide {
-  left: -100%;
-  // grid-column: 1/1;
+  animation-name: showHideMenu;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  display: none;
 }
 
 @media all and (max-width: 1199px) {
@@ -39,3 +39,27 @@
   .navigation {
   }
 }
+
+@keyframes showHideMenu {
+  0% {
+    left: 0;
+  }
+  25% {
+    left: -25%;
+  }
+  50% {
+    left: -50%;
+  }
+  100% {
+    left: -100%;
+  }
+  // 0% {
+  //   background: yellow;
+  // }
+  // 100% {
+  //   background: blue;
+  // }
+}
+// left: -100%;
+// display: none;
+// grid-column: 1/1;
