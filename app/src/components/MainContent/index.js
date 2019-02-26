@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Routes from "../../Routes";
 import { store } from "../../store";
-import { showHideNavigation } from "../../actions"
+import { showHideNavigation, showNavigation } from "../../actions"
 import "./styles.scss";
 
 export default class MainContent extends Component {
@@ -13,6 +13,7 @@ export default class MainContent extends Component {
       windowHeight: 0
     }
     this.toggle = this.toggle.bind(this);
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +27,10 @@ export default class MainContent extends Component {
 
   updateWindowDimensions() {
     this.setState({ windowWidth: window.innerWidth, windowHeight: window.innerHeight });
+    // show menu if screen resolution changes
+    if (this.state.windowWidth >= this.state.windowBreakpoint) {
+      store.dispatch(showNavigation(store.getState().showMenu));
+    }
   }
 
   toggle() {
