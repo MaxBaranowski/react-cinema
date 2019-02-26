@@ -37,6 +37,7 @@
 
 @media all and (max-width: 575px) {
   .navigation {
+    grid-column: 1/6;
   }
 }
 
@@ -53,13 +54,4 @@
   100% {
     left: -100%;
   }
-  // 0% {
-  //   background: yellow;
-  // }
-  // 100% {
-  //   background: blue;
-  // }
 }
-// left: -100%;
-// display: none;
-// grid-column: 1/1;

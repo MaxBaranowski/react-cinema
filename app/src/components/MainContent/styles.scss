@@ -15,10 +15,6 @@
   }
 }
 
-.main-wrapper-full {
-  grid-column: 1/-1;
-}
-
 @media all and (max-width: 1199px) {
   .main-wrapper {
   }
@@ -36,5 +32,10 @@
 
 @media all and (max-width: 575px) {
   .main-wrapper {
+    grid-column: 6/-1;
   }
+}
+
+.main-wrapper-full {
+  grid-column: 1/-1;
 }
