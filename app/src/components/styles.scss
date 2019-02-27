@@ -9,6 +9,18 @@
   justify-content: center;
 }
 
+.show-hide-nav {
+  display: flex !important;
+  align-self: center;
+  position: absolute;
+  right: -7.5px;
+  width: 15px;
+  height: 100px;
+  border-radius: 15px;
+  background-color: #c70000;
+  cursor: pointer;
+}
+
 @media all and (max-width: 1199px) {
   #app {
     grid-template-columns: repeat(12, minmax(82px, 99.9px));
@@ -29,7 +41,7 @@
 
 @media all and (max-width: 575px) {
   #app {
-    grid-template-columns: repeat(6, minmax(min-content, 100%));
+    grid-template-columns: repeat(12, minmax(min-content, 47.9px));
   }
 }
 

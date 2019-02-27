@@ -2,17 +2,9 @@
   display: flex;
   position: relative;
   grid-column: 3/-1;
-
-  .show-hide-nav {
-    display: flex !important;
-    align-self: center;
-    position: absolute;
-    left: -12.5px;
-    width: 25px;
-    height: 100px;
-    border: 1px solid red;
-    cursor: pointer;
-  }
+  padding: 0 25px;
+  height: 100vh;
+  overflow: scroll;
 }
 
 @media all and (max-width: 1199px) {
@@ -32,10 +24,14 @@
 
 @media all and (max-width: 575px) {
   .main-wrapper {
-    grid-column: 6/-1;
+    grid-column: 1/-1;
+  }
+  .main-wrapper-full {
+    padding: 0 10px 0 15px;
   }
 }
 
-.main-wrapper-full {
-  grid-column: 1/-1;
-}
+// .main-wrapper-full {
+//   grid-column: 2/-1;
+//   transition: all 1s linear;
+// }
