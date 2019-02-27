@@ -12,14 +12,28 @@
 @media (min-width: 992px) and (max-width: 1199px) {
   .main-wrapper-full {
     grid-column: 2/-1;
-    margin-left: -10%;
+    margin-left: -7.5%;
+    transition: all 1s linear;
+    padding-left: 0;
   }
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
+  .main-wrapper-full {
+    grid-column: 2/-1;
+    margin-left: -7.5%;
+    transition: all 1s linear;
+    padding-left: 0;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
+  .main-wrapper-full {
+    grid-column: 2/-1;
+    margin-left: -15.5%;
+    transition: all 1s linear;
+    padding-left: 0;
+  }
 }
 
 @media (min-width: 0px) and (max-width: 575px) {

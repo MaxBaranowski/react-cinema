@@ -13,6 +13,9 @@ export default class NavBar extends Component {
       windowWidth: 0,
       windowHeight: 0
     };
+
+    this.element = React.createRef();
+
     this.toggle = this.toggle.bind(this);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
@@ -36,6 +39,7 @@ export default class NavBar extends Component {
 
   toggle() {
     store.dispatch(showHideNavigation(store.getState().showMenu));
+    console.log(store.getState().showMenu)
   }
 
   render() {
@@ -46,8 +50,14 @@ export default class NavBar extends Component {
           appear={true}
           timeout={0}
           classNames="menu"
+          onEntering={() => {
+            this.element.current.classList.remove("menu-hide");
+          }}
+          onExited={() => {
+            this.element.current.classList.add("menu-hide");
+          }}
         >
-          < aside className="menu">
+          < aside className="menu" ref={this.element}>
             <nav>
               <ul>
                 <li>
@@ -58,7 +68,7 @@ export default class NavBar extends Component {
                 </li>
               </ul>
             </nav >
-            {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}>></span>}
+            {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}>c l i ck</span>}
           </ aside>
         </CSSTransition>
       </React.Fragment>
