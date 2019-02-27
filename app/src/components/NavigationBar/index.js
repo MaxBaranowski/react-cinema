@@ -44,7 +44,7 @@ export default class NavBar extends Component {
         <CSSTransition
           in={store.getState().showMenu}
           appear={true}
-          timeout={300}
+          timeout={0}
           classNames="menu"
         >
           < aside className="menu">
@@ -58,7 +58,7 @@ export default class NavBar extends Component {
                 </li>
               </ul>
             </nav >
-            {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}></span>}
+            {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}>></span>}
           </ aside>
         </CSSTransition>
       </React.Fragment>

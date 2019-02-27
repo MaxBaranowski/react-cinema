@@ -21,25 +21,25 @@
   cursor: pointer;
 }
 
-@media all and (max-width: 1199px) {
+@media (min-width: 992px) and (max-width: 1199px) {
   #app {
-    grid-template-columns: repeat(12, minmax(82px, 99.9px));
+    grid-template-columns: repeat(12, minmax(min-content, 99.9px));
   }
 }
 
-@media all and (max-width: 991px) {
+@media (min-width: 769px) and (max-width: 991px) {
+  #app {
+    grid-template-columns: repeat(12, minmax(min-content, 82.5px));
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
   #app {
     grid-template-columns: repeat(12, minmax(min-content, 100%));
   }
 }
 
-@media all and (max-width: 768px) {
-  #app {
-    grid-template-columns: repeat(12, minmax(min-content, 100%));
-  }
-}
-
-@media all and (max-width: 575px) {
+@media (min-width: 0px) and (max-width: 575px) {
   #app {
     grid-template-columns: repeat(12, minmax(min-content, 47.9px));
   }
