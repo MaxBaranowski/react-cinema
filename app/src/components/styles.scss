@@ -1,5 +1,17 @@
+/** Variables
+ ---------------------------------------------------------*/
+$menu-dark: #151515;
+$app-dark: #0e0e0e;
+$app-font-dark: #333;
+/** Variables end
+ ---------------------------------------------------------*/
 * {
   box-sizing: border-box;
+}
+
+body {
+  background-color: $app-dark;
+  color: $app-font-dark;
 }
 
 #app {
