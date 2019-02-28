@@ -14,7 +14,6 @@
   .item1 {
     grid-column-start: 1;
     grid-column-end: 4;
-    background-color: tomato;
   }
 
   .item2 {
@@ -22,13 +21,11 @@
     grid-column-end: 1;
     grid-row-start: 2;
     grid-row-end: 4;
-    background-color: lightblue;
   }
 
   .item3 {
     grid-column-start: 2;
     grid-column-end: 4;
-    background-color: lightgreen;
   }
 
   .item5 {
@@ -36,18 +33,15 @@
     grid-column-end: 4;
     grid-row-start: 3;
     grid-row-end: 5;
-    background-color: whitesmoke;
   }
 
   .item6 {
     grid-column-start: 1;
     grid-column-end: 3;
-    background-color: mediumorchid;
   }
 
   .item7 {
     grid-column-start: 1;
     grid-column-end: 4;
-    background-color: orange;
   }
 }

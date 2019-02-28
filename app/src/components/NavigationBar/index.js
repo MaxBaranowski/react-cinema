@@ -9,7 +9,7 @@ export default class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      windowBreakpoint: 1440,
+      windowBreakpoint: 1365,//1440,
       windowWidth: 0,
       windowHeight: 0
     };
