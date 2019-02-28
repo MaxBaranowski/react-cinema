@@ -1,10 +1,11 @@
-/* appear - on page load */
+@import "../variables.scss";
+
 .menu-wrapper {
   width: 250px;
   left: 0;
   display: flex;
   position: relative;
-  background-color: $menu-dark;
+  background-color: #0e0e0e;
   height: 100vh;
   z-index: 10;
 
@@ -26,7 +27,7 @@
     aside {
       position: fixed;
       width: 250px;
-      background-color: $menu-dark;
+      background-color: #0e0e0e;
       height: 100vh;
     }
   }
@@ -166,8 +167,4 @@
     left: calc(-100vw - -10px);
     transition: all 0.5s linear;
   }
-}
-
-.menu-hide {
-  left: 0;
 }

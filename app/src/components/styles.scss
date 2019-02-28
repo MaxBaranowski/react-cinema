@@ -1,10 +1,5 @@
-/** Variables
- ---------------------------------------------------------*/
-$menu-dark: #151515;
-$app-dark: #0e0e0e;
-$app-font-dark: #333;
-/** Variables end
- ---------------------------------------------------------*/
+@import "../components/variables.scss";
+
 * {
   box-sizing: border-box;
 }
