@@ -39,7 +39,6 @@ export default class NavBar extends Component {
 
   toggle() {
     store.dispatch(showHideNavigation(store.getState().showMenu));
-    console.log(store.getState().showMenu)
   }
 
   render() {
