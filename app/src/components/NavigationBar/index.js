@@ -64,7 +64,7 @@ export default class NavBar extends Component {
                   </li>
                 </ul>
               </aside>
-              {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}>c l i ck</span>}
+              {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}></span>}
             </nav >
           </ aside>
         </CSSTransition>

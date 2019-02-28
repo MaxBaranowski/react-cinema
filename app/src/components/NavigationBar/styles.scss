@@ -5,7 +5,7 @@
   display: flex;
   position: relative;
   // border: 1px solid red;
-  background-color: white;
+  background-color: #000;
   height: 100vh;
   z-index: 10;
 
@@ -19,14 +19,24 @@
     width: 250px;
     height: 100vh;
     overflow: hidden;
-    // background-color: #ccc;
+  }
+}
+
+@media (min-width: 1200px) {
+  .menu-wrapper {
+    aside {
+      position: fixed;
+      width: 250px;
+      background-color: #000;
+      height: 100vh;
+    }
   }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .menu-wrapper {
     position: fixed;
-    left: -235px;
+    left: -240px;
     min-height: 100vh;
 
     aside {
@@ -39,7 +49,7 @@
   }
 
   .menu-enter.menu-enter-active {
-    left: -235px;
+    left: -240px;
   }
 
   .menu-enter-done {
@@ -52,7 +62,7 @@
   }
 
   .menu-exit-done {
-    left: -235px;
+    left: -240px;
     transition: all 1s linear;
   }
 }
@@ -60,7 +70,7 @@
 @media (min-width: 769px) and (max-width: 991px) {
   .menu-wrapper {
     position: fixed;
-    left: -235px;
+    left: -240px;
     min-height: 100vh;
 
     aside {
@@ -73,7 +83,7 @@
   }
 
   .menu-enter.menu-enter-active {
-    left: -235px;
+    left: -240px;
   }
 
   .menu-enter-done {
@@ -86,7 +96,7 @@
   }
 
   .menu-exit-done {
-    left: -235px;
+    left: -240px;
     transition: all 1s linear;
   }
 }
@@ -154,7 +164,7 @@
   }
 
   .menu-exit-done {
-    left: calc(-100vw - -16px);
+    left: calc(-100vw - -10px);
     transition: all 1s linear;
   }
 }
