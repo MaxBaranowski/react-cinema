@@ -102,7 +102,7 @@
 @media (min-width: 576px) and (max-width: 768px) {
   .menu-wrapper {
     position: fixed;
-    left: -235px;
+    left: -240px;
     min-height: 100vh;
 
     aside {
@@ -115,7 +115,7 @@
   }
 
   .menu-enter.menu-enter-active {
-    left: -235px;
+    left: -240px;
   }
 
   .menu-enter-done {
@@ -128,7 +128,7 @@
   }
 
   .menu-exit-done {
-    left: -235px;
+    left: -240px;
     transition: all 1s linear;
   }
 }
@@ -136,7 +136,7 @@
 @media (min-width: 0px) and (max-width: 575px) {
   .menu-wrapper {
     position: fixed;
-    left: -235px;
+    left: -240px;
     min-height: 100vh;
     width: 100vw;
 
@@ -150,7 +150,7 @@
   }
 
   .menu-enter.menu-enter-active {
-    left: -235px;
+    left: -240px;
   }
 
   .menu-enter-done {
