@@ -7,7 +7,7 @@
   min-height: 100vh;
   height: 100vh;
   margin: 0 25px 0 25px;
-  transition: all 1s linear;
+  transition: all 0.5s linear;
   z-index: 9;
 
   section {
@@ -28,7 +28,7 @@
 
   .main-wrapper-enter-done {
     left: 250px;
-    transition: all 1s linear;
+    transition: all 0.5s linear;
   }
 
   .main-wrapper-exit.main-wrapper-exit-active {
@@ -38,7 +38,7 @@
   .main-wrapper-exit-done {
     left: 35px;
     margin: 0 5% 0 1%;
-    transition: all 1s linear;
+    transition: all 0.5s linear;
   }
 }
 
@@ -57,7 +57,7 @@
   .main-wrapper-enter-done {
     left: 250px;
     overflow-x: hidden;
-    transition: all 1s linear;
+    transition: all 0.5s linear;
   }
 
   .main-wrapper-exit.main-wrapper-exit-active {
@@ -67,7 +67,7 @@
   .main-wrapper-exit-done {
     left: 0;
     margin: 0 0 0 0;
-    transition: all 1s linear;
+    transition: all 0.5s linear;
   }
 }
 
@@ -86,7 +86,7 @@
   .main-wrapper-enter-done {
     left: 250px;
     padding: 0 5px 0 5px;
-    transition: all 1s linear;
+    transition: all 0.5s linear;
   }
 
   .main-wrapper-exit.main-wrapper-exit-active {
@@ -96,7 +96,7 @@
   .main-wrapper-exit-done {
     left: 0;
     margin: 0 0 0 0;
-    transition: all 1s linear;
+    transition: all 0.5s linear;
   }
 }
 

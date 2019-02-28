@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import { store } from "../../../store";
+import { store } from "../../../store";
+import { hideMenu } from "../../../actions";
 
 export default class Home extends Component {
   constructor(props) {
@@ -11,6 +12,11 @@ export default class Home extends Component {
     };
 
   }
+
+  componentDidMount() {
+    store.dispatch(hideMenu(store.getState().showMenu));
+  }
+
   render() {
     return (
       <div>

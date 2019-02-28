@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 import { store } from "../../store";
-import { showHideNavigation, showNavigation } from "../../actions";
+import { showHideMenu, showMenu } from "../../actions";
 import { CSSTransition } from "react-transition-group";
 
 export default class NavBar extends Component {
@@ -33,12 +33,12 @@ export default class NavBar extends Component {
     this.setState({ windowWidth: window.innerWidth, windowHeight: window.innerHeight });
     // show menu if screen resolution changes
     if (this.state.windowWidth >= this.state.windowBreakpoint) {
-      store.dispatch(showNavigation(store.getState().showMenu));
+      store.dispatch(showMenu(store.getState().showMenu));
     }
   }
 
   toggle() {
-    store.dispatch(showHideNavigation(store.getState().showMenu));
+    store.dispatch(showHideMenu(store.getState().showMenu));
   }
 
   render() {
