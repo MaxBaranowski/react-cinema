@@ -48,27 +48,24 @@ export default class NavBar extends Component {
         <CSSTransition
           in={store.getState().showMenu}
           appear={true}
+          exit={true}
           timeout={0}
           classNames="menu"
-          onEntering={() => {
-            this.element.current.classList.remove("menu-hide");
-          }}
-          onExited={() => {
-            this.element.current.classList.add("menu-hide");
-          }}
         >
-          < aside className="menu" ref={this.element}>
+          < aside className="menu-wrapper" ref={this.element}>
             <nav>
-              <ul>
-                <li>
-                  <Link to={`/`}>Home</Link>
-                </li>
-                <li>
-                  <Link to={`/login`}>Login</Link>
-                </li>
-              </ul>
+              <aside>
+                <ul>
+                  <li>
+                    <Link to={`/`}>Home</Link>
+                  </li>
+                  <li>
+                    <Link to={`/login`}>Login</Link>
+                  </li>
+                </ul>
+              </aside>
+              {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}>c l i ck</span>}
             </nav >
-            {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}>c l i ck</span>}
           </ aside>
         </CSSTransition>
       </React.Fragment>

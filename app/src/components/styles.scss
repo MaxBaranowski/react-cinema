@@ -3,9 +3,8 @@
 }
 
 #app {
-  display: grid;
-  min-height: 100vh;
-  grid-template-columns: repeat(12, minmax(83px, 120px));
+  display: flex;
+  flex-direction: row;
   justify-content: center;
 }
 
@@ -13,38 +12,10 @@
   display: flex !important;
   align-self: center;
   position: absolute;
-  right: -7.5px;
+  right: 0;
   width: 15px;
   height: 100px;
   border-radius: 15px;
   background-color: #c70000;
   cursor: pointer;
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  #app {
-    grid-template-columns: repeat(12, minmax(min-content, 99.9px));
-  }
-}
-
-@media (min-width: 769px) and (max-width: 991px) {
-  #app {
-    grid-template-columns: repeat(12, minmax(min-content, 82.5px));
-  }
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
-  #app {
-    grid-template-columns: repeat(12, minmax(min-content, 100%));
-  }
-}
-
-@media (min-width: 0px) and (max-width: 575px) {
-  #app {
-    grid-template-columns: repeat(12, minmax(min-content, 47.9px));
-  }
-}
-
-.red {
-  background: red;
 }

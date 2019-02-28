@@ -20,17 +20,14 @@ export default class MainContent extends Component {
         appear={true}
         timeout={0}
         classNames="main-wrapper"
-        onEntering={() => {
-          this.element.current.classList.remove("main-wrapper-full");
-        }}
-        onExited={() => {
-          this.element.current.classList.add("main-wrapper-full");
-        }}
       >
         <main className="main-wrapper" ref={this.element}>
-          <Routes />
+          <section>
+            <Routes />
+          </section>
         </main>
       </CSSTransition>
+
     )
   }
 
