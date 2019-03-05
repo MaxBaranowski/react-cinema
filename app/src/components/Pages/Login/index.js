@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import { store } from "../../../store";
-import { hideMenu } from "../../../actions";
 
 import "./Login.scss";
 
@@ -27,10 +25,6 @@ export default class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-  }
-
-  componentDidMount() {
-    store.dispatch(hideMenu(store.getState().showMenu));
   }
 
   render() {
@@ -61,7 +55,7 @@ export default class Login extends Component {
             type="submit"
           >
             Login
-                    </Button>
+          </Button>
         </form>
       </div>
     );

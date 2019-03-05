@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { store } from "../../../store";
-import { hideMenu } from "../../../actions";
-
 import "./testGrid.scss";
 
 export default class Home extends Component {
@@ -12,11 +9,6 @@ export default class Home extends Component {
       email: "",
       password: ""
     };
-
-  }
-
-  componentDidMount() {
-    store.dispatch(hideMenu(store.getState().showMenu));
   }
 
   render() {

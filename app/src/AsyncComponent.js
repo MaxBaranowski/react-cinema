@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { store } from "./store";
+import { hideMenu } from "./actions";
 
 export default function asyncComponent(importComponent) {
   class AsyncComponent extends Component {
@@ -16,6 +18,10 @@ export default function asyncComponent(importComponent) {
       this.setState({
         component: component
       });
+
+      if (window.innerWidth <= 1299) {
+        store.dispatch(hideMenu(store.getState().showMenu));
+      }
     }
 
     render() {

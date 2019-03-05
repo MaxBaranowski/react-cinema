@@ -9,7 +9,10 @@ export default function MainLinks() {
           <Link to={`/`}>Home</Link>
         </li>
         <li>
-          <Link to={`/login`}>Login</Link>
+          <Link to={`/movies`}>Movies</Link>
+        </li>
+        <li>
+          <Link to={`/songs`}>Songs</Link>
         </li>
       </ul>
     </section>
