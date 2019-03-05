@@ -9,6 +9,9 @@ export default function Settings() {
           <Link to={`/settings`}>Settings</Link>
         </li>
         <li>
+          <Link to={`/membership`}>Membership</Link>
+        </li>
+        <li>
           {true ? <Link to={`/login`}>Login</Link> : <Link to={`/logout`}>Sign Out</Link>}
         </li>
       </ul>

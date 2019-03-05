@@ -6,6 +6,9 @@ export default function Favorites() {
     <section className="menu-link-section">
       <ul>
         <li>
+          <Link to={`/likes`}>Likes</Link>
+        </li>
+        <li>
           <Link to={`/top`}>Top</Link>
         </li>
         <li>
