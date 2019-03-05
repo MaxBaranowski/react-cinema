@@ -23,14 +23,14 @@ export default class Home extends Component {
     return (
       <div>
         <h1>Home</h1>
-        <div class="grid-wrapper">
-          <div class="item1">1</div>
-          <div class="item2"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque dolores, laborum adipisci quod voluptas itaque cupiditate accusamus quisquam accusantium explicabo porro tenetur hic ea ducimus commodi, expedita similique vitae nihil qui nemo? Culpa omnis velit explicabo dolorum. Nihil rerum placeat eligendi accusamus dolores nisi. Sint sed nihil necessitatibus quos est.</p></div>
-          <div class="item3">3</div>
-          <div class="item4">4</div>
-          <div class="item5">5</div>
-          <div class="item6">6</div>
-          <div class="item7">7</div>
+        <div className="grid-wrapper">
+          <div className="item1">1</div>
+          <div className="item2"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque dolores, laborum adipisci quod voluptas itaque cupiditate accusamus quisquam accusantium explicabo porro tenetur hic ea ducimus commodi, expedita similique vitae nihil qui nemo? Culpa omnis velit explicabo dolorum. Nihil rerum placeat eligendi accusamus dolores nisi. Sint sed nihil necessitatibus quos est.</p></div>
+          <div className="item3">3</div>
+          <div className="item4">4</div>
+          <div className="item5">5</div>
+          <div className="item6">6</div>
+          <div className="item7">7</div>
         </div>
         {/* {store.getState().showMenu.tos} */}
       </div >

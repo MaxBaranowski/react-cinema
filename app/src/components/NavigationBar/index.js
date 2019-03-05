@@ -1,15 +1,21 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./styles.scss";
+import { CSSTransition } from "react-transition-group";
+
 import { store } from "../../store";
 import { showHideMenu, showMenu } from "../../actions";
-import { CSSTransition } from "react-transition-group";
+
+import Avatar from "./components/Avatar";
+import TopLinks from "./components/MainLinks";
+import MiddleLinks from "./components/Favorites";
+import BottomLinks from "./components/Settings";
+
+import "./styles.scss";
 
 export default class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      windowBreakpoint: 1365,//1440,
+      windowBreakpoint: 1299,//1440,
       windowWidth: 0,
       windowHeight: 0
     };
@@ -53,16 +59,12 @@ export default class NavBar extends Component {
         >
           < aside className="menu-wrapper" ref={this.element}>
             <nav>
-              <aside>
-                <ul>
-                  <li>
-                    <Link to={`/`}>Home</Link>
-                  </li>
-                  <li>
-                    <Link to={`/login`}>Login</Link>
-                  </li>
-                </ul>
-              </aside>
+              <main>
+                <Avatar />
+                <TopLinks />
+                <MiddleLinks />
+                <BottomLinks />
+              </main>
               {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}></span>}
             </nav >
           </ aside>
