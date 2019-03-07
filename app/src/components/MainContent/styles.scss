@@ -1,6 +1,6 @@
 .main-wrapper {
   display: grid;
-  grid-template-columns: repeat(12, minmax(83px, 120px));
+  grid-template-columns: repeat(12, minmax(83px, 1fr));
   justify-content: flex-start;
   position: relative;
   width: 100%;
