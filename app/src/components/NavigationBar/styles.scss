@@ -8,7 +8,7 @@
   background-color: #0e0e0e;
   height: 100vh;
   z-index: 10;
-
+  font-family: "Varela Round", sans-serif;
   nav {
     display: flex;
     position: relative;
@@ -25,11 +25,47 @@
       height: 100vh;
       width: 100%;
 
+      header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        picture {
+          margin: 0 0 1em 0;
+          img {
+            display: flex;
+            width: 100%;
+            max-width: 130px;
+            border-radius: 100%;
+          }
+        }
+        .user_hello {
+          color: red;
+          font-size: 1em;
+          font-size: 1.5em;
+          #user_name {
+          }
+        }
+      }
+
       .menu-link-section {
         height: auto;
         max-height: 30vh;
         width: 90%;
-        border: 1px solid red;
+        ul {
+          li {
+            list-style-type: none;
+            display: block;
+            margin: 1em 0 1em 0;
+            .link_icon {
+              margin: 0 1em 0 0;
+            }
+            a {
+              text-decoration: none;
+              color: $app-nav-link-color;
+            }
+          }
+        }
       }
     }
   }
