@@ -35,12 +35,11 @@
           img {
             display: flex;
             width: 100%;
-            max-width: 130px;
+            max-width: 100px;
             border-radius: 100%;
           }
         }
         .user_hello {
-          color: red;
           font-size: 1em;
           font-size: 1.5em;
           #user_name {
@@ -79,11 +78,13 @@
 
 @media (min-width: 1300px) {
   .menu-wrapper {
-    main {
-      position: fixed;
-      width: 250px;
-      background-color: #0e0e0e;
-      height: 100vh;
+    nav {
+      main {
+        position: fixed;
+        width: 250px;
+        background-color: #0e0e0e;
+        height: 100vh;
+      }
     }
   }
   .menu-enter.menu-enter-active {
@@ -111,12 +112,12 @@
     left: -240px;
     min-height: 100vh;
 
-    main {
-      width: 250px;
-    }
     nav {
       width: 250px;
       height: 100vh;
+      main {
+        width: 250px;
+      }
     }
   }
 
@@ -145,12 +146,12 @@
     left: -240px;
     min-height: 100vh;
 
-    main {
-      width: 250px;
-    }
     nav {
       width: 250px;
       height: 100vh;
+      main {
+        width: 250px;
+      }
     }
   }
 
@@ -178,12 +179,12 @@
     left: -240px;
     min-height: 100vh;
 
-    main {
-      width: 250px;
-    }
     nav {
       width: 250px;
       height: 100vh;
+      main {
+        width: 250px;
+      }
     }
   }
 
