@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
 
-export default function Movie(props) {
-
+const Movie = (props) => {
   return (
     <React.Fragment>
       <div className="movie">
@@ -23,3 +23,11 @@ export default function Movie(props) {
     </React.Fragment>
   )
 }
+
+Movie.propTypes = {
+  img: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+};
+
+export default Movie;
