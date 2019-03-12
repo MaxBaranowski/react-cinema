@@ -9,11 +9,11 @@ export default function Content() {
     let list = [];
     for (let movie of MoviesList) {
       list.push(
-        <Comp id={movie.id} img={movie.img} name={movie.name + " " + movie.id} genre={movie.genre} />
+        <Comp key={movie.id} id={movie.id} img={movie.img} name={movie.name + " " + movie.id} genre={movie.genre} />
       );
     }
     return list;
-  }
+  };
 
   return (
     <React.Fragment>
