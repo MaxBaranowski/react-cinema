@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 
-import "./Login.scss";
+import "./styles.scss";
 
 export default class Login extends Component {
   constructor(props) {
