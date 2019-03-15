@@ -15,6 +15,30 @@
 body {
   background-color: $app-dark;
   color: $app-font-dark;
+
+  // ================================================
+  // ============== Custom scrollbar ================
+  // ================================================
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $app-dark;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #333333;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }
 
 #app {
@@ -32,28 +56,4 @@ body {
   height: 100px;
   background-color: #333333 /*#f68e1f*/;
   cursor: pointer;
-}
-
-// ================================================
-// ============== Custom scrollbar ================
-// ================================================
-
-/* width */
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: $app-dark;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #333333;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }

@@ -61,9 +61,13 @@ export default class NavBar extends Component {
             <nav>
               <main>
                 <Avatar />
-                <TopLinks />
-                <MiddleLinks />
-                <BottomLinks />
+                <section className="menu-link-wrapper">
+                  <div className="menu-scroll">
+                    <TopLinks />
+                    <MiddleLinks />
+                    <BottomLinks />
+                  </div>
+                </section>
               </main>
               {(this.state.windowWidth <= this.state.windowBreakpoint) && <span className="show-hide-nav" onClick={this.toggle}></span>}
             </nav >
