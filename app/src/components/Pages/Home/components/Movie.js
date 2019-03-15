@@ -6,7 +6,7 @@ const Movie = (props) => {
     <React.Fragment>
       <div className="movie">
         <div className="movie-body">
-          <img src={process.env.PUBLIC_URL + props.img} alt=""/>
+          <img src={process.env.PUBLIC_URL + props.img} alt="" />
         </div>
         <div className="movie-description">
           <h3 className="movie-name">
@@ -19,7 +19,7 @@ const Movie = (props) => {
 
       </div>
     </React.Fragment>
-    )
+  )
 };
 
 Movie.propTypes = {

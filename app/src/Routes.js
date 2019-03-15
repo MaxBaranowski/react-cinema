@@ -54,13 +54,13 @@ export default (childProps) => {
                 component={AsyncMovies}
                 props={childProps}
             />*/}
-            <Route
-                path="/movie/:id"
-                exact
-                component={AsyncMovie}
-                props={childProps}
-            />
-        {/*
+      <Route
+        path="/movie/:id"
+        exact
+        component={AsyncMovie}
+        props={childProps}
+      />
+      {/*
             <Route
                 path="/songs"
                 exact
