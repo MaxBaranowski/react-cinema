@@ -1,4 +1,12 @@
+// ================================================
+// =============== Load Variables ==================
+// ================================================
+
 @import "../components/variables.scss";
+
+// ================================================
+// =============== Global styles ==================
+// ================================================
 
 * {
   box-sizing: border-box;
@@ -24,4 +32,28 @@ body {
   height: 100px;
   background-color: #333333 /*#f68e1f*/;
   cursor: pointer;
+}
+
+// ================================================
+// ============== Custom scrollbar ================
+// ================================================
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $app-dark;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333333;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

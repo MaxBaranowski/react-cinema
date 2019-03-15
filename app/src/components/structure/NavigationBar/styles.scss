@@ -81,7 +81,7 @@
     nav {
       main {
         position: fixed;
-        width: 250px;
+        width: 185px;
         background-color: #0e0e0e;
         height: 100vh;
       }
@@ -122,6 +122,9 @@
       height: 100vh;
       main {
         width: 250px;
+        .menu-link-section {
+          width: 65%;
+        }
       }
     }
   }
@@ -160,6 +163,9 @@
       height: 100vh;
       main {
         width: 250px;
+        .menu-link-section {
+          width: 65%;
+        }
       }
     }
   }
@@ -236,6 +242,8 @@
       height: 100vh;
       main {
         width: 100%;
+        .menu-link-section {
+        }
       }
     }
   }
