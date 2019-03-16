@@ -6,7 +6,7 @@ const Movie = (props) => {
     return (
         <React.Fragment>
             <div className="movie">
-                {/*<Link to={`/movie/` + props.id}>*/}
+                <Link to={`/movie/` + props.id}>
                     <div className="movie-body">
                         <img src={process.env.PUBLIC_URL + props.img} alt=""/>
                     </div>
@@ -18,7 +18,7 @@ const Movie = (props) => {
                             {props.genre}
                         </p>
                     </div>
-                {/*</Link>*/}
+                </Link>
             </div>
         </React.Fragment>
     )

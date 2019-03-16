@@ -8,6 +8,7 @@
   min-height: 100vh;
   height: 100%;
   margin: 0 25px 0 25px;
+  padding: 2em 1em;
   transition: all 0.5s linear;
   z-index: 9;
 
@@ -85,7 +86,7 @@
     grid-template-columns: repeat(12, minmax(auto, 1fr));
     max-width: 95%;
     margin: 0 250px 0 0;
-    padding: 0 0 0 0;
+    padding: 1em 0 0 1em;
   }
 
   // ================================================
@@ -118,6 +119,6 @@
     grid-template-columns: repeat(12, minmax(auto, 1fr));
     max-width: 95%;
     margin: 0 0 0 0;
-    padding: 0 5px 0 5px;
+    padding: 1em 1em;
   }
 }
