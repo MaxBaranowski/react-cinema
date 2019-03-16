@@ -3,6 +3,7 @@
   flex-direction: column;
   box-sizing: border-box;
   padding-bottom: 4em;
+
   .home-banner {
     display: flex;
     width: 100%;
@@ -15,41 +16,46 @@
   .home-sections {
     display: flex;
     flex-direction: column;
+
     .section {
       display: flex;
       flex-direction: column;
+
       header {
         margin: 2em 0 1em 0;
       }
+
       .section-body {
         display: grid;
         grid-template-columns: repeat(6, minmax(min-content, 1fr));
         grid-gap: 1em;
+
         .movie {
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
           height: 100%;
-          //max-height: 25em;
-          // border: 1px solid #fff;
           border-radius: 1em;
           overflow: hidden;
+
           .movie-body {
             max-height: 80%;
-            //overflow: hidden;
+
             img {
               width: 100%;
               max-height: 100%;
-              filter: drop-shadow(0 0 3em #333);
             }
           }
+
           .movie-description {
             height: 20%;
             padding: 0 0 0 0.3em;
+
             .movie-name {
               margin: 0.5em 0;
               font-size: 1em;
             }
+
             .movie-genre {
               margin: 0;
               font-size: 1em;
