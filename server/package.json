@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "npm run prod",
-    "server": "babel-node ./src/bin/www",
-    "server:prod": "node ./dist/bin/www",
+    "server": "babel-node ./src/config/www",
+    "server:prod": "node ./dist/config/www",
     "dev": "NODE_ENV=development npm-run-all server",
     "clean": "rimraf dist",
     "build": "babel ./src --out-dir dist",
@@ -13,6 +13,7 @@
     "watch": "nodemon server"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^7.0.0",
