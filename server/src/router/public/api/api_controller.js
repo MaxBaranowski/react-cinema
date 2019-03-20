@@ -1,9 +1,20 @@
+import db from "../../../db/index";
+
 export default class API {
   constructor() {
     this.indexPageText = "Hi, this is API index page"
   }
 
-  index = (req, res, next) => {
+  index = async (req, res, next) => {
+    try {
+      let DB = new db();
+      await DB.connect();
+
+    } catch (err) {
+      res.status(200).json({
+        "err": err
+      });
+    }
     res.status(200).json({
       message: this.indexPageText
     });;
@@ -11,6 +22,7 @@ export default class API {
 
   test = (req, res, next) => {
     res.status(200).json({
+      "body": req.body,
       "name": "test",
       "time": new Date().toLocaleDateString()
     });

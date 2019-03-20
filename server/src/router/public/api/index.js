@@ -6,6 +6,6 @@ const controller = new API_controller();
 
 /* GET API page. */
 router.get('/', controller.index);
-router.get('/test', controller.test);
+// router.post('/test', controller.test);
 
 export default router;
