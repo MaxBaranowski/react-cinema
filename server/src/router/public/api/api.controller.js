@@ -1,4 +1,4 @@
-import MongoDBConnect from "#/models/db/MongoDB";
+import MongoDBConnect from "#/models/db";
 
 export default class API {
   constructor() {
