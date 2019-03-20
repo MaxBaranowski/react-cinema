@@ -1,23 +1,28 @@
-import db from "#/models/db/MongoDB";
+import MongoDBConnect from "#/models/db/MongoDB";
 
 export default class API {
   constructor() {
     this.indexPageText = "Hi, this is API index page"
   }
 
-  index = async (req, res, next) => {
+  index = (req, res, next) => {
     try {
-      let DB = new db();
-      await DB.connect();
-
+      let db = new MongoDBConnect();
+      db.connect().then(() => {
+        return db.getAll();
+      }, err => {
+        console.log(err)
+      }).then(data => {
+        res.send(data)
+        db.close();
+      }, err => {
+        console.log(err)
+      });
     } catch (err) {
       res.status(200).json({
         "err": err
       });
     }
-    res.status(200).json({
-      message: this.indexPageText
-    });;
   }
 
   test = (req, res, next) => {

@@ -7,20 +7,21 @@ import mongo, { MongoClient } from "mongodb";
 export default class MongoDB {
 
   constructor() {
-    this.db = null;
+    this.dataBase = null;
   }
 
-  connect = (uri = process.env.DB_URI) => {
+  connect = () => {
     return new Promise((resolve, reject) => {
-      if (this.db) {
+      if (this.dataBase) {
         resolve();
       } else {
         MongoClient.connect(
-          uri,
+          process.env.DB_URI,
           { useNewUrlParser: true }
         ).then((database) => {
           // "connect" method returns the new database connection
-          this.db = database;
+          this.dataBase = database;
+          console.log("DB Connection opened")
           resolve();
         }, err => {
           console.log("Error connecting: " + err.message);
@@ -31,17 +32,45 @@ export default class MongoDB {
   }
 
   close = () => {
-    if (this.db) {
-      this.db.close()
+    if (this.dataBase) {
+      this.dataBase.close()
         .then(
           () => {
-            console.log("Connection closed")
+            console.log("DB Connection closed")
           },
           error => {
             console.log("Failed to close the database: " + error.message)
           }
         )
     }
+  }
+
+  getAll = () => {
+    return new Promise((resolve, reject) => {
+      let database = this.dataBase.db(process.env.DB_DATABASE_NAME);
+
+      database.collection(
+        process.env.DB_COLLECTION_NAME_BASIC,
+        (error, collection) => {
+          if (error) {
+            console.log("Could not access collection: " + error.message);
+            reject(error.message);
+          } else {
+            collection
+              .find()
+              .limit(10)
+              .toArray((error, data) => {
+                if (error) {
+                  console.log("Error reading fron collection: " + error.message);
+                  reject(error.message);
+                } else {
+                  resolve(data);
+                }
+              })
+          }
+        }
+      )
+    });
   }
 
 }
