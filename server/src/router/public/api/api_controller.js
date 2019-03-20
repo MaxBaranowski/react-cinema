@@ -1,4 +1,4 @@
-import db from "../../../db/index";
+import db from "../../../models/db/MongoDB";
 
 export default class API {
   constructor() {
