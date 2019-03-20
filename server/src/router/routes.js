@@ -2,12 +2,12 @@ import express from "express";
 import createError from "http-errors";
 
 import Home from "./public/home/index";
-import Users from "./public/users";
+import API from "./public/api/index";
 
 const router = express.Router()
 
 router.use("/", Home);
-router.use("/users", Users);
+router.use("/api", API);
 
 // catch 404 and forward to error handler
 router.use(function (req, res, next) {
