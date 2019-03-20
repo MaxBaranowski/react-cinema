@@ -24,7 +24,8 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, "../public")));
+
 // Routes
-app.use('/', Router)
+app.use(Router)
 
 export default app;
