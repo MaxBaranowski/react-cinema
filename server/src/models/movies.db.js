@@ -1,5 +1,5 @@
 import MongoDB from "./db/MongoDB";
-import mongo, { ObjectId } from "mongodb";
+import { ObjectId } from "mongodb";
 
 export default class DB extends MongoDB {
   constructor(props) {
@@ -16,14 +16,28 @@ export default class DB extends MongoDB {
             console.log("Could not access collection: " + error.message);
             reject(error.message);
           } else {
-            console.log(movieID)
+            console.log(movieID, ObjectId("5c6178f4b0bba10d976f1220"))
             collection.find({
-              "_id": ObjectId(movieID)
-            }).toArray()
-              .then((data) => {
-                console.log(data)
-                resolve(data);
-              });
+              "_id": ObjectId("5c6178f4b0bba10d976f1220")
+            }).toArray().then((data) => {
+              console.log(data)
+              resolve(data);
+            });
+
+            // collection.findOne({ '_id': ObjectId(movieID) })
+            //   .then((data) => {
+            //     console.log(data)
+            //     resolve(data);
+            //   });
+
+            // collection.findOne(
+            //   {
+            //     "nat": "CA"
+            //   }
+            // ).then((data) => {
+            //   console.log(data)
+            //   resolve(data);
+            // });
           }
         })
     })
