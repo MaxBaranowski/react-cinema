@@ -1,4 +1,4 @@
-import MongoDBConnect from "#/models/db";
+import MoviesDB from "#/models/movies.db.js";
 
 export default class API {
   constructor() {
@@ -7,9 +7,10 @@ export default class API {
 
   index = (req, res, next) => {
     try {
-      let db = new MongoDBConnect();
+      let db = new MoviesDB();
       db.connect().then(() => {
-        return db.getAll();
+        // return db.getAll();
+        return db.getOne({ "id": "5c60a1b08cd6a2134cf6b925" });
       }, err => {
         console.log(err)
       }).then(data => {

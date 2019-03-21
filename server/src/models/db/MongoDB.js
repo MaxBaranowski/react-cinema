@@ -45,32 +45,4 @@ export default class MongoDB {
     }
   }
 
-  getAll = () => {
-    return new Promise((resolve, reject) => {
-      let database = this.dataBase.db(process.env.DB_DATABASE_NAME);
-
-      database.collection(
-        process.env.DB_COLLECTION_NAME_BASIC,
-        (error, collection) => {
-          if (error) {
-            console.log("Could not access collection: " + error.message);
-            reject(error.message);
-          } else {
-            collection
-              .find()
-              .limit(10)
-              .toArray((error, data) => {
-                if (error) {
-                  console.log("Error reading fron collection: " + error.message);
-                  reject(error.message);
-                } else {
-                  resolve(data);
-                }
-              })
-          }
-        }
-      )
-    });
-  }
-
 }
