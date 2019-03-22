@@ -23,21 +23,14 @@ export default class DB extends MongoDB {
 
   getOne = ({ id, collection: collectionName = process.env.DB_COLLECTION_NAME_BASIC }) => {
     return new Promise((resolve, reject) => {
-      this.dataBase.collection(
-        collectionName,
-        (error, collection) => {
-          if (error) {
-            console.log(`Could not access collection ${collectionName}: ${error.message}`);
-            reject(error.message);
-          }
-
-          findById({ "id": id, "collection": collection }).then(data =>
-            resolve(data)
-          ).catch(err =>
-            console.log('Rejected: ', err)
-          );
-        }
-      )
+      findById({
+        "id": id, "collection": this.dataBase.collection(collectionName)
+      }).then(data =>
+        resolve(data)
+      ).catch(err => {
+        console.log('Rejected: ', err)
+        reject(err);
+      });
     })
   }
 
