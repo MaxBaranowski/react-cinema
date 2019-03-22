@@ -6,45 +6,48 @@ export default class DB extends MongoDB {
     super(props);
   }
 
-  getOne = ({ id: movieID }) => {
+  getOne = ({ id: movieID, collection: collectionName = process.env.DB_COLLECTION_NAME_BASIC }) => {
     return new Promise((resolve, reject) => {
       let database = this.dataBase.db(process.env.DB_DATABASE_NAME);
       database.collection(
-        process.env.DB_COLLECTION_NAME_BASIC,
+        collectionName,
         (error, collection) => {
           if (error) {
-            console.log("Could not access collection: " + error.message);
+            console.log(`Could not access collection ${collectionName}: ${error.message}`);
             reject(error.message);
           } else {
-            console.log(movieID, ObjectId("5c6178f4b0bba10d976f1220"))
+
             collection.find({
-              "_id": ObjectId("5c6178f4b0bba10d976f1220")
+              "_id": ObjectId(movieID)
             }).toArray().then((data) => {
-              console.log(data)
               resolve(data);
             });
 
-            // collection.findOne({ '_id': ObjectId(movieID) })
-            //   .then((data) => {
-            //     console.log(data)
-            //     resolve(data);
-            //   });
-
-            // collection.findOne(
-            //   {
-            //     "nat": "CA"
-            //   }
-            // ).then((data) => {
-            //   console.log(data)
-            //   resolve(data);
-            // });
           }
         })
     })
   }
 
-  getSome = ({ }) => {
+  findSome = ({ name, value, collection: collectionName = process.env.DB_COLLECTION_NAME_BASIC }) => {
+    return new Promise((resolve, reject) => {
+      let database = this.dataBase.db(process.env.DB_DATABASE_NAME);
+      database.collection(
+        collectionName,
+        (error, collection) => {
+          if (error) {
+            console.log("Could not access collection: " + error.message);
+            reject(error.message);
+          } else {
 
+            collection.find(
+              { [name]: { $regex: ".*^" + value + ".*" } }
+            ).toArray().then((data) => {
+              resolve(data);
+            });
+
+          }
+        })
+    })
   }
 
   getAll = () => {

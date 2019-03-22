@@ -10,7 +10,8 @@ export default class API {
       let db = new MoviesDB();
       db.connect().then(() => {
         // return db.getAll();
-        return db.getOne({ "id": "5c60a1b08cd6a2134cf6b925" });
+        // return db.getOne({ "id": "5c6178f4b0bba10d976f1220" });
+        return db.findSome({ "name": "name.first", "value": "ol" });
       }, err => {
         console.log(err)
       }).then(data => {
