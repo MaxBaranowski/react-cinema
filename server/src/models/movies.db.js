@@ -1,15 +1,29 @@
 import MongoDB from "./db/MongoDB";
-// import { ObjectId } from "mongodb";
+
+import { findById } from "./db/db.methods"
+
+const handler = (error, collection, cb) => {
+  if (error) {
+    console.log(`Could not access collection ${collectionName}: ${error.message}`);
+    reject(error.message);
+  }
+  cb().then(data =>
+    resolve(data)
+  ).catch(err =>
+    console.log('Rejected: ', err)
+  );
+}
+
 
 export default class DB extends MongoDB {
+
   constructor(props) {
     super(props);
   }
 
   getOne = ({ id, collection: collectionName = process.env.DB_COLLECTION_NAME_BASIC }) => {
     return new Promise((resolve, reject) => {
-      let database = this.dataBase.db(process.env.DB_DATABASE_NAME);
-      database.collection(
+      this.dataBase.collection(
         collectionName,
         (error, collection) => {
           if (error) {
@@ -17,14 +31,13 @@ export default class DB extends MongoDB {
             reject(error.message);
           }
 
-          this.findById({ "id": id, "collection": collection }).then(data =>
+          findById({ "id": id, "collection": collection }).then(data =>
             resolve(data)
           ).catch(err =>
-            console.log('error: ', err)
+            console.log('Rejected: ', err)
           );
-
-
-        })
+        }
+      )
     })
   }
 
@@ -77,15 +90,5 @@ export default class DB extends MongoDB {
       )
     });
   }
+
 }
-
-
-/**
-  "protocol": "http",
-  "sync":      false,
-  "delayBetweenRetries": 150,
-  "randomVarianceBetweenRetries": 90,
-  "retryCallback": null,
-  "log": true,
-  "maxRetries": 18
- */

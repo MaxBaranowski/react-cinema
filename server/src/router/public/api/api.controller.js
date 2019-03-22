@@ -21,9 +21,11 @@ export default class API {
         console.log(err)
       });
     } catch (err) {
-      res.status(200).json({
-        "err": err
-      });
+      console.log(err)
+      res.send(err)
+      // res.json({
+      //   "err": JSON.stringify(err)
+      // });
     }
   }
 
