@@ -1,4 +1,4 @@
-import mongo, { MongoClient } from "mongodb";
+import mongo, { MongoClient, ObjectId } from "mongodb";
 /**
  *  1. Connect to the database
     2. Perform all of the required database actions for the current request
@@ -36,13 +36,27 @@ export default class MongoDB {
       this.dataBase.close()
         .then(
           () => {
-            console.log("DB Connection closed")
+            console.log("DB Connection closed");
           },
           error => {
-            console.log("Failed to close the database: " + error.message)
+            console.log("Failed to close the database: " + error.message);
           }
-        )
+        );
     }
+  }
+
+  findById = ({ id, collection }) => {
+    return new Promise((resolve, reject) => {
+      collection.find({
+        "_id": ObjectId(id)
+      }).toArray().then((data) => {
+        console.log(data)
+        resolve(data);
+      }).catch(err => {
+        console.log('error: ', err);
+        reject(error.message);
+      });
+    });
   }
 
 }

@@ -1,12 +1,12 @@
 import MongoDB from "./db/MongoDB";
-import { ObjectId } from "mongodb";
+// import { ObjectId } from "mongodb";
 
 export default class DB extends MongoDB {
   constructor(props) {
     super(props);
   }
 
-  getOne = ({ id: movieID, collection: collectionName = process.env.DB_COLLECTION_NAME_BASIC }) => {
+  getOne = ({ id, collection: collectionName = process.env.DB_COLLECTION_NAME_BASIC }) => {
     return new Promise((resolve, reject) => {
       let database = this.dataBase.db(process.env.DB_DATABASE_NAME);
       database.collection(
@@ -15,15 +15,15 @@ export default class DB extends MongoDB {
           if (error) {
             console.log(`Could not access collection ${collectionName}: ${error.message}`);
             reject(error.message);
-          } else {
-
-            collection.find({
-              "_id": ObjectId(movieID)
-            }).toArray().then((data) => {
-              resolve(data);
-            });
-
           }
+
+          this.findById({ "id": id, "collection": collection }).then(data =>
+            resolve(data)
+          ).catch(err =>
+            console.log('error: ', err)
+          );
+
+
         })
     })
   }
