@@ -2,7 +2,7 @@ import express from "express";
 import createError from "http-errors";
 
 import Home from "./public/home/index";
-import API from "./public/api/index";
+import API from "./api/index";
 
 const router = express.Router()
 

@@ -1,65 +1,44 @@
 import MongoDB from "./db/MongoDB";
 
-import { findById } from "./db/db.methods"
-
-const handler = (error, collection, cb) => {
-  if (error) {
-    console.log(`Could not access collection ${collectionName}: ${error.message}`);
-    reject(error.message);
-  }
-  cb().then(data =>
-    resolve(data)
-  ).catch(err =>
-    console.log('Rejected: ', err)
-  );
-}
-
+import {findById, findByName} from "./db/db.methods"
 
 export default class DB extends MongoDB {
-
+  
   constructor(props) {
     super(props);
   }
-
-  getOne = ({ id, collection: collectionName = process.env.DB_COLLECTION_NAME_BASIC }) => {
+  
+  getOne = ({id, collection: collectionName = this.collectionName}) => {
     return new Promise((resolve, reject) => {
       findById({
-        "id": id, "collection": this.dataBase.collection(collectionName)
+        "id": id,
+        "collection": this.dataBase.collection(collectionName)
       }).then(data =>
         resolve(data)
       ).catch(err => {
-        console.log('Rejected: ', err)
         reject(err);
       });
     })
-  }
-
-  findSome = ({ name, value, collection: collectionName = process.env.DB_COLLECTION_NAME_BASIC }) => {
+  };
+  
+  getSomeByName = ({name, value, collection: collectionName = this.collectionName}) => {
     return new Promise((resolve, reject) => {
-      let database = this.dataBase.db(process.env.DB_DATABASE_NAME);
-      database.collection(
-        collectionName,
-        (error, collection) => {
-          if (error) {
-            console.log("Could not access collection: " + error.message);
-            reject(error.message);
-          } else {
-
-            collection.find(
-              { [name]: { $regex: ".*^" + value + ".*" } }
-            ).toArray().then((data) => {
-              resolve(data);
-            });
-
-          }
-        })
-    })
-  }
-
+      findByName({
+        "name": name,
+        "value": value,
+        "collection": this.dataBase.collection(collectionName)
+      }).then(data =>
+        resolve(data)
+      ).catch(err => {
+        reject(err);
+      });
+    });
+  };
+  
   getAll = () => {
     return new Promise((resolve, reject) => {
       let database = this.dataBase.db(process.env.DB_DATABASE_NAME);
-
+      
       database.collection(
         process.env.DB_COLLECTION_NAME_BASIC,
         (error, collection) => {
@@ -83,5 +62,5 @@ export default class DB extends MongoDB {
       )
     });
   }
-
+  
 }

@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "babel-plugin-hash-resolve": "^1.0.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^7.0.0",
