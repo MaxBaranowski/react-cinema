@@ -2,36 +2,37 @@ import MoviesDB from "../../models/movies.db.js";
 
 export default class API {
   constructor() {
-    this.indexPageText = "Hi, this is API index page"
   }
   
-  getMovie = (req, res, next) => {
+  getMovie = (req, res) => {
     try {
+      const {
+        id: movieId = "5c6178f4b0bba10d976f1220",
+      } = req.body;
       let db = new MoviesDB();
       db.connect().then(() => {
-        // return db.getAll();
-        return db.getOne({"id": "5c6178f4b0bba10d976f1220"});
-        // return db.findSome({ "name": "name.first", "value": "ol" });
+        return db.getOne({"id": movieId});
       }, err => {
-        console.log(err);
+        res.status(500).send({error: err});
+        db.close();
       }).then(data => {
         res.send(data);
         db.close();
       }, err => {
-        console.log(err)
+        res.status(500).send({error: err});
+        db.close();
       });
     } catch (err) {
-      console.log(err);
-      res.send(err);
+      res.status(500).send({error: err});
     }
   };
   
-  getMoviesByName = (req, res, next) => {
-    const {
-      name: movieName = "",
-    } = req.body;
-    console.log(movieName)
+  getMoviesByName = (req, res) => {
     try {
+      const {
+        name: movieName = "",
+      } = req.body;
+      
       let db = new MoviesDB();
       db.connect().then(() => {
         // return db.getAll();
@@ -39,20 +40,19 @@ export default class API {
           "name": "name.first",
           "value": movieName
         });
-        // return db.findSome({ "name": "name.first", "value": "ol" });
       }, err => {
-        console.log(err);
+        res.status(500).send({error: err});
+        db.close();
       }).then(data => {
         res.send(data);
         db.close();
       }, err => {
-        console.log(err)
+        res.status(500).send({error: err});
+        db.close();
       });
     } catch (err) {
-      console.log(err);
-      res.send(err);
+      res.status(500).send({error: err});
     }
-    
   };
   
   
