@@ -30,21 +30,18 @@ export default class API {
       } = req.body;
 
       let db = new MoviesDB();
-      // console.log(0)
       await db.connect()
-        .then(
-          () => {
-            Customer.find({})
-              .limit(2)
-              .exec()
-              .then((data) => {
-                return res.send(data);
-              }).catch((err) => {
-                return next(err);
-              }).finally(
-                () => db.disconnect()
-              );
-          }
+        .then(() =>
+          Customer.find({})
+            .limit(5)
+            .exec()
+            .then((data) => {
+              return res.send(data);
+            }).catch((err) => {
+              return next(err);
+            }).finally(
+              () => db.disconnect()
+            )
           // return db.getSomeByName({
           //   "name": "name.first",
           //   "value": movieName
