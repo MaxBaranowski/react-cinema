@@ -26,15 +26,16 @@ export default class API {
   getMoviesByName = async (req, res, next) => {
     try {
       const {
-        name: movieName = "",
+        name: movieName = "ol",
       } = req.body;
 
       let db = new MoviesDB();
       await db.connect()
         .then(() =>
-          Customer.find({})
-            .limit(5)
-            .exec()
+          Customer.find({
+            ["name.first"]: { $regex: ".*^" + movieName + ".*" }
+          }).limit(5)
+            .exec() //will return a promise if no callback is provided.
             .then((data) => {
               return res.send(data);
             }).catch((err) => {
@@ -42,10 +43,6 @@ export default class API {
             }).finally(
               () => db.disconnect()
             )
-          // return db.getSomeByName({
-          //   "name": "name.first",
-          //   "value": movieName
-          // });
         );
     } catch (err) {
       return next(err);
