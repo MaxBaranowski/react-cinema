@@ -7,7 +7,7 @@ export default class API {
   getMovie = (req, res) => {
     try {
       const {
-        id: movieId = "5c6178f4b0bba10d976f1220",
+        id: movieId = "", //5c6178f4b0bba10d976f1220
       } = req.body;
       let db = new MoviesDB();
       db.connect()
@@ -17,19 +17,19 @@ export default class API {
               { "id": movieId }
             );
           }, err => {
-            res.status(500).send({ error: err });
+            res.status(500).json({ error: err });
           }
         ).then(
           data => {
-            res.send(data);
+            res.status(200).json(data);
           }, err => {
-            res.status(500).send({ error: err });
+            res.status(500).json({ error: err });
           }
         ).then(
           () => db.disconnect()
         );
     } catch (err) {
-      res.status(500).send({ error: err });
+      res.status(500).json({ error: err });
     }
   };
 
@@ -48,19 +48,19 @@ export default class API {
               "value": movieName
             });
           }, err => {
-            res.status(500).send({ error: err });
+            res.status(500).json({ error: err });
           }
         ).then(
           data => {
-            res.send(data);
+            res.status(200).json(data);
           }, err => {
-            res.status(500).send({ error: err });
+            res.status(500).json({ error: err });
           }
         ).then(
           () => db.disconnect()
         );
     } catch (err) {
-      res.status(500).send({ error: err });
+      res.status(500).json({ error: err });
     }
   };
 
