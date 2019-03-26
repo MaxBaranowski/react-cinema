@@ -1,4 +1,4 @@
-import MoviesDB from "../../models/movies.db.js";
+import MoviesDB from "../../models/db/DB";
 import { Customer } from "../../models/movie"
 import { MongoClient, ObjectId } from "mongodb";
 export default class API {
@@ -23,34 +23,40 @@ export default class API {
     }
   };
 
-  getMoviesByName = (req, res) => {
+  getMoviesByName = async (req, res, next) => {
     try {
       const {
         name: movieName = "",
       } = req.body;
 
       let db = new MoviesDB();
-      db.connect()
+      console.log(0)
+      await db.connect()
         .then(
+          // console.log(1)
+          //   () => {
+          //     return db.getSomeByName({
+          //       "name": "name.first",
+          //       "value": movieName
+          //     });
+          //   }, err => {
+          //     res.status(500).json({ error: err });
+          //   }
+          // ).then(
+          //   data => {
+          //     res.status(200).json(data);
+          //   }, err => {
+          //     res.status(500).json({ error: err });
+          //   }
+          // ).then(
+
           () => {
-            return db.getSomeByName({
-              "name": "name.first",
-              "value": movieName
-            });
-          }, err => {
-            res.status(500).json({ error: err });
+            console.log(2);
+            db.disconnect()
           }
-        ).then(
-          data => {
-            res.status(200).json(data);
-          }, err => {
-            res.status(500).json({ error: err });
-          }
-        ).then(
-          () => db.disconnect()
         );
     } catch (err) {
-      res.status(500).json({ error: err });
+      next(err);
     }
   };
 
