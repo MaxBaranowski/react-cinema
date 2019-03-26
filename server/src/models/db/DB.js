@@ -1,7 +1,7 @@
-import {MongoClient} from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
-export default class MongoDB {
-  
+export default class DB {
+
   constructor(
     {
       database: databaseName = process.env.DB_DATABASE_NAME,
@@ -13,7 +13,7 @@ export default class MongoDB {
     this.dataBase = null;
     this.connection = null;
   }
-  
+
   connect = () => {
     return new Promise((resolve, reject) => {
       if (this.connection) {
@@ -21,7 +21,7 @@ export default class MongoDB {
       } else {
         MongoClient.connect(
           process.env.DB_URI,
-          {useNewUrlParser: true}
+          { useNewUrlParser: true }
         ).then((database) => {
           // "connect" method returns the new database connection
           this.connection = database;
@@ -35,8 +35,8 @@ export default class MongoDB {
       }
     });
   };
-  
-  close = () => {
+
+  disconnect = () => {
     if (this.connection) {
       this.connection.close()
         .then(
@@ -49,5 +49,53 @@ export default class MongoDB {
         );
     }
   }
-  
+
 }
+
+// find smth by ID (Object id: "_id")
+// returns one record
+export const findById = ({ id, collection }) => {
+  return new Promise((resolve, reject) => {
+    try {
+      collection.find({
+        "_id": ObjectId(id)
+      })
+        .toArray()
+        .then(
+          (data) => {
+            resolve(data);
+          }
+        ).catch(
+          error => {
+            reject(error.message);
+          }
+        );
+    } catch (error) {
+      reject(error.message);
+    }
+  });
+};
+
+// find smth by key: value params
+export const findByName = ({ name, value, collection }) => {
+  return new Promise((resolve, reject) => {
+    try {
+      collection.find({
+        [name]: { $regex: ".*^" + value + ".*" }
+      })
+        .limit(3)
+        .toArray()
+        .then(
+          (data) => {
+            resolve(data);
+          }
+        ).catch(
+          error => {
+            reject(error.message);
+          }
+        );
+    } catch (error) {
+      reject(error.message);
+    }
+  });
+};

@@ -1,14 +1,12 @@
-import MongoDB from "./db/MongoDB";
-
-import {findById, findByName} from "./db/db.methods"
+import MongoDB, { findById, findByName } from "./db/DB";
 
 export default class DB extends MongoDB {
-  
+
   constructor(props) {
     super(props);
   }
-  
-  getOne = ({id, collection: collectionName = this.collectionName}) => {
+
+  getOne = ({ id, collection: collectionName = this.collectionName }) => {
     return new Promise((resolve, reject) => {
       try {
         findById({
@@ -24,8 +22,8 @@ export default class DB extends MongoDB {
       }
     })
   };
-  
-  getSomeByName = ({name, value, collection: collectionName = this.collectionName}) => {
+
+  getSomeByName = ({ name, value, collection: collectionName = this.collectionName }) => {
     return new Promise((resolve, reject) => {
       try {
         findByName({
@@ -42,7 +40,7 @@ export default class DB extends MongoDB {
       }
     });
   };
-  
+
   // getAll = () => {
   //   return new Promise((resolve, reject) => {
   //     let database = this.dataBase.db(process.env.DB_DATABASE_NAME);
@@ -70,5 +68,5 @@ export default class DB extends MongoDB {
   //     )
   //   });
   // }
-  
+
 }
