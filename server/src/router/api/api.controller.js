@@ -1,35 +1,25 @@
 import MoviesDB from "../../models/movies.db.js";
-
+import { Customer } from "../../models/movie"
+import { MongoClient, ObjectId } from "mongodb";
 export default class API {
   constructor() {
   }
 
-  getMovie = (req, res) => {
+  getMovie = async (req, res, next) => {
     try {
       const {
         id: movieId = "", //5c6178f4b0bba10d976f1220
       } = req.body;
-      let db = new MoviesDB();
-      db.connect()
-        .then(
-          () => {
-            return db.getOne(
-              { "id": movieId }
-            );
-          }, err => {
-            res.status(500).json({ error: err });
-          }
-        ).then(
-          data => {
-            res.status(200).json(data);
-          }, err => {
-            res.status(500).json({ error: err });
-          }
-        ).then(
-          () => db.disconnect()
-        );
+
+      Customer.findById(
+        movieId,
+        (err, movie) => {
+          if (err) return next(err);
+          res.json(movie);
+        });
+
     } catch (err) {
-      res.status(500).json({ error: err });
+      return next(err);
     }
   };
 
@@ -65,11 +55,22 @@ export default class API {
   };
 
 
-  index = (req, res) => {
-    res.status(200).json({
-      "body": req.body,
-      "name": "test",
-      "time": new Date().toLocaleDateString()
-    });
+  index = (req, res, next) => {
+    Customer.find({}, function (err, users) {
+      var userMap = {};
+
+      users.forEach(function (user) {
+        userMap[user._id] = user;
+      });
+
+      res.send(userMap);
+    }).limit(2);
+
+    // res.status(200).json({
+    //   "body": req.body,
+    //   "name": "test",
+    //   "time": new Date().toLocaleDateString()
+    // });
   }
+
 }

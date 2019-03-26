@@ -1,18 +1,33 @@
+import dotenv from "dotenv";
 import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import mongoose from 'mongoose';
+import { credentials } from "./credentials"
 import sassMiddleware from "node-sass-middleware";
 
 import Router from './router/routes';
 
+dotenv.config();
 const app = express();
+// database mongoose initialize
+switch (app.get('env')) {
+  case 'development':
+    mongoose.connect(credentials.mongo.development.connectionString, credentials.config);
+    break;
+  case 'production':
+    mongoose.connect(credentials.mongo.production.connectionString, credentials.config);
+    break;
+  default:
+    throw new Error('Error, unknown env: ' + app.get('env'));
+}
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
-app.use(logger("dev"));
+app.use(logger("dev"));//???
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -23,32 +38,10 @@ app.use(sassMiddleware({
   indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));
+
 app.use(express.static(path.join(__dirname, "../public")));
 
 // Routes
 app.use(Router);
-
-// app.use(logErrors);
-// app.use(clientErrorHandler);
-// app.use(errorHandler);
-//
-// function logErrors(err, req, res, next) {
-//   console.error(err.stack);
-//   next(err);
-// }
-//
-// function clientErrorHandler(err, req, res, next) {
-//   if (req.xhr) {
-//     res.status(500).send({ error: 'Something failed!' });
-//   } else {
-//     next(err);
-//   }
-// }
-//
-// function errorHandler(err, req, res, next) {
-//   res.status(500);
-//   res.render('error', { error: err });
-// }
-
 
 export default app;
