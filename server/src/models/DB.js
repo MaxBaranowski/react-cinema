@@ -1,8 +1,7 @@
-// import { MongoClient, ObjectId } from "mongodb";
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
-import { credentials } from "../../credentials";
-import { timeStamp } from "../time";
+import {credentials} from "../credentials";
+import {timeStamp} from "./time";
 
 dotenv.config();
 
@@ -11,7 +10,7 @@ export default class DB {
     this.env = process.env.NODE_ENV;
     this.connection = null;
   }
-
+  
   connect = async () => {
     try {
       switch (this.env) {
@@ -21,22 +20,58 @@ export default class DB {
         case 'production':
           this.connection = await mongoose.connect(credentials.mongo.production.connectionString, credentials.config);
           break;
-        default:
-          throw new Error('Error, unknown env');
       }
     } catch (err) {
       throw new Error(err);
     }
-  }
-
+  };
+  
   disconnect = () => {
     if (this.connection) {
       this.connection.connection.close();
     } else {
       throw "To close DB connection, connection must be opened!";
     }
+  };
+  
+  findById = async ({schema, id}) => {
+    try {
+      return await this.connect()
+        .then(() =>
+          schema.findById(id).exec() //will return a promise if no callback is provided.
+            .then((data) => {
+              return data;
+            }).catch((err) => {
+            throw new Error(err);
+          }).finally(
+            () => this.disconnect()
+          )
+        );
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+  
+  findByName = async ({schema, findKey, findValue, limit = 5}) => {
+    try {
+      return await this.connect()
+        .then(() =>
+          schema.find({
+            [findKey]: {$regex: ".*^" + findValue + ".*"}
+          }).limit(limit)
+            .exec() //will return a promise if no callback is provided.
+            .then((data) => {
+              return data;
+            }).catch((err) => {
+            throw new Error(err);
+          }).finally(
+            () => this.disconnect()
+          )
+        );
+    } catch (err) {
+      throw new Error(err);
+    }
   }
-
 }
 
 mongoose.connection.on("connected", function (ref) {
