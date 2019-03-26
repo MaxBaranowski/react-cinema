@@ -30,53 +30,48 @@ export default class API {
       } = req.body;
 
       let db = new MoviesDB();
-      console.log(0)
+      // console.log(0)
       await db.connect()
         .then(
-          // console.log(1)
-          //   () => {
-          //     return db.getSomeByName({
-          //       "name": "name.first",
-          //       "value": movieName
-          //     });
-          //   }, err => {
-          //     res.status(500).json({ error: err });
-          //   }
-          // ).then(
-          //   data => {
-          //     res.status(200).json(data);
-          //   }, err => {
-          //     res.status(500).json({ error: err });
-          //   }
-          // ).then(
-
           () => {
-            console.log(2);
-            db.disconnect()
+            Customer.find({})
+              .limit(2)
+              .exec()
+              .then((data) => {
+                return res.send(data);
+              }).catch((err) => {
+                return next(err);
+              }).finally(
+                () => db.disconnect()
+              );
           }
+          // return db.getSomeByName({
+          //   "name": "name.first",
+          //   "value": movieName
+          // });
         );
     } catch (err) {
-      next(err);
+      return next(err);
     }
   };
 
 
   index = (req, res, next) => {
-    Customer.find({}, function (err, users) {
-      var userMap = {};
+    // Customer.find({}, function (err, users) {
+    //   var userMap = {};
 
-      users.forEach(function (user) {
-        userMap[user._id] = user;
-      });
+    //   users.forEach(function (user) {
+    //     userMap[user._id] = user;
+    //   });
 
-      res.send(userMap);
-    }).limit(2);
+    //   res.send(userMap);
+    // }).limit(2);
 
-    // res.status(200).json({
-    //   "body": req.body,
-    //   "name": "test",
-    //   "time": new Date().toLocaleDateString()
-    // });
+    res.status(200).json({
+      "body": req.body,
+      "name": "test",
+      "time": new Date().toLocaleDateString()
+    });
   }
 
 }

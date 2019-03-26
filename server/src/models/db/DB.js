@@ -1,7 +1,8 @@
 // import { MongoClient, ObjectId } from "mongodb";
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
-import { credentials } from "../../credentials"
+import { credentials } from "../../credentials";
+import { timeStamp } from "../time";
 
 dotenv.config();
 
@@ -39,11 +40,11 @@ export default class DB {
 }
 
 mongoose.connection.on("connected", function (ref) {
-  console.log(`DB connection opened: ${new Date().toLocaleString("en-GB")}`);
+  console.log(`DB connection opened: ${timeStamp.full()}`);
 });
 
 mongoose.connection.on('disconnected', function () {
-  console.log(`DB connection closed: ${new Date().toLocaleString("en-GB")}`);
+  console.log(`DB connection closed: ${timeStamp.full()}`);
 });
 
 
