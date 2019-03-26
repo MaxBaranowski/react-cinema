@@ -10,14 +10,18 @@ export default class API {
       const {
         id: movieId = "", //5c6178f4b0bba10d976f1220
       } = req.body;
-
-      Customer.findById(
-        movieId,
-        (err, movie) => {
-          if (err) return next(err);
-          res.json(movie);
-        });
-
+      let db = new MoviesDB();
+      await db.connect()
+        .then(() =>
+          Customer.findById(movieId).exec() //will return a promise if no callback is provided.
+            .then((data) => {
+              return res.json(data);
+            }).catch((err) => {
+              return next(err);
+            }).finally(
+              () => db.disconnect()
+            )
+        );
     } catch (err) {
       return next(err);
     }
@@ -37,7 +41,7 @@ export default class API {
           }).limit(5)
             .exec() //will return a promise if no callback is provided.
             .then((data) => {
-              return res.send(data);
+              return res.json(data);
             }).catch((err) => {
               return next(err);
             }).finally(
