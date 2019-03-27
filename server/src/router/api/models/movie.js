@@ -39,7 +39,6 @@ const customerSchema = mongoose.Schema({
 },
   {
     collection: 'users-basic',
-    // _id: false,
   }
 );
 
