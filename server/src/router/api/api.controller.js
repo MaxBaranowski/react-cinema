@@ -13,7 +13,6 @@ export default class API {
 
       await new DB().findById({ "schema": Customer, "id": movieId }).then(
         (result) => {
-          console.log(result.id)
           res.json(result)
         }
       ).catch((err) => {
@@ -31,7 +30,7 @@ export default class API {
         name: movieName = "",
       } = req.body;
 
-      await new DB().findByName({ "schema": Customer, "findKey": "name.first", "findValue": movieName }).then(
+      await new DB().findByParams({ "schema": Customer, "findKey": "name.first", "findValue": movieName }).then(
         (result) => {
           res.json(result)
         }

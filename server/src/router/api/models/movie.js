@@ -1,16 +1,40 @@
 import mongoose from "mongoose";
 
 const customerSchema = mongoose.Schema({
-  nat: String,
+  nat: {
+    type: String,
+    required: true,
+    select: false
+  },
   name: {
-    title: String,
-    first: String,
-    last: String,
+    title: {
+      type: String,
+      required: true,
+    },
+    first: {
+      type: String,
+      required: true,
+    },
+    last: {
+      type: String,
+      required: true,
+    },
   },
   images: {
-    large: String,
-    medium: String,
-    thumbnail: String,
+    large: {
+      type: String,
+      select: false,
+      required: true,
+    },
+    medium: {
+      type: String,
+      required: true,
+      select: false
+    },
+    thumbnail: {
+      type: String,
+      required: true,
+    },
   },
 },
   {
@@ -20,3 +44,6 @@ const customerSchema = mongoose.Schema({
 );
 
 export const Customer = mongoose.model('Customer', customerSchema);
+
+// Including the Excluded Field
+// SCHEMA.find().select("+password")

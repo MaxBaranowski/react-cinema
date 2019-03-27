@@ -64,7 +64,7 @@ export default class DB {
     }
   };
 
-  findByName = async ({ schema, findKey, findValue, limit = 5 }) => {
+  findByParams = async ({ schema, findKey, findValue, limit = 5 }) => {
     try {
       return await this.connect()
         .then(() =>
