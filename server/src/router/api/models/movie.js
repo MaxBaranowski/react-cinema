@@ -13,7 +13,10 @@ const customerSchema = mongoose.Schema({
     thumbnail: String,
   },
 },
-  { collection: 'users-basic' }
+  {
+    collection: 'users-basic',
+    // _id: false,
+  }
 );
 
 export const Customer = mongoose.model('Customer', customerSchema);
