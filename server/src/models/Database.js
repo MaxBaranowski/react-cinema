@@ -46,21 +46,21 @@ export default class Database extends DB {
     } catch (err) {
       throw new Error(err);
     }
-  }
+  };
 
-  fillCollection = async ({ schema }) => {
+  fillCollection = async ({ schema, data }) => {
     try {
       return await this.connect()
         .then(() => {
           schema
-            .insertMany(data)
-            .exec() //will return a promise if no callback is provided.
+            .create(data)
+            // .exec() //will return a promise if no callback is provided.
             .then((data) => {
               return data;
             }).catch((err) => {
               throw new Error(err);
             }).finally(
-              () => this.disconnect()
+              // () => this.disconnect()
             )
         })
     } catch (err) {

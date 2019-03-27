@@ -1,10 +1,10 @@
 export const credentials = {
   mongo: {
     development: {
-      connectionString: 'mongodb://admin:YaOTg3Z7s8w9vr8YoJTn@ds125945.mlab.com:25945/mb-react-person-list',
+      connectionString: 'mongodb://admin:MG7OEOqUa1H6afI52LNr@ds121295.mlab.com:21295/react-cinema',
     },
     production: {
-      connectionString: 'mongodb://admin:YaOTg3Z7s8w9vr8YoJTn@ds125945.mlab.com:25945/mb-react-person-list',
+      connectionString: '',
     }
   },
   config: {
