@@ -1,4 +1,4 @@
-import DB from "../../models/DB";
+import DB from "../../models/Database";
 import { Customer } from "./models/movie"
 
 export default class API {
@@ -45,11 +45,7 @@ export default class API {
 
 
   index = (req, res, next) => {
-    res.status(200).json({
-      "body": req.body,
-      "name": "test",
-      "time": new Date().toLocaleDateString()
-    });
+    res.status(200).render("api");
   }
 
 }

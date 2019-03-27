@@ -4,6 +4,6 @@ export default class Home {
   }
 
   show = (req, res, next) => {
-    res.send(this.text);
+    res.render("home");
   }
 }
