@@ -29,6 +29,7 @@ export default class Login extends Component {
 
   render() {
     return (
+      // make smth like hear: https://www.imageshack.us/signup
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bssize="large">
