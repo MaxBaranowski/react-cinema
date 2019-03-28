@@ -50,7 +50,7 @@ export default class API {
 
   getMovies = async (req, res, next) => {
     try {
-      await new DB().getMovies({ "schema": MovieShort, "limit": 50 }).then(
+      await new DB().getMovies({ "schema": MovieShort, "limit": 500 }).then(
         (result) => {
           res.json(result)
         }

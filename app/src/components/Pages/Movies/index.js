@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router";
 
+import Movie from "../Home/components/Movie"
 import "./styles.scss";
 
 export default class Movies extends Component {
@@ -8,7 +9,20 @@ export default class Movies extends Component {
     super(props);
 
     this.state = {
-      isError: false
+      isError: false,
+      movies: []
+    };
+
+    this.createMoviesList = (Comp, MoviesList) => {
+      let list = [];
+      for (let movie of MoviesList) {
+        list.push(
+          <Comp key={movie.Genre + "_" + movie._id} id={movie._id} img={movie.Poster} name={movie.Title}
+            genre={movie.Genre} >
+          </Comp>
+        );
+      }
+      return list;
     };
   };
 
@@ -17,10 +31,20 @@ export default class Movies extends Component {
       fetch(`https://localhost:443/api/getMovies`)
         .then(response =>
           response.json()
-            .then(movie => {
-              console.log(movie)
+            .then(movies => {
+              // Country: "USA, Japan"
+              // Genre: "Animation, Action, Adventure, Fantasy, Musical"
+              // Poster: "https://m.media-amazon.com/images/M/MV5BMTcxNzUxNjExNV5BMl5BanBnXkFtZTcwNTcwMjgxMQ@@._V1_SX300.jpg"
+              // Released: "11 May 1980"
+              // Title: "The Return of the King"
+              // Type: "movie"
+              // Year: "1980"
+              // imdbID: "tt0079802"
+              // __v: 0
+              // _id: "5c9caae6698e6706e17d3464"
+
               this.setState({
-                movie: movie.result
+                movies: this.createMoviesList(Movie, movies)
               });
             }).catch(e => {
               this.setState({
@@ -34,20 +58,25 @@ export default class Movies extends Component {
   }
 
   render() {
-    const { movie, isError } = this.state;
+    const { movies, isError } = this.state;
     if (isError) {
       return <Redirect to='/404' />;
-    } else if (movie) {
+    } else if (movies) {
       return (
-        <div>
-          hello from video with id: {this.props.id} and name: {this.props.name} <br />
-          Get video id from parms: {this.props.match.params.id}
-          <br />
-          <hr />
-          <pre>
-            {JSON.stringify(movie, null, 2)}
-          </pre>
-        </div>
+        <React.Fragment>
+          <div className="home-wrapper">
+            <main className="home-sections">
+              <section className="section recommended">
+                <header>
+                  <h1>Movies</h1>
+                </header>
+                <div className="section-body">
+                  {this.state.movies}
+                </div>
+              </section>
+            </main>
+          </div>
+        </React.Fragment >
       );
     } else {
       return (

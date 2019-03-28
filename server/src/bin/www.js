@@ -14,14 +14,14 @@ dotenv.config();
 // var http = require('http');
 import app from '../app'
 import debugLib from 'debug';
-import http from 'http';
+// import http from 'http';
 const debug = debugLib('server:server');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort("443" || '3000');
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -42,7 +42,7 @@ var server = https.createServer(certOptions, app);
  */
 
 server.listen(port, () => {
-  console.log(`server running on http://localhost:${port}`)
+  console.log(`server running on https://localhost:${port}`)
 });
 server.on('error', onError);
 server.on('listening', onListening);
