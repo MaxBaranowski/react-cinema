@@ -21,14 +21,21 @@ const debug = debugLib('server:server');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort("443" || '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
+import fs from "fs";
+import path from "path";
+import https from "https";
 
-var server = http.createServer(app);
+var certOptions = {
+  key: fs.readFileSync(path.resolve('localhost.key')),
+  cert: fs.readFileSync(path.resolve('localhost.crt'))
+}
+var server = https.createServer(certOptions, app);
 
 /**
  * Listen on provided port, on all network interfaces.

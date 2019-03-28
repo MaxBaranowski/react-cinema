@@ -3,6 +3,7 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import sassMiddleware from "node-sass-middleware";
+import cors from 'cors';
 
 import Router from './router/routes';
 
@@ -25,6 +26,8 @@ app.use(sassMiddleware({
 }));
 
 app.use(express.static(path.join(__dirname, "../public")));
+
+app.use(cors())
 
 // Routes
 app.use(Router);
