@@ -48,6 +48,22 @@ export default class API {
   };
 
 
+  getMovies = async (req, res, next) => {
+    try {
+      await new DB().getMovies({ "schema": MovieShort, "limit": 50 }).then(
+        (result) => {
+          res.json(result)
+        }
+      ).catch((err) => {
+        return next(err);
+      });
+
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+
   getData = async (req, res, next) => {
     let data3 = [];
 

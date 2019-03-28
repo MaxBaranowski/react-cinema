@@ -10,7 +10,7 @@ const AsyncHome = asyncComponent(() => import("./components/Pages/Home"));
 const AsyncLogin = asyncComponent(() => import("./components/Pages/Login"));
 // const AsyncLogout = asyncComponent(() => import("./components/Logout"));
 // const AsyncSignup = asyncComponent(() => import("./components/Signup"));
-// const AsyncMovies = asyncComponent(() => import("./components/Movies"));
+const AsyncMovies = asyncComponent(() => import("./components/Pages/Movies"));
 const AsyncMovie = asyncComponent(() => import("./components/Pages/Movie"));
 // const AsyncSongs = asyncComponent(() => import("./components/Songs"));
 // const AsyncSearch = asyncComponent(() => import("./components/Search"));
@@ -47,13 +47,13 @@ export default (childProps) => {
                 exact
                 component={AsyncSignup}
                 props={childProps}
-            />
-            <Route
-                path="/movies"
-                exact
-                component={AsyncMovies}
-                props={childProps}
             />*/}
+      <Route
+        path="/movies"
+        exact
+        component={AsyncMovies}
+        props={childProps}
+      />
       <Route
         path="/movie/:id"
         exact
