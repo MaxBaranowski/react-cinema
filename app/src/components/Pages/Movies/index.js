@@ -16,9 +16,10 @@ export default class Movies extends Component {
     this.createMoviesList = (Comp, MoviesList) => {
       let list = [];
       for (let movie of MoviesList) {
+        console.log(movie)
         list.push(
-          <Comp key={movie.Genre + "_" + movie._id} id={movie._id} img={movie.Poster} name={movie.Title}
-            genre={movie.Genre} >
+          <Comp key={movie.imdbID} id={movie.imdbID} img={movie.Poster} name={movie.Title}
+            year={movie.Released} country={movie.Country} >
           </Comp>
         );
       }
@@ -40,8 +41,6 @@ export default class Movies extends Component {
               // Type: "movie"
               // Year: "1980"
               // imdbID: "tt0079802"
-              // __v: 0
-              // _id: "5c9caae6698e6706e17d3464"
 
               this.setState({
                 movies: this.createMoviesList(Movie, movies)

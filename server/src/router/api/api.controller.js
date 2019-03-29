@@ -47,7 +47,6 @@ export default class API {
     }
   };
 
-
   getMovies = async (req, res, next) => {
     try {
       await new DB().getMovies({ "schema": MovieShort, "limit": 50 }).then(
@@ -63,11 +62,23 @@ export default class API {
     }
   }
 
+  removeMovies = async (req, res, next) => {
+    try {
+      await new DB().removeMovies({ "schema": MovieFull, "condition": { "key": "Released", "value": "N/A" } }).then(
+        (result) => {
+          res.send("removed")
+        }
+      ).catch((err) => {
+        return next(err);
+      });
+
+    } catch (err) {
+      return next(err);
+    }
+  }
 
   getData = async (req, res, next) => {
-    let data3 = [];
-
-    let time = new Date();
+    return res.send("nothing :)")
     new Promise((resolve, reject) => {
       fs.readFile('./movies.json', (err, data) => {
         if (err) reject(err);
@@ -81,14 +92,25 @@ export default class API {
       });
     }).then((data) => {
       let i = 100;
-      for (let movie of data.slice(6838, 7000)) {
+      for (let movie of data.slice(9000, 10000)) {//9337
         i += 100;
         (function (movie, i) {
           setTimeout(function () {
             //1 key: e5c95e8c
             //2 key: 435a86bf
             //3 key: BanMePlz 
-            let url = `http://www.omdbapi.com/?t=${movie.title.split(" ").join("+")}&y=${movie.year}&plot=full&apikey=BanMePlz`;
+
+            // 4 key: 9b04b98a 
+            // 5 key: f340eea8
+            // 6 key: c422e09d 
+            // 7 key: c2bec5b0 
+            // 8 key: dc91d052
+            // 9 key: ca19648a 
+            //10 key: 5cc02342
+            //11 key: 3ba53364 
+            //12 key: 2af00014
+            //13 key: 8b603b0b 
+            let url = `http://www.omdbapi.com/?t=${movie.title.split(" ").join("+")}&y=${movie.year}&plot=full&apikey=8b603b0b`;
             axios(url)
               .then((result) => {
                 let movieFull = result.data;
@@ -109,18 +131,11 @@ export default class API {
               }).catch(() => { })
           }, i);
         })(movie, i)
-
       }
     }).then(() => {
-      function millisToMinutesAndSeconds(millis) {
-        var minutes = Math.floor(millis / 60000);
-        var seconds = ((millis % 60000) / 1000).toFixed(0);
-        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-      }
-      res.send(`done, time: ${millisToMinutesAndSeconds(new Date() - time)}ms`);
+      res.send(`done`);
     });
   };
-
 
   index = (req, res, next) => {
     res.status(200).render("api");

@@ -7,7 +7,7 @@ dotenv.config();
 
 // disable mongoose buffers commands when the connection goes down until the driver manages to reconnect. 
 mongoose.set('bufferCommands', true);
-
+mongoose.set('useCreateIndex', true);
 mongoose.connection.on("connected", function (ref) {
   console.log(`DB connection opened: ${timeStamp.full()}`);
 });

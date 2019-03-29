@@ -10,6 +10,8 @@ router.get('/getMoviesByName', controller.getMoviesByName);
 router.get('/getMovies', controller.getMovies);
 
 router.get('/getData', controller.getData);
+router.get('/removeMovies', controller.removeMovies);
+
 
 router.post('/', controller.index);
 router.post('/getMovie', controller.getMovie);
@@ -17,6 +19,7 @@ router.post('/getMoviesByName', controller.getMoviesByName);
 router.post('/getMovies', controller.getMovies);
 
 router.post('/getData', controller.getData);
+router.post('/removeMovies', controller.removeMovies);
 
 
 export default router;

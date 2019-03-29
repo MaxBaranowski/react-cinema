@@ -1,39 +1,42 @@
 import mongoose from "mongoose";
 
 const movieSchema = mongoose.Schema({
-    "Title": {
-      type: String,
-    },
-    "Year": {
-      type: String,
-    },
-    "Released": {
-      type: String,
-    },
-    "Genre": {
-      type: String,
-    },
-    "Country": {
-      type: String,
-    },
-    "Poster": {
-      type: String,
-    },
-    "Ratings": {
+  "Title": {
+    type: String,
+  },
+  "Year": {
+    type: String,
+  },
+  "Released": {
+    type: String,
+  },
+  "Genre": {
+    type: String,
+  },
+  "Country": {
+    type: String,
+  },
+  "Poster": {
+    type: String,
+  },
+  "Ratings": {
+    type: [{
       "Source": {
         type: String,
       },
       "Value": {
         type: String,
       }
-    },
-    "imdbID": {
-      type: String,
-    },
-    "Type": {
-      type: String,
-    },
+    }]
   },
+  "imdbID": {
+    type: String,
+    unique: true
+  },
+  "Type": {
+    type: String,
+  },
+},
   {
     collection: 'movies-short',
     additionalProperties: false

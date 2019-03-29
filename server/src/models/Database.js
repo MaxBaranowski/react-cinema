@@ -55,6 +55,31 @@ export default class Database extends DB {
           schema
             .find()
             .limit(limit)
+            // .sort({
+            //   "Released": -1 //Sort by Date Added DESC
+            // })
+            .exec() //will return a promise if no callback is provided.
+            .then((data) => {
+              return data;
+            }).catch((err) => {
+              throw new Error(err);
+            }).finally(
+              () => this.disconnect()
+            )
+        );
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  removeMovies = async ({ schema, condition }) => {
+    try {
+      return await this.connect()
+        .then(() =>
+          schema
+            .remove({
+              [condition.key]: condition.value
+            })
             .exec() //will return a promise if no callback is provided.
             .then((data) => {
               return data;
