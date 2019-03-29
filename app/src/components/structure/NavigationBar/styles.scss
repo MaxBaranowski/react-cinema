@@ -5,7 +5,7 @@
   left: 0;
   display: flex;
   position: relative;
-  background-color: #0e0e0e;
+  // background-color: #0e0e0e;
   min-height: 100vh;
   height: 100%;
   z-index: 10;
@@ -93,7 +93,6 @@
                 position: relative;
                 left: -1em;
               }
-
             }
           }
         }
@@ -114,7 +113,7 @@
       //main {
       position: fixed;
       width: 185px;
-      background-color: #0e0e0e;
+      // background-color: #0e0e0e;
       height: 100vh;
       margin-left: 2.5em;
 

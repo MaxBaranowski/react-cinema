@@ -81,14 +81,14 @@ export default class API {
       });
     }).then((data) => {
       let i = 100;
-      for (let movie of data.slice(4005, 4500)) {
+      for (let movie of data.slice(6838, 7000)) {
         i += 100;
         (function (movie, i) {
           setTimeout(function () {
             //1 key: e5c95e8c
             //2 key: 435a86bf
             //3 key: BanMePlz 
-            let url = `http://www.omdbapi.com/?t=${movie.title.split(" ").join("+")}&y=${movie.year}&plot=full&apikey=435a86bf`;
+            let url = `http://www.omdbapi.com/?t=${movie.title.split(" ").join("+")}&y=${movie.year}&plot=full&apikey=BanMePlz`;
             axios(url)
               .then((result) => {
                 let movieFull = result.data;

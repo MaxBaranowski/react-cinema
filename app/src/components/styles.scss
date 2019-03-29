@@ -14,6 +14,10 @@
 
 body {
   background-color: $app-dark;
+  background-image: url("/images/shape-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: $app-font-dark;
 
   // ================================================
