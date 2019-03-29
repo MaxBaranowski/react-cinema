@@ -36,6 +36,9 @@ const movieSchema = mongoose.Schema({
   "Type": {
     type: String,
   },
+  "ReleasedUnix": {
+    type: String,
+  },
 },
   {
     collection: 'movies-short',

@@ -62,6 +62,27 @@ export default class API {
     }
   }
 
+  updateMovies = async (req, res, next) => {
+    try {
+      await new DB().updateMovies({
+        "schema": MovieFull,
+        // "condition": {
+        //   "key": "Released",
+        //   "value": "N/A"
+        // }
+      }).then(
+        (result) => {
+          res.json(result)
+        }
+      ).catch((err) => {
+        return next(err);
+      });
+
+    } catch (err) {
+      return next(err);
+    }
+  }
+
   removeMovies = async (req, res, next) => {
     try {
       await new DB().removeMovies({ "schema": MovieFull, "condition": { "key": "Released", "value": "N/A" } }).then(
