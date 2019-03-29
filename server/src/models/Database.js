@@ -9,7 +9,9 @@ export default class Database extends DB {
     try {
       return await this.connect()
         .then(() =>
-          schema.findById(id).exec() //will return a promise if no callback is provided.
+          schema
+            .findById(id)
+            .exec() //will return a promise if no callback is provided.
             .then((data) => {
               return data;
             }).catch((err) => {
@@ -28,13 +30,12 @@ export default class Database extends DB {
       return await this.connect()
         .then(() =>
           schema
-            // .find({ [findKey]: {$regex: ".*^" + findValue + ".*"} })
             .find()
             .where({
               [findKey]: { $regex: ".*^" + findValue + ".*" }
             })
             .limit(limit)
-            .exec() //will return a promise if no callback is provided.
+            .exec()
             .then((data) => {
               return data;
             }).catch((err) => {
@@ -48,19 +49,17 @@ export default class Database extends DB {
     }
   };
 
-  getMovies = async ({ schema, limit = 50 }) => {
+  getMovies = async ({ schema, limit = 50, sortBy = "ReleasedUnix", order = -1 }) => {
     try {
       return await this.connect()
         .then(() =>
           schema
             .find()
             .sort({
-              // "Year": -1 //-1 \|/ 0 /|\
-              "ReleasedUnix": -1 //Sort by Date Added DESC
+              [sortBy]: order
             })
             .limit(limit)
-
-            .exec() //will return a promise if no callback is provided.
+            .exec()
             .then((data) => {
               return data;
             }).catch((err) => {
@@ -82,7 +81,7 @@ export default class Database extends DB {
             .remove({
               [condition.key]: condition.value
             })
-            .exec() //will return a promise if no callback is provided.
+            .exec()
             .then((data) => {
               return data;
             }).catch((err) => {
@@ -96,44 +95,51 @@ export default class Database extends DB {
     }
   }
 
-  updateMovies = async ({ schema }) => {
-    let _db = this;
+  updateMovies = async ({ schema, condition = {} }) => {
+    return true;
     try {
+      let promises = [];
+
       return await this.connect()
         .then(() =>
           schema
             //.update({}, { '$set': { 'ReleasedUnix': "NaN" } }, { multi: true })
             .find({})
-            .limit(10)
+            .limit()
             .exec()
-            .then((data) => {
-              let i = 1;
-              data.forEach(function (doc) {
-                ((doc, i) => {
-                  setTimeout(() => {
-                    let dateUnix = Math.floor(new Date(`${doc.Released} GMT`).getTime() / 1000).toString(16);
-                    console.log(i, doc.Released, dateUnix)
-                    schema.findOne({ "imdbID": doc.imdbID })
+            .then((movies) => {
+              let iter = 1;
+              let allMovies = movies.length;
+
+              movies.forEach(function (movie) {
+                iter += 1;
+                promises.push(
+                  new Promise((resolve, reject) => {
+                    let dateUnix = Math.floor(new Date(`${movie.Released} GMT`).getTime() / 1000).toString(16);
+                    console.log("[ " + iter + " / " + allMovies + " ]")
+                    schema.findOne({ "imdbID": movie.imdbID })
                       .exec()
                       .then((data) => {
                         data.ReleasedUnix = dateUnix;
                         data.save(function (err) {
                           if (err) {
-                            throw new Error(err);
+                            reject(err);
                           }
+                          resolve();
                         })
-                        //         if (i == data.length) {
-                        //           // _db.disconnect()
                       }).catch((err) => {
                         throw new Error(err);
                       });
-                  }, i);
-                })(doc, i)
-                i += 1;
-              })
+                  })
+                );
+              });
             })
         ).catch((err) => {
           throw new Error(err);
+        }).then(async () => {
+          await Promise.all(promises);
+          this.disconnect();
+          return "updateMovies completed";
         })
     } catch (err) {
       throw new Error(err);

@@ -16,7 +16,6 @@ export default class Movies extends Component {
     this.createMoviesList = (Comp, MoviesList) => {
       let list = [];
       for (let movie of MoviesList) {
-        console.log(movie)
         list.push(
           <Comp key={movie.imdbID} id={movie.imdbID} img={movie.Poster} name={movie.Title}
             year={movie.Released} country={movie.Country} >
