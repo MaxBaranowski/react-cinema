@@ -104,37 +104,37 @@ export default class Database extends DB {
           schema
             //.update({}, { '$set': { 'ReleasedUnix': "NaN" } }, { multi: true })
             .find({})
+            .limit(10)
             .exec()
             .then((data) => {
               let i = 1;
               data.forEach(function (doc) {
-                i += 1;
                 ((doc, i) => {
                   setTimeout(() => {
-                    console.log(i, doc.Released, Math.floor(new Date(`${doc.Released} GMT`).getTime() / 1000).toString(16))
-                    schema.findOne({ "imdbID": doc.imdbID }, function (err, data) {
-                      if (data) {
-                        data.ReleasedUnix = Math.floor(new Date(`${doc.Released} GMT`).getTime() / 1000).toString(16);
+                    let dateUnix = Math.floor(new Date(`${doc.Released} GMT`).getTime() / 1000).toString(16);
+                    console.log(i, doc.Released, dateUnix)
+                    schema.findOne({ "imdbID": doc.imdbID })
+                      .exec()
+                      .then((data) => {
+                        data.ReleasedUnix = dateUnix;
                         data.save(function (err) {
                           if (err) {
                             throw new Error(err);
                           }
-                        });
-                      } else {
+                        })
+                        //         if (i == data.length) {
+                        //           // _db.disconnect()
+                      }).catch((err) => {
                         throw new Error(err);
-                      }
-                    });
-                    if (i == data.length) {
-                      _db.disconnect()
-                    }
+                      });
                   }, i);
                 })(doc, i)
+                i += 1;
               })
-              return "done";
-            }).catch((err) => {
-              throw new Error(err);
             })
-        );
+        ).catch((err) => {
+          throw new Error(err);
+        })
     } catch (err) {
       throw new Error(err);
     }
