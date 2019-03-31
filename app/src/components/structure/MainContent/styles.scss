@@ -99,7 +99,7 @@
 
   .main-wrapper-enter-done {
     left: 250px;
-    padding: 0 5px 0 5px;
+    padding: 0 5px 0 1em;
     transition: all 0.5s linear;
   }
 
@@ -119,6 +119,6 @@
     grid-template-columns: repeat(12, minmax(auto, 1fr));
     max-width: 95%;
     margin: 0 0 0 0;
-    padding: 1em 1em;
+    padding: 1em .5em 1em 1em;
   }
 }

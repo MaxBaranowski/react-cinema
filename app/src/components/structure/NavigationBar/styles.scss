@@ -225,7 +225,6 @@
       .menu-link-section {
         width: 65%;
       }
-
       //}
     }
   }
@@ -320,7 +319,7 @@
     background-image: url("/images/shape-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-x: -25px;
+    //background-position-x: -25px;
     nav {
       min-width: 100vw;
       height: 100vh;
@@ -341,8 +340,9 @@
           max-height: unset;
         }
       }
+
       .show-hide-nav {
-        width: 25px;
+        width: 15px;
         font-size: 3em;
       }
     }
@@ -368,5 +368,19 @@
   .menu-exit-done {
     left: calc(-100vw - -10px);
     transition: left 0.5s linear;
+    animation-name: hide_bg_for_menu;
+    animation-duration: -2s;
+    animation-delay: .5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes hide_bg_for_menu {
+    0% {
+      background-position-x: 0px;
+    }
+    100% {
+      background-position-x: -25px;
+    }
   }
 }

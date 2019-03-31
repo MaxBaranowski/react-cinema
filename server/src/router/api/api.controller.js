@@ -51,7 +51,7 @@ export default class API {
     try {
       await new DB().getMovies({
         "schema": MovieShort,
-        "limit": 50,
+        "limit": 24,
       }).then(
         (result) => {
           res.json(result)

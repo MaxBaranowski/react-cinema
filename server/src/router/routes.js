@@ -4,7 +4,7 @@ import createError from "http-errors";
 import Home from "./public/home/index";
 import API from "./api/index";
 
-const router = express.Router()
+const router = express.Router();
 
 router.use("/", Home);
 router.use("/api", API);
