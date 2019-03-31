@@ -70,6 +70,9 @@ export default class Movies extends Component {
                   <div className="filter genre">
                     <span>All genres</span>
                   </div>
+                  <div className="filter subgenres">
+                    <span>All subgenres</span>
+                  </div>
                   <div className="filter years">
                     <span>All years</span>
                   </div>
@@ -77,7 +80,7 @@ export default class Movies extends Component {
                     <span>All countries</span>
                   </div>
                   <div className="filter popularity">
-                    <span>By Popularity Ascending</span>
+                    <span>By Popularity</span>
                   </div>
                 </main>
               </header>

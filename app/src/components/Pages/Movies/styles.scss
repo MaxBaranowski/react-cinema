@@ -19,31 +19,27 @@
 
     header {
       .searchParams {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1em 0;
+
         .filter {
           display: inline-block;
-          -moz-box-sizing: border-box;
-          -webkit-box-sizing: border-box;
           box-sizing: border-box;
           font-weight: 500;
           border-width: 2px;
           border-style: solid;
           white-space: nowrap;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
           user-select: none;
           cursor: pointer;
-          font-size: 14px;
-          line-height: 18px;
-          height: 32px;
-          min-width: 10em;
+          font-size: 1em;
+          line-height: 1.5em;
+          width: 13em;
           border-radius: 3px;
           padding: .5em 1em .5em .5em;
-          background-color: rgba(39, 39, 41, 0);
-          border-color: rgba(39, 39, 41, .3);
-          border-color: #fff;
-          color: #272729;
-          color: #fff;
+          border-color:#868686;
+          color: #868686;
           text-align: left;
 
           span {
