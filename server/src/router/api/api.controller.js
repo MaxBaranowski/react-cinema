@@ -60,7 +60,7 @@ export default class API {
   getMovies = async (req, res, next) => {
     try {
       const {
-        limit = null,
+        limit = 50,
         sortBy = null,
         order = null
       } = req.body;
