@@ -54,7 +54,6 @@ export default class JustAdded extends Component {
   
   render() {
     const {movies} = this.state;
-    console.log(movies)
     if (movies) {
       return (
         <React.Fragment>
@@ -75,7 +74,9 @@ export default class JustAdded extends Component {
             <h1>Just Added</h1>
           </header>
           <div className="section-body">
-            Loading
+            <div className="section-body">
+              Loading...
+            </div>
           </div>
         </section>
       )
