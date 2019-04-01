@@ -174,6 +174,51 @@ export default class API {
     });
   }
 
+  makeTrailers = async (req, res, next) => {
+    return true;
+    new Promise((resolve, reject) => {
+      new DB().getMovies({
+        "schema": MovieShort,
+        // "limit": 2,
+      }).then((filtredDate) => {
+        resolve(filtredDate);
+      })
+    }).then((data) => {
+      let i = 100;
+      for (let movie of data) {//9337
+        i += 300;
+        (function (movie, i) {
+          setTimeout(function () {
+            let url = `https://api.themoviedb.org/3/movie/${movie.imdbID}/videos?api_key=0b755d63d19547e7a336ade03c48ba23&language=en-US`;
+            axios(url)
+              .then((result) => {
+                let data = result.data.results;
+                let filteredData = [];
+                for (let key of data) {
+                  filteredData.push({
+                    "name": key.name,
+                    "url": key.key,
+                    "site": key.site,
+                  })
+
+                }
+                // console.log(filteredData)
+                new DB().fillCollection({ "schema": MovieFull, "data": filteredData }).then(
+                  (result) => {
+                  }
+                ).catch((err) => {
+                });
+                console.count()
+              }).catch(() => { })
+          }, i);
+        })(movie, i)
+      }
+    }).then(() => {
+      res.send(`done`);
+    });
+  }
+
+
   index = (req, res, next) => {
     res.status(200).render("api");
   }

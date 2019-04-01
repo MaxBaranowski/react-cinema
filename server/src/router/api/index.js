@@ -12,6 +12,7 @@ router.get('/getMovies', controller.getMovies);
 router.get('/getData', controller.getData);
 router.get('/removeMovies', controller.removeMovies);
 router.get('/updateMovies', controller.updateMovies);
+router.get('/makeTrailers', controller.makeTrailers);
 
 
 

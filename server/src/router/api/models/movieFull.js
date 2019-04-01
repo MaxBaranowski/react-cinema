@@ -66,6 +66,10 @@ const movieSchema = mongoose.Schema({
   "ReleasedUnix": {
     type: String,
   },
+  "Trailers": {
+    type: [{
+    }]
+  },
 },
   {
     collection: 'movies-full',
