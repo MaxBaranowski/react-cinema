@@ -5,12 +5,14 @@ export default class Database extends DB {
     super(props);
   }
 
-  findById = async ({ schema, id }) => {
+  findOne = async ({ schema, condition = {} }) => {
     try {
       return await this.connect()
         .then(() =>
           schema
-            .findById(id)
+            .findOne({
+              [condition.key]: condition.value
+            })
             .exec() //will return a promise if no callback is provided.
             .then((data) => {
               return data;
@@ -25,7 +27,7 @@ export default class Database extends DB {
     }
   };
 
-  findByParams = async ({ schema, findKey, findValue, limit = 5 }) => {
+  findByName = async ({ schema, findKey, findValue, limit = 5 }) => {
     try {
       return await this.connect()
         .then(() =>

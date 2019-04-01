@@ -31,7 +31,7 @@ Movie.propTypes = {
   id: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  country: PropTypes.string.isRequired,
+  country: PropTypes.string,
   year: PropTypes.string
 };
 

@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
-import Movie from "../Movie"
+import Movie from "../../../components/Movie"
 
 export default class JustAdded extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class JustAdded extends Component {
     this.state = {
       movies: []
     }
-    
+
     this.movies = [
       {
         id: 11,
@@ -48,13 +48,13 @@ export default class JustAdded extends Component {
       }
     ];
   }
-  
+
   componentDidMount() {
     this.setState({
       movies: this.props.createMoviesList(Movie, this.movies)
     });
   }
-  
+
   render() {
     return (
       <React.Fragment>

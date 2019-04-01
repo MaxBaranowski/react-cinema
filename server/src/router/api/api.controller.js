@@ -12,10 +12,16 @@ export default class API {
   getMovie = async (req, res, next) => {
     try {
       const {
-        id: movieId = "", //5c6178f4b0bba10d976f1220
+        id: movieId = "",
       } = req.body;
 
-      await new DB().findById({ "schema": Customer, "id": movieId }).then(
+      await new DB().findOne({
+        "schema": MovieFull,
+        "condition": {
+          "key": "imdbID",
+          "value": movieId
+        }
+      }).then(
         (result) => {
           res.json(result)
         }
@@ -26,7 +32,7 @@ export default class API {
     } catch (err) {
       return next(err);
     }
-  };
+  }
 
   getMoviesByName = async (req, res, next) => {
     try {
@@ -34,7 +40,11 @@ export default class API {
         name: movieName = "",
       } = req.body;
 
-      await new DB().findByParams({ "schema": Customer, "findKey": "name.first", "findValue": movieName }).then(
+      await new DB().findByName({
+        "schema": MovieShort,
+        "findKey": "name.first",
+        "findValue": movieName
+      }).then(
         (result) => {
           res.json(result)
         }
@@ -45,7 +55,7 @@ export default class API {
     } catch (err) {
       return next(err);
     }
-  };
+  }
 
   getMovies = async (req, res, next) => {
     try {
@@ -162,7 +172,7 @@ export default class API {
     }).then(() => {
       res.send(`done`);
     });
-  };
+  }
 
   index = (req, res, next) => {
     res.status(200).render("api");

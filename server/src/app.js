@@ -8,7 +8,8 @@ import cors from 'cors';
 import Router from './router/routes';
 
 const app = express();
-
+// hide server info
+app.disable('x-powered-by');
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");

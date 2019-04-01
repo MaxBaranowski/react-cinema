@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Movie from "../Movie"
+import Movie from "../../../components/Movie"
 
 export default class Recommended extends Component {
   constructor(props) {
