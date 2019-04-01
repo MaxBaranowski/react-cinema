@@ -73,7 +73,7 @@ export default class Database extends DB {
     } catch (err) {
       throw new Error(err);
     }
-  }
+  };
 
   removeMovies = async ({ schema, condition }) => {
     try {
@@ -95,7 +95,7 @@ export default class Database extends DB {
     } catch (err) {
       throw new Error(err);
     }
-  }
+  };
 
   updateMovies = async ({ schema, condition = {} }) => {
     return true;
@@ -146,7 +146,7 @@ export default class Database extends DB {
     } catch (err) {
       throw new Error(err);
     }
-  }
+  };
 
   updateMoviesTest = async ({ schema, condition = {} }) => {
     return true;
@@ -227,7 +227,7 @@ export default class Database extends DB {
     } catch (err) {
       throw new Error(err);
     }
-  }
+  };
 
   fillCollection = async ({ schema, data }) => {
     try {
