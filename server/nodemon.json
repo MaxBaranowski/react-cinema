@@ -2,7 +2,7 @@
   "exec": "npm run dev",
   "watch": [
     "src/*",
-    "public/*"
+    "public/stylesheets/style.scss"
   ],
-  "ext": "js, html, css, json"
+  "ext": "js, hbs, json, scss"
 }
