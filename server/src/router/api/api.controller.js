@@ -16,7 +16,7 @@ export default class API {
       } = req.body;
 
       await new DB().findOne({
-        "schema": MovieFull0,
+        "schema": MovieFull,
         "condition": {
           "key": "imdbID",
           "value": movieId
@@ -26,7 +26,6 @@ export default class API {
           res.json(result)
         }
       ).catch((err) => {
-        console.log(err)
         return next(err);
       });
 
