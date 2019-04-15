@@ -33,7 +33,8 @@ export default class Movies extends Component {
       fetch(`https://${window.location.hostname}:443/api/getMovies`)
         .then(response =>
           response.json()
-            .then(movies => {
+            .then(data => {
+              let movies = data.result;
               this.state.movies !== movies ?
                 this.setState({
                   movies: this.createMoviesList(Movie, movies)

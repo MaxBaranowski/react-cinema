@@ -25,8 +25,9 @@ export default class Banner extends Component {
       }).then(response =>
         response.json()
           .then(data => {
+            let movies = data.result;
             this.setState({
-              movie: data[Math.floor(Math.random() * 9) + 1]
+              movie: movies[Math.floor(Math.random() * 9) + 1]
             });
           }).catch(e => {
           this.setState({

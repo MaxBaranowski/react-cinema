@@ -9,17 +9,6 @@ export default class JustAdded extends Component {
       movies: []
     };
     
-    this.createMoviesList = (Comp, MoviesList) => {
-      let list = [];
-      for (let movie of MoviesList) {
-        list.push(
-          <Comp key={movie.imdbID} id={movie.imdbID} img={movie.Poster} name={movie.Title}
-                year={movie.Released} country={movie.Country}>
-          </Comp>
-        );
-      }
-      return list;
-    };
   }
   
   componentDidMount() {
@@ -38,7 +27,7 @@ export default class JustAdded extends Component {
         response.json()
           .then(data => {
             this.setState({
-              movies: this.createMoviesList(Movie, data)
+              movies: this.props.createMoviesList(Movie, data.result)
             });
           }).catch(e => {
           this.setState({
@@ -74,9 +63,7 @@ export default class JustAdded extends Component {
             <h1>Just Added</h1>
           </header>
           <div className="section-body">
-            <div className="section-body">
-              Loading...
-            </div>
+            Loading...
           </div>
         </section>
       )
