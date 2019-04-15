@@ -1,24 +1,20 @@
 import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
-import logger from "morgan";
+import ignoreFavIcon from "./middleware/ignoreFavIcon";
 import sassMiddleware from "node-sass-middleware";
 import cors from 'cors';
 
 import Router from './router/routes';
 
 const app = express();
-// hide server info
-app.disable('x-powered-by');
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
 
-app.use(logger("dev"));//???
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.disable('x-powered-by'); // hide server info
+app.use(cors()); //Enable All CORS Requests
 app.use(cookieParser());
-// use scss middleware
+app.use(ignoreFavIcon); // ignore error with favicon 404
+
+// use scss for styling server pages
 app.use(sassMiddleware({
   src: path.join(__dirname, "../public"),
   dest: path.join(__dirname, "../public"),
@@ -26,9 +22,19 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(
+  path.join(__dirname, "../public"), //root folder
+  {}
+));
 
-app.use(cors())
+app.set("views", path.join(__dirname, "views")); // view engine setup
+app.set("view engine", "hbs"); // eanble hbs as a template engine 
+
+app.use(express.json({
+  limit: '1024kb',
+  strict: true,
+  type: "application/json"
+}));
 
 // Routes
 app.use(Router);

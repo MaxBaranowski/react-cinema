@@ -1,10 +1,17 @@
 import express from "express";
 import createError from "http-errors";
+import logger from "../middleware/logger";
 
 import Home from "./public/home/index";
 import API from "./api/index";
 
 const router = express.Router();
+
+router.use(express.urlencoded({
+  extended: false,
+  limit: "100kb",
+  parameterLimit: 10
+}));
 
 router.use("/", Home);
 router.use("/api", API);
@@ -14,6 +21,8 @@ router.use((err, req, res, next) => {
   console.error("Log: ", err.message);
   next(err);
 });
+
+router.use(logger);
 
 router.use((err, req, res, next) => {
   if (req.app.get("env") === 'development') {

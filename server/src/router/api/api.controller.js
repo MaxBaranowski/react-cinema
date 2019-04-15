@@ -1,6 +1,6 @@
 import DB from "../../models/Database";
-import {MovieFull} from "./models/movieFull"
-import {MovieShort} from "./models/MovieShort"
+import { MovieFull } from "./models/movieFull"
+import { MovieShort } from "./models/MovieShort"
 
 import fs from "fs";
 import axios from "axios";
@@ -8,15 +8,15 @@ import axios from "axios";
 export default class API {
   constructor() {
   }
-  
+
   getMovie = async (req, res, next) => {
     try {
       const {
         id: movieId = "",
       } = req.body;
-      
+
       await new DB().findOne({
-        "schema": MovieFull,
+        "schema": MovieFull0,
         "condition": {
           "key": "imdbID",
           "value": movieId
@@ -26,20 +26,21 @@ export default class API {
           res.json(result)
         }
       ).catch((err) => {
+        console.log(err)
         return next(err);
       });
-      
+
     } catch (err) {
       return next(err);
     }
   }
-  
+
   getMoviesByName = async (req, res, next) => {
     try {
       const {
         name: movieName = "",
       } = req.body;
-      
+
       await new DB().findByName({
         "schema": MovieShort,
         "findKey": "name.first",
@@ -51,12 +52,12 @@ export default class API {
       ).catch((err) => {
         return next(err);
       });
-      
+
     } catch (err) {
       return next(err);
     }
   };
-  
+
   getMovies = async (req, res, next) => {
     try {
       const {
@@ -79,7 +80,7 @@ export default class API {
       return next(err);
     }
   }
-  
+
   updateMovies = async (req, res, next) => {
     try {
       await new DB().updateMovies({
@@ -99,7 +100,7 @@ export default class API {
       return next(err);
     }
   }
-  
+
   removeMovies = async (req, res, next) => {
     try {
       await new DB().removeMovies({
@@ -119,7 +120,7 @@ export default class API {
       return next(err);
     }
   }
-  
+
   getData = async (req, res, next) => {
     return res.send("nothing :)")
     new Promise((resolve, reject) => {
@@ -142,7 +143,7 @@ export default class API {
             //1 key: e5c95e8c
             //2 key: 435a86bf
             //3 key: BanMePlz 
-            
+
             // 4 key: 9b04b98a 
             // 5 key: f340eea8
             // 6 key: c422e09d 
@@ -158,13 +159,13 @@ export default class API {
               .then((result) => {
                 let movieFull = result.data;
                 if (movieFull.hasOwnProperty("Title") && movieFull.Poster.length > 5) {
-                  new DB().fillCollection({"schema": MovieShort, "data": movieFull}).then(
+                  new DB().fillCollection({ "schema": MovieShort, "data": movieFull }).then(
                     (result) => {
                     }
                   ).catch((err) => {
                   });
-                  
-                  new DB().fillCollection({"schema": MovieFull, "data": movieFull}).then(
+
+                  new DB().fillCollection({ "schema": MovieFull, "data": movieFull }).then(
                     (result) => {
                     }
                   ).catch((err) => {
@@ -172,7 +173,7 @@ export default class API {
                 }
                 console.count()
               }).catch(() => {
-            })
+              })
           }, i);
         })(movie, i)
       }
@@ -180,7 +181,7 @@ export default class API {
       res.send(`done`);
     });
   }
-  
+
   makeTrailers = async (req, res, next) => {
     return true;
     new Promise((resolve, reject) => {
@@ -207,17 +208,17 @@ export default class API {
                     "url": key.key,
                     "site": key.site,
                   })
-                  
+
                 }
                 // console.log(filteredData)
-                new DB().fillCollection({"schema": MovieFull, "data": filteredData}).then(
+                new DB().fillCollection({ "schema": MovieFull, "data": filteredData }).then(
                   (result) => {
                   }
                 ).catch((err) => {
                 });
                 console.count()
               }).catch(() => {
-            })
+              })
           }, i);
         })(movie, i)
       }
@@ -225,10 +226,10 @@ export default class API {
       res.send(`done`);
     });
   }
-  
-  
+
+
   index = (req, res, next) => {
     res.status(200).render("api");
   }
-  
+
 }
