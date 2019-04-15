@@ -13,7 +13,7 @@ export default class API {
     try {
       const {
         id: movieId = "",
-      } = req.body;
+      } = (Object.keys(req.body).length > 0) ? req.body : req.query;
 
       await new DB().findOne({
         "schema": MovieFull,
@@ -23,7 +23,7 @@ export default class API {
         }
       }).then(
         (result) => {
-          res.json(result)
+          res.json({ result })
         }
       ).catch((err) => {
         return next(err);
@@ -38,7 +38,7 @@ export default class API {
     try {
       const {
         name: movieName = "",
-      } = req.body;
+      } = (Object.keys(req.body).length > 0) ? req.body : req.query;
 
       await new DB().findByName({
         "schema": MovieShort,
@@ -46,7 +46,7 @@ export default class API {
         "findValue": movieName
       }).then(
         (result) => {
-          res.json(result)
+          res.json({ result })
         }
       ).catch((err) => {
         return next(err);
@@ -63,14 +63,14 @@ export default class API {
         limit = 50,
         sortBy = null,
         order = null
-      } = req.body;
+      } = (Object.keys(req.body).length > 0) ? req.body : req.query;
       await new DB().getMovies({
         "schema": MovieShort,
-        "limit": limit,
+        "limit": parseInt(limit),
         "sortBy": sortBy
       }).then(
         (result) => {
-          res.json(result)
+          res.json({ result })
         }
       ).catch((err) => {
         return next(err);
@@ -90,7 +90,7 @@ export default class API {
         }
       }).then(
         (result) => {
-          res.send(result);
+          res.send({ result });
         }
       ).catch((err) => {
         return next(err);
