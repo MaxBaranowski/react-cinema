@@ -2,9 +2,19 @@ import DB from "../../models/Database";
 import { MovieFull } from "./models/movieFull"
 import { MovieShort } from "./models/MovieShort"
 
+import { makeMovies, makeTrailers } from "./unused_api_methods";
+
 export default class API {
   constructor() {
   }
+
+  createDB = async (req, res, next) => {
+    makeMovies(req, res, next);
+  }
+
+  //createDB = async (req, res, next) => {
+  //makeTrailers(req, res, next);
+  //}
 
   getMovie = async (req, res, next) => {
     try {

@@ -58,6 +58,7 @@ const movieSchema = mongoose.Schema({
   },
   "imdbID": {
     type: String,
+    required: true,
     unique: true
   },
   "Type": {

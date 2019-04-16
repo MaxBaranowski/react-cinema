@@ -1,7 +1,10 @@
 import fs from "fs";
 import axios from "axios";
+import { MovieFull } from "./models/movieFull"
+import { MovieShort } from "./models/MovieShort"
+import DB from "../../models/Database";
 
-export const getData = async (req, res, next) => {
+export const makeMovies = async (req, res, next) => {
   new Promise((resolve, reject) => {
     fs.readFile('./movies.json', (err, data) => {
       if (err) reject(err);
@@ -19,11 +22,12 @@ export const getData = async (req, res, next) => {
       i += 100;
       (function (movie, i) {
         setTimeout(function () {
-          let url = `http://www.omdbapi.com/?t=${movie.title.split(" ").join("+")}&y=${movie.year}&plot=full&apikey=${process.env.OM_DB_API_KEY_01}`;
+          let url = `http://www.omdbapi.com/?t=${movie.title.split(" ").join("+")}&y=${movie.year}&plot=full&apikey=${process.env.OM_DB_API_KEY_11}`;
           axios(url)
             .then((result) => {
               let movieFull = result.data;
               if (movieFull.hasOwnProperty("Title") && movieFull.Poster.length > 5) {
+                console.count("added: ")
                 new DB().fillCollection({ "schema": MovieShort, "data": movieFull }).then(
                   (result) => {
                   }
@@ -36,7 +40,7 @@ export const getData = async (req, res, next) => {
                 ).catch((err) => {
                 });
               }
-              console.count()
+              console.count("all: ")
             }).catch(() => {
             })
         }, i);
