@@ -1,38 +1,30 @@
 @import url("https://fonts.googleapis.com/css?family=Luckiest+Guy");
-.home-wrapper > * {
-  margin: 0;
-  padding: 0;
-  font-family: "Luckiest Guy", cursive; }
-
 .home-wrapper {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   min-height: 100vh;
   background-image: url(/images/wave.svg);
   background-repeat: no-repeat;
   background-position: 50% 75%;
   background-size: 15rem; }
-
-.home-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
-
-.home-wrapper h1,
-.home-wrapper h3,
-.home-wrapper a {
-  text-align: center;
-  margin-bottom: 1rem;
-  color: #1b242d;
-  letter-spacing: 1px; }
-
-.home-wrapper img {
-  width: 50px; }
-
-.home-wrapper img:hover {
-  color: red; }
+  .home-wrapper > * {
+    margin: 0;
+    padding: 0;
+    font-family: "Luckiest Guy", cursive; }
+  .home-wrapper h1,
+  .home-wrapper h3,
+  .home-wrapper a {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1b242d;
+    letter-spacing: 1px; }
+  .home-wrapper img {
+    width: 50px; }
+  .home-wrapper img:hover {
+    color: red; }
 
 .button-group {
   margin-bottom: 35px; }
@@ -59,5 +51,7 @@
     background-color: white;
     color: black;
     border: 2px solid #e7e7e7; }
+    .button-group .button-grey:hover a {
+      color: #fff; }
 
 /*# sourceMappingURL=style.css.map */

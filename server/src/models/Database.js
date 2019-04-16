@@ -5,7 +5,7 @@ export default class Database extends DB {
     super(props);
   }
 
-  findOne = async ({ schema, condition = {} }) => {
+  getOne = async ({ schema, condition = {} }) => {
     try {
       return await this.connect()
         .then(() =>
@@ -27,14 +27,14 @@ export default class Database extends DB {
     }
   };
 
-  findByName = async ({ schema, findKey, findValue, limit = 5 }) => {
+  getSomeByName = async ({ schema, condition = {}, limit = 5 }) => {
     try {
       return await this.connect()
         .then(() =>
           schema
             .find()
             .where({
-              [findKey]: { $regex: ".*^" + findValue + ".*" }
+              [condition.key]: { $regex: ".*^" + condition.value + ".*" }
             })
             .limit(limit)
             .exec()
@@ -51,7 +51,7 @@ export default class Database extends DB {
     }
   };
 
-  getMovies = async ({ schema, limit = 50, sortBy = "ReleasedUnix", order = -1 }) => {
+  getMany = async ({ schema, limit = 50, sortBy = "ReleasedUnix", order = -1 }) => {
     try {
       return await this.connect()
         .then(() =>
@@ -75,14 +75,15 @@ export default class Database extends DB {
     }
   };
 
-  removeMovies = async ({ schema, condition }) => {
+  removeMovie = async ({ schema, condition }) => {
     try {
       return await this.connect()
         .then(() =>
           schema
-            .remove({
+            .deleteOne({
               [condition.key]: condition.value
             })
+            .limit(1)
             .exec()
             .then((data) => {
               return data;
