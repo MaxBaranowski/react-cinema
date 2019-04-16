@@ -2,7 +2,7 @@ import DB from "../../models/Database";
 import { MovieFull } from "./models/movieFull"
 import { MovieShort } from "./models/MovieShort"
 
-import { makeMovies, makeTrailers } from "./unused_api_methods";
+import { makeMovies, makeTrailers } from "./db_creted_methods";
 
 export default class API {
   constructor() {
