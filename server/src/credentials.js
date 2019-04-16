@@ -1,7 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 export const credentials = {
   mongo: {
     development: {
-      connectionString: 'mongodb://admin:MG7OEOqUa1H6afI52LNr@ds121295.mlab.com:21295/react-cinema',
+      connectionString: `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds131296.mlab.com:31296/${process.env.DB_DATABASE_NAME}`,
     },
     production: {
       connectionString: '',
@@ -10,4 +13,4 @@ export const credentials = {
   config: {
     useNewUrlParser: true
   }
-}
+};

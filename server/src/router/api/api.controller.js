@@ -1,27 +1,36 @@
 import DB from "../../models/Database";
-import { MovieFull } from "./models/movieFull"
-import { MovieShort } from "./models/MovieShort"
+import {MovieFull} from "./models/movieFull"
+import {MovieShort} from "./models/MovieShort"
 
-import { makeMovies, makeTrailers } from "./db_creted_methods";
+import {makeMovies, makeTrailers} from "./db_creted_methods";
 
 export default class API {
   constructor() {
   }
-
+  
+  // createDB = async (req, res, next) => {
+  //   makeMovies(req, res, next);
+  // }
+  
   createDB = async (req, res, next) => {
-    makeMovies(req, res, next);
-  }
-
-  //createDB = async (req, res, next) => {
-  //makeTrailers(req, res, next);
-  //}
-
+    try {
+      makeTrailers(req, res, next).then(
+        (result) => {
+        }
+      ).catch((err) => {
+        throw new Error(err);
+      });
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+  
   getMovie = async (req, res, next) => {
     try {
       const {
         id: movieId = "",
       } = (Object.keys(req.body).length > 0) ? req.body : req.query;
-
+      
       await new DB().getOne({
         "schema": MovieFull,
         "condition": {
@@ -30,23 +39,23 @@ export default class API {
         }
       }).then(
         (result) => {
-          res.json({ result })
+          res.json({result})
         }
       ).catch((err) => {
         return next(err);
       });
-
+      
     } catch (err) {
       return next(err);
     }
   }
-
+  
   getMoviesByName = async (req, res, next) => {
     try {
       const {
         name: movieName = "",
       } = (Object.keys(req.body).length > 0) ? req.body : req.query;
-
+      
       await new DB().getSomeByName({
         "schema": MovieShort,
         "condition": {
@@ -55,17 +64,17 @@ export default class API {
         }
       }).then(
         (result) => {
-          res.json({ result })
+          res.json({result})
         }
       ).catch((err) => {
         return next(err);
       });
-
+      
     } catch (err) {
       return next(err);
     }
   };
-
+  
   getMovies = async (req, res, next) => {
     try {
       const {
@@ -79,7 +88,7 @@ export default class API {
         "sortBy": sortBy
       }).then(
         (result) => {
-          res.json({ result })
+          res.json({result})
         }
       ).catch((err) => {
         return next(err);
@@ -88,7 +97,7 @@ export default class API {
       return next(err);
     }
   }
-
+  
   updateMovies = async (req, res, next) => {
     try {
       await new DB().updateMovies({
@@ -99,7 +108,7 @@ export default class API {
         }
       }).then(
         (result) => {
-          res.send({ result });
+          res.send({result});
         }
       ).catch((err) => {
         return next(err);
@@ -108,14 +117,14 @@ export default class API {
       return next(err);
     }
   }
-
+  
   removeMovie = async (req, res, next) => {
     try {
       const {
         key = "imdbID",
         value
       } = (Object.keys(req.body).length > 0) ? req.body : req.query;
-
+      
       await new DB().removeMovie({
         "schema": MovieFull,
         "condition": {
@@ -143,9 +152,9 @@ export default class API {
       return next(err);
     }
   }
-
+  
   index = (req, res, next) => {
     res.status(200).render("api");
   }
-
+  
 }
