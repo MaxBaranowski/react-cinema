@@ -66,6 +66,7 @@ const movieSchema = mongoose.Schema({
   },
   "ReleasedUnix": {
     type: String,
+    default: 'NaN'
   },
   "Trailers": {
     type: [{

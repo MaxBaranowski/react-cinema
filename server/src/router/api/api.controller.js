@@ -2,20 +2,31 @@ import DB from "../../models/Database";
 import { MovieFull } from "./models/movieFull"
 import { MovieShort } from "./models/MovieShort"
 
-import { makeMovies, makeTrailers } from "./api_db_creted_methods";
+import { makeMovies, makeTrailers, makeUnixDate } from "./api_db_creted_methods";
 
 export default class API {
   constructor() {
   }
 
-  // createDB = async (req, res, next) => {
-  //   makeMovies(req, res, next);
-  // }
+  fillDataBaseWithMovies = async (req, res, next) => {
+    try {
+      makeMovies(req, res, next).then(
+        (result) => {
+          return result;
+        }
+      ).catch((err) => {
+        throw new Error(err);
+      });
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 
-  createDB = async (req, res, next) => {
+  fillMoviesWithTrailers = async (req, res, next) => {
     try {
       makeTrailers(req, res, next).then(
         (result) => {
+          return result;
         }
       ).catch((err) => {
         throw new Error(err);
@@ -24,6 +35,20 @@ export default class API {
       throw new Error(err);
     }
   };
+
+  fillMoviesWithUnixDate = async (req, res, next) => {
+    try {
+      makeUnixDate(req, res, next).then(
+        (result) => {
+          return result;
+        }
+      ).catch((err) => {
+        throw new Error(err);
+      });
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 
   getMovie = async (req, res, next) => {
     try {
@@ -89,26 +114,6 @@ export default class API {
       }).then(
         (result) => {
           res.json({ result })
-        }
-      ).catch((err) => {
-        return next(err);
-      });
-    } catch (err) {
-      return next(err);
-    }
-  }
-
-  updateMovies = async (req, res, next) => {
-    try {
-      await new DB().updateMovies({
-        "schema": MovieFull,
-        "condition": {
-          "key": "Released",
-          "value": "N/A"
-        }
-      }).then(
-        (result) => {
-          res.send({ result });
         }
       ).catch((err) => {
         return next(err);

@@ -18,7 +18,7 @@ export const makeMovies = async (req, res, next) => {
     });
   }).then((data) => {
     let i = 100;
-    for (let movie of data.slice(0, 1000)) {//9337
+    for (let movie of data.slice(0, 10)) {//9337
       i += 100;
       (function (movie, i) {
         setTimeout(function () {
@@ -28,16 +28,18 @@ export const makeMovies = async (req, res, next) => {
               let movieFull = result.data;
               if (movieFull.hasOwnProperty("Title") && movieFull.Poster.length > 5) {
                 console.count("added: ")
-                new DB().fillCollection({ "schema": MovieShort, "data": movieFull }).then(
+                new DB().fillCollectionMovies({ "schema": MovieShort, "data": movieFull }).then(
                   (result) => {
                   }
                 ).catch((err) => {
+                  next(err);
                 });
 
-                new DB().fillCollection({ "schema": MovieFull, "data": movieFull }).then(
+                new DB().fillCollectionMovies({ "schema": MovieFull, "data": movieFull }).then(
                   (result) => {
                   }
                 ).catch((err) => {
+                  next(err);
                 });
               }
               console.count("all: ")
@@ -57,9 +59,8 @@ export const makeTrailers = async (req, res, next) => {
     let promises = [];
     return await new DB().getMany({
       "schema": MovieShort,
-      "limit": 5,
+      "limit": 10,
     }).then((data) => {
-      // return filtredDate;
       let amount = data.length;
       let i = 0;
       data.forEach((movie) => {
@@ -82,7 +83,7 @@ export const makeTrailers = async (req, res, next) => {
                   return filteredData;
                 }).then((data => {
                   console.count(amount)
-                  new DB().fillCollection({ "schema": MovieFull, "data": data })
+                  new DB().fillCollectionTrailers({ "schema": MovieFull, "data": data, "movieID": movie.imdbID })
                     .then(
                       (result) => {
                         resolve(result);
@@ -102,10 +103,51 @@ export const makeTrailers = async (req, res, next) => {
       await Promise.all(promises);
       res.send("done")
     }).catch((err) => {
-      throw new Error(err.message);
       return next(err);
     })
   } catch (err) {
     return next(err);
   }
+};
+
+export const makeUnixDate = async (req, res, next) => {
+  let promises = [];
+  return await new DB().getMany({
+    "schema": MovieShort,
+    "limit": 0,
+  }).then((data) => {
+    let amount = data.length;
+    data.forEach((movie) => {
+      console.count(amount)
+      promises.push(
+        new Promise((resolve, reject) => {
+          new DB().fillCollectionUnixDate({ "schema": MovieFull, "movieID": movie.imdbID })
+            .then(
+              (result) => {
+                resolve(result);
+              }
+            ).catch((err) => {
+              reject(err);
+            })
+        }),
+        new Promise((resolve, reject) => {
+          new DB().fillCollectionUnixDate({ "schema": MovieShort, "movieID": movie.imdbID })
+            .then(
+              (result) => {
+                resolve(result);
+              }
+            ).catch((err) => {
+              reject(err);
+            })
+        })
+      );
+    });
+
+  }).then(async () => {
+    await Promise.all(promises);
+    res.send("done")
+  }).catch((err) => {
+    return next(err);
+  })
+
 };
