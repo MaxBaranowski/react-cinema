@@ -103,7 +103,7 @@ export default class API {
   getMovies = async (req, res, next) => {
     try {
       const {
-        limit = 50,
+        limit = 0,
         sortBy = null,
         order = null
       } = (Object.keys(req.body).length > 0) ? req.body : req.query;
@@ -129,7 +129,6 @@ export default class API {
         key = "imdbID",
         value
       } = (Object.keys(req.body).length > 0) ? req.body : req.query;
-
       await new DB().removeMovie({
         "schema": MovieFull,
         "condition": {
@@ -147,7 +146,7 @@ export default class API {
       ).then(
         (result) => {
           res.status(200).json({
-            "result": `Movie with ${key}: ${value} successfully deleted.`
+            "result": `Movie successfully deleted.`
           })
         }
       ).catch((err) => {

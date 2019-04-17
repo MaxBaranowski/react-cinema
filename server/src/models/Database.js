@@ -81,10 +81,9 @@ export default class Database extends DB {
       return await this.connect()
         .then(() =>
           schema
-            .deleteOne({
+            .deleteMany({
               [condition.key]: condition.value
             })
-            .limit(1)
             .exec()
             .then((data) => {
               return data;
