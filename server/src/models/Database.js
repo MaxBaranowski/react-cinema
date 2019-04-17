@@ -138,7 +138,7 @@ export default class Database extends DB {
               }).catch((err) => {
                 reject(err);
               }).finally(
-                () => this.disconnect()
+                // () => this.disconnect()
               )
           }).catch((err) => {
             reject(err);
@@ -155,22 +155,21 @@ export default class Database extends DB {
         this.connect()
           .then(() => {
             schema
-              .findOne({ "imdbID": movieID })
+              .find()
+              .limit(0)
               .exec()
-              .then((movie) => {
-                let dateUnix = Math.floor(new Date(`${movie.Released} GMT`).getTime() / 1000).toString(16);
-                movie.ReleasedUnix = dateUnix;
-                movie.save(function (err) {
-                  if (err) {
-                    reject(err);
-                  }
-                  resolve();
+              .then((movies) => {
+                movies.forEach(function (movie) {
+                  let dateUnix = Math.floor(new Date(`${movie.Released} GMT`).getTime() / 1000).toString(16);
+                  movie.ReleasedUnix = dateUnix;
+                  movie.save(function (err) {
+                    if (err) {
+                      reject(err);
+                    }
+                    resolve();
+                  })
                 })
-              }).catch((err) => {
-                reject(err);
-              }).finally(
-                // () => this.disconnect()
-              )
+              })
           }).catch((err) => {
             reject(err);
           })

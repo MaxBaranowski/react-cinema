@@ -108,7 +108,7 @@ export default class API {
         order = null
       } = (Object.keys(req.body).length > 0) ? req.body : req.query;
       await new DB().getMany({
-        "schema": MovieShort,
+        "schema": MovieFull,
         "limit": parseInt(limit),
         "sortBy": sortBy
       }).then(
