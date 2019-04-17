@@ -5,6 +5,7 @@ import { MovieShort } from "./models/MovieShort"
 import DB from "../../models/Database";
 
 export const makeMovies = async (req, res, next) => {
+  return true;
   new Promise((resolve, reject) => {
     fs.readFile('./movies.json', (err, data) => {
       if (err) reject(err);
@@ -18,11 +19,11 @@ export const makeMovies = async (req, res, next) => {
     });
   }).then((data) => {
     let i = 100;
-    for (let movie of data.slice(0, 10)) {//9337
+    for (let movie of data.slice(9000, 10000)) {//9337
       i += 100;
       (function (movie, i) {
         setTimeout(function () {
-          let url = `http://www.omdbapi.com/?t=${movie.title.split(" ").join("+")}&y=${movie.year}&plot=full&apikey=${process.env.OM_DB_API_KEY_12}`;
+          let url = `http://www.omdbapi.com/?t=${movie.title.split(" ").join("+")}&y=${movie.year}&plot=full&apikey=${process.env.OM_DB_API_KEY_11}`;
           axios(url)
             .then((result) => {
               let movieFull = result.data;
@@ -32,14 +33,17 @@ export const makeMovies = async (req, res, next) => {
                   (result) => {
                   }
                 ).catch((err) => {
-                  next(err);
+                  // next(err);
+                  console.log(err.message)
                 });
 
                 new DB().fillCollectionMovies({ "schema": MovieFull, "data": movieFull }).then(
                   (result) => {
                   }
                 ).catch((err) => {
-                  next(err);
+                  console.log(err.message)
+
+                  // next(err);
                 });
               }
               console.count("all: ")
@@ -59,7 +63,7 @@ export const makeTrailers = async (req, res, next) => {
     let promises = [];
     return await new DB().getMany({
       "schema": MovieShort,
-      "limit": 10,
+      "limit": 0,
     }).then((data) => {
       let amount = data.length;
       let i = 0;
@@ -112,9 +116,12 @@ export const makeTrailers = async (req, res, next) => {
 
 export const makeUnixDate = async (req, res, next) => {
   let promises = [];
+  let l = 0;
   return await new DB().getMany({
     "schema": MovieShort,
     "limit": 0,
+    "sortBy": "_id",
+    "skip": l
   }).then((data) => {
     let amount = data.length;
     data.forEach((movie) => {
@@ -129,7 +136,7 @@ export const makeUnixDate = async (req, res, next) => {
             ).catch((err) => {
               reject(err);
             })
-        }),
+        })/*,
         new Promise((resolve, reject) => {
           new DB().fillCollectionUnixDate({ "schema": MovieShort, "movieID": movie.imdbID })
             .then(
@@ -139,7 +146,7 @@ export const makeUnixDate = async (req, res, next) => {
             ).catch((err) => {
               reject(err);
             })
-        })
+        })*/
       );
     });
 

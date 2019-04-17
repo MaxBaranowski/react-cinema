@@ -51,7 +51,7 @@ export default class Database extends DB {
     }
   };
 
-  getMany = async ({ schema, limit = 50, sortBy = "ReleasedUnix", order = -1 }) => {
+  getMany = async ({ schema, limit = 50, sortBy = "ReleasedUnix", order = -1, skip = 0 }) => {
     try {
       return await this.connect()
         .then(() =>
@@ -60,6 +60,7 @@ export default class Database extends DB {
             .sort({
               [sortBy]: order
             })
+            .skip(limit * skip)
             .limit(limit)
             .exec()
             .then((data) => {
