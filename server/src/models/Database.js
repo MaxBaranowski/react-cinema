@@ -4,8 +4,8 @@ export default class Database extends DB {
   constructor(props) {
     super(props);
   }
-  
-  getOne = async ({schema, condition = {}}) => {
+
+  getOne = async ({ schema, condition = {} }) => {
     try {
       return await this.connect()
         .then(() =>
@@ -17,41 +17,41 @@ export default class Database extends DB {
             .then((data) => {
               return data;
             }).catch((err) => {
-            throw new Error(err);
-          }).finally(
-            () => this.disconnect()
-          )
+              throw new Error(err);
+            }).finally(
+              () => this.disconnect()
+            )
         );
     } catch (err) {
       throw new Error(err);
     }
   };
-  
-  getSomeByName = async ({schema, condition = {}, limit = 5}) => {
+
+  getSomeByName = async ({ schema, condition = {}, limit = 5 }) => {
     try {
       return await this.connect()
         .then(() =>
           schema
             .find()
             .where({
-              [condition.key]: {$regex: ".*^" + condition.value + ".*"}
+              [condition.key]: { $regex: ".*^" + condition.value + ".*" }
             })
             .limit(limit)
             .exec()
             .then((data) => {
               return data;
             }).catch((err) => {
-            throw new Error(err);
-          }).finally(
-            () => this.disconnect()
-          )
+              throw new Error(err);
+            }).finally(
+              () => this.disconnect()
+            )
         );
     } catch (err) {
       throw new Error(err);
     }
   };
-  
-  getMany = async ({schema, limit = 50, sortBy = "ReleasedUnix", order = -1}) => {
+
+  getMany = async ({ schema, limit = 50, sortBy = "ReleasedUnix", order = -1 }) => {
     try {
       return await this.connect()
         .then(() =>
@@ -60,22 +60,22 @@ export default class Database extends DB {
             .sort({
               [sortBy]: order
             })
-            .limit(0)
+            .limit(limit)
             .exec()
             .then((data) => {
               return data;
             }).catch((err) => {
-            throw new Error(err);
-          }).finally(
-            // () => this.disconnect()
-          )
+              throw new Error(err);
+            }).finally(
+              // () => this.disconnect()
+            )
         );
     } catch (err) {
       throw new Error(err);
     }
   };
-  
-  removeMovie = async ({schema, condition}) => {
+
+  removeMovie = async ({ schema, condition }) => {
     try {
       return await this.connect()
         .then(() =>
@@ -88,39 +88,39 @@ export default class Database extends DB {
             .then((data) => {
               return data;
             }).catch((err) => {
-            throw new Error(err);
-          }).finally(
-            () => this.disconnect()
-          )
+              throw new Error(err);
+            }).finally(
+              () => this.disconnect()
+            )
         );
     } catch (err) {
       throw new Error(err);
     }
   };
-  
-  updateMovies = async ({schema, condition = {}}) => {
+
+  updateMovies = async ({ schema, condition = {} }) => {
     return true;
     try {
       let promises = [];
-      
+
       return await this.connect()
         .then(() =>
           schema
-          //.update({}, { '$set': { 'ReleasedUnix': "NaN" } }, { multi: true })
+            //.update({}, { '$set': { 'ReleasedUnix': "NaN" } }, { multi: true })
             .find({})
             .limit()
             .exec()
             .then((movies) => {
               let iter = 1;
               let allMovies = movies.length;
-              
+
               movies.forEach(function (movie) {
                 iter += 1;
                 promises.push(
                   new Promise((resolve, reject) => {
                     let dateUnix = Math.floor(new Date(`${movie.Released} GMT`).getTime() / 1000).toString(16);
                     console.log("[ " + iter + " / " + allMovies + " ]")
-                    schema.findOne({"imdbID": movie.imdbID})
+                    schema.findOne({ "imdbID": movie.imdbID })
                       .exec()
                       .then((data) => {
                         data.ReleasedUnix = dateUnix;
@@ -131,8 +131,8 @@ export default class Database extends DB {
                           resolve();
                         })
                       }).catch((err) => {
-                      throw new Error(err);
-                    });
+                        throw new Error(err);
+                      });
                   })
                 );
               });
@@ -148,18 +148,18 @@ export default class Database extends DB {
       throw new Error(err);
     }
   };
-  
-  updateMoviesTest = async ({schema, condition = {}}) => {
+
+  updateMoviesTest = async ({ schema, condition = {} }) => {
     return true;
     try {
       let promises = [];
-      
+
       return await this.connect()
         .then(() =>
           schema
-          // .updateMany({}, { '$set': { 'Trailers': [] } }, { multi: true })
+            // .updateMany({}, { '$set': { 'Trailers': [] } }, { multi: true })
             .find(
-              {Trailers: {$exists: true}, $where: 'this.Trailers.length <= 0'}
+              { Trailers: { $exists: true }, $where: 'this.Trailers.length <= 0' }
             )
             .limit()
             .exec()
@@ -182,7 +182,7 @@ export default class Database extends DB {
                     new Promise((resolve, reject) => {
                       // let dateUnix = Math.floor(new Date(`${movie.Released} GMT`).getTime() / 1000).toString(16);
                       // console.log("[ " + iter + " / " + allMovies + " ]")
-                      schema.findOne({"imdbID": movie.imdbID})
+                      schema.findOne({ "imdbID": movie.imdbID })
                         .exec()
                         .then((movie) => {
                           console.count(allMovies)
@@ -203,14 +203,14 @@ export default class Database extends DB {
                                 if (err) {
                                   reject(err);
                                 }
-                                
+
                                 resolve();
                               })
                             })
-                          
+
                         }).catch((err) => {
-                        throw new Error(err);
-                      });
+                          throw new Error(err);
+                        });
                     })
                   );
                 });
@@ -229,26 +229,28 @@ export default class Database extends DB {
       throw new Error(err);
     }
   };
-  
-  fillCollection = async ({schema, data}) => {
+
+  fillCollection = async ({ schema, data }) => {
     try {
-      await this.connect()
-        .then(() => {
-          schema
-            .create(data)
-            .then((data) => {
-              return data;
-            }).catch((err) => {
-            console.log(err);
-          }).finally(
-            // () => this.disconnect()
-          )
-        }).catch((err) => {
-          console.log(err.message);
-        })
+      return new Promise((resolve, reject) => {
+        this.connect()
+          .then(() => {
+            schema
+              .create(data)
+              .then((data) => {
+                resolve(data);
+              }).catch((err) => {
+                reject(err);
+              }).finally(
+                () => this.disconnect()
+              )
+          }).catch((err) => {
+            reject(err);
+          })
+      });
     } catch (err) {
-      console.log(err.message);
+      throw new Error(err);
     }
   }
-  
+
 }
