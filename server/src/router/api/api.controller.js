@@ -64,7 +64,7 @@ export default class API {
         }
       }).then(
         (result) => {
-          res.json({ result })
+          res.json(result)
         }
       ).catch((err) => {
         return next(err);
@@ -92,7 +92,7 @@ export default class API {
         "limit": limit
       }).then(
         (result) => {
-          res.json({ result })
+          res.json(result)
         }
       ).catch((err) => {
         return next(err);
@@ -119,7 +119,7 @@ export default class API {
         "skip": skip
       }).then(
         (result) => {
-          res.json({ result })
+          res.json(result)
         }
       ).catch((err) => {
         return next(err);

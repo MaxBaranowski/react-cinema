@@ -34,7 +34,7 @@ export default class Movies extends Component {
         .then(response =>
           response.json()
             .then(data => {
-              let movies = data.result;
+              let movies = data;
               this.state.movies !== movies ?
                 this.setState({
                   movies: this.createMoviesList(Movie, movies)
