@@ -9,11 +9,11 @@ dotenv.config();
 mongoose.set('bufferCommands', true);
 mongoose.set('useCreateIndex', true);
 mongoose.connection.on("connected", function (ref) {
-  //console.log(`DB connection opened: ${timeStamp.full()}`);
+  console.log(`DB connection opened: ${timeStamp.full()}`);
 });
 
 mongoose.connection.on('disconnected', function () {
-  //console.log(`DB connection closed: ${timeStamp.full()}`);
+  console.log(`DB connection closed: ${timeStamp.full()}`);
 });
 
 

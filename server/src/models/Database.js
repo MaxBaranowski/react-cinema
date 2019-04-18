@@ -5,7 +5,7 @@ export default class Database extends DB {
     super(props);
   }
 
-  getOne = async ({ schema, condition = {} }) => {
+  getOne = async ({ schema, condition }) => {
     try {
       return await this.connect()
         .then(() =>
@@ -27,7 +27,7 @@ export default class Database extends DB {
     }
   };
 
-  getSomeByName = async ({ schema, condition = {}, limit = 5 }) => {
+  getSomeByName = async ({ schema, condition, limit }) => {
     try {
       return await this.connect()
         .then(() =>
@@ -51,7 +51,7 @@ export default class Database extends DB {
     }
   };
 
-  getMany = async ({ schema, limit = 50, sortBy = "ReleasedUnix", order = -1, skip = 0 }) => {
+  getMany = async ({ schema, limit, sortBy, order, skip }) => {
     try {
       return await this.connect()
         .then(() =>
@@ -63,12 +63,13 @@ export default class Database extends DB {
             .skip(limit * skip)
             .limit(limit)
             .exec()
-            .then((data) => {
+            .then(data => {
               return data;
-            }).catch((err) => {
+            })
+            .catch(err => {
               throw new Error(err);
             }).finally(
-              // () => this.disconnect()
+              () => this.disconnect()
             )
         );
     } catch (err) {
@@ -76,7 +77,7 @@ export default class Database extends DB {
     }
   };
 
-  removeMovie = async ({ schema, condition }) => {
+  remove = async ({ schema, condition }) => {
     try {
       return await this.connect()
         .then(() =>
@@ -116,7 +117,6 @@ export default class Database extends DB {
       throw new Error(err);
     }
   }
-
 
   fillCollectionTrailers = async ({ schema, data, movieID }) => {
     try {

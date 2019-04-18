@@ -79,14 +79,17 @@ export default class API {
     try {
       const {
         name: movieName = "",
+        key = "name.first",
+        limit = 5
       } = (Object.keys(req.body).length > 0) ? req.body : req.query;
 
       await new DB().getSomeByName({
         "schema": MovieShort,
         "condition": {
-          "key": "name.first",
+          "key": key,
           "value": movieName
-        }
+        },
+        "limit": limit
       }).then(
         (result) => {
           res.json({ result })
@@ -103,14 +106,17 @@ export default class API {
   getMovies = async (req, res, next) => {
     try {
       const {
-        limit = 0,
-        sortBy = null,
-        order = null
+        limit = 50,
+        sortBy = "ReleasedUnix",
+        order = -1,
+        skip = 0
       } = (Object.keys(req.body).length > 0) ? req.body : req.query;
       await new DB().getMany({
         "schema": MovieFull,
         "limit": parseInt(limit),
-        "sortBy": sortBy
+        "sortBy": sortBy,
+        "order": order,
+        "skip": skip
       }).then(
         (result) => {
           res.json({ result })
@@ -129,7 +135,7 @@ export default class API {
         key = "imdbID",
         value
       } = (Object.keys(req.body).length > 0) ? req.body : req.query;
-      await new DB().removeMovie({
+      await new DB().remove({
         "schema": MovieFull,
         "condition": {
           "key": key,
