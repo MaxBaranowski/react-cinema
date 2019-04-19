@@ -3,6 +3,7 @@ import { Redirect } from "react-router";
 
 import Movie from "../components/Movie"
 import "./styles.scss";
+import SearchPanel from '../components/SearchPanel/';
 
 export default class Movies extends Component {
   constructor(props) {
@@ -68,9 +69,7 @@ export default class Movies extends Component {
           <div className="content-wrapper">
             <main className="content-sections">
               <header>
-                <div className="searchBar">
-                  <input type="text" />
-                </div>
+                <SearchPanel />
                 <main className="searchParams">
                   <div className="filter genre">
                     <span>All genres</span>

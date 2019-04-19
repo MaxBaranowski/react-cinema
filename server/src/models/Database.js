@@ -39,12 +39,12 @@ export default class Database extends DB {
             .limit(limit)
             .exec()
             .then((data) => {
+              () => this.disconnect();
               return data;
             }).catch((err) => {
+              () => this.disconnect();
               throw new Error(err);
-            }).finally(
-              () => this.disconnect()
-            )
+            })
         );
     } catch (err) {
       throw new Error(err);
