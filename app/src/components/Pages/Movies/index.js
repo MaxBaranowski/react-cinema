@@ -30,22 +30,29 @@ export default class Movies extends Component {
   componentDidMount() {
     try {
       // fetch(`https://localhost:443/api/getMovies`)
-      fetch(`https://${window.location.hostname}:443/api/getMovies`)
-        .then(response =>
-          response.json()
-            .then(data => {
-              let movies = data;
-              this.state.movies !== movies ?
-                this.setState({
-                  movies: this.createMoviesList(Movie, movies)
-                }) || localStorage.setItem("movies", JSON.stringify(movies))
-                : void (0);
-            }).catch(e => {
+      fetch(`https://${window.location.hostname}:443/api/movies`,
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+      ).then(response =>
+        response.json()
+          .then(data => {
+            let movies = data;
+            this.state.movies !== movies ?
               this.setState({
-                isError: e
-              })
+                movies: this.createMoviesList(Movie, movies)
+              }) || localStorage.setItem("movies", JSON.stringify(movies))
+              : void (0);
+          }).catch(e => {
+            this.setState({
+              isError: e
             })
-        )
+          })
+      )
     } catch (e) {
       throw new Error("Error: " + e);
     }

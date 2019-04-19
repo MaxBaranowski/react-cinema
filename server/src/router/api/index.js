@@ -5,19 +5,19 @@ const router = express.Router();
 const controller = new API_controller();
 
 router.get('/', controller.index);
-router.get('/getMovie', controller.getMovie);
-router.get('/getMoviesByName', controller.getMoviesByName);
-router.get('/getMovies', controller.getMovies);
-router.get('/removeMovie', controller.removeMovie);
+router.get('/movies', controller.getMovies);
+router.get('/movies/:id', controller.getMovie);
+router.get('/movies/name/:name', controller.getMoviesByName);
+router.delete('/movies', controller.removeMovie);
 
 router.get('/fillDataBaseWithMovies', controller.fillDataBaseWithMovies);
 router.get('/fillMoviesWithTrailers', controller.fillMoviesWithTrailers);
 router.get('/fillMoviesWithUnixDate', controller.fillMoviesWithUnixDate);
 
 router.post('/', controller.index);
-router.post('/getMovie', controller.getMovie);
-router.post('/getMoviesByName', controller.getMoviesByName);
-router.post('/getMovies', controller.getMovies);
-router.post('/removeMovie', controller.removeMovie);
+router.post('/movie', controller.getMovie);
+router.post('/movies/name', controller.getMoviesByName);
+router.post('/movies', controller.getMovies);
+router.post('/remove', controller.removeMovie);
 
 export default router;

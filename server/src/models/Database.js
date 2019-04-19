@@ -34,7 +34,7 @@ export default class Database extends DB {
           schema
             .find()
             .where({
-              [condition.key]: { $regex: ".*^" + condition.value + ".*" }
+              [condition.key]: { $regex: "(?i).*" + condition.value + ".*" } // case insensitive + search inside world
             })
             .limit(limit)
             .exec()

@@ -13,7 +13,7 @@ export default class Recommended extends Component {
 
   componentDidMount() {
     try {
-      fetch(`https://${window.location.hostname}:443/api/getMovies`, {
+      fetch(`https://${window.location.hostname}:443/api/movies`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

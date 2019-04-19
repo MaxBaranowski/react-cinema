@@ -15,7 +15,7 @@ export default class Movie extends Component {
 
   componentDidMount() {
     try {
-      fetch(`https://${window.location.hostname}:443/api/getMovie`, {
+      fetch(`https://${window.location.hostname}:443/api/movie`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -33,7 +33,7 @@ export default class Movie extends Component {
               });
             }).catch(e => {
               this.setState({
-                isError: true
+                isError: e
               });
             })
         )
@@ -45,7 +45,10 @@ export default class Movie extends Component {
   render() {
     const { movie, isError } = this.state;
     if (isError) {
-      return <Redirect to='/404' />;
+      //return <Redirect to='/404' />;
+      return <div>
+        <pre>{JSON.stringify(isError, null, 2)}</pre>
+      </div >
     } else if (movie) {
       return (
         <div>

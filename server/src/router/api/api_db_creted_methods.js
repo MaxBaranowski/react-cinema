@@ -128,7 +128,7 @@ export const makeUnixDate = async (req, res, next) => {
       console.count(amount)
       promises.push(*/
     new Promise((resolve, reject) => {
-      new DB().fillCollectionUnixDate({ "schema": MovieFull })
+      new DB().fillCollectionUnixDate({ "schema": MovieShort })
         .then(
           (result) => {
             resolve(result);

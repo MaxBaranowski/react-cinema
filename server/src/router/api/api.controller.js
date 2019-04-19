@@ -54,7 +54,7 @@ export default class API {
     try {
       const {
         id: movieId = "",
-      } = (Object.keys(req.body).length > 0) ? req.body : req.query;
+      } = (Object.keys(req.body).length > 0) ? req.body : req.params;
 
       await new DB().getOne({
         "schema": MovieFull,
@@ -78,16 +78,16 @@ export default class API {
   getMoviesByName = async (req, res, next) => {
     try {
       const {
-        name: movieName = "",
-        key = "name.first",
+        name = "",
+        key = "Title",
         limit = 5
-      } = (Object.keys(req.body).length > 0) ? req.body : req.query;
+      } = (Object.keys(req.body).length > 0) ? req.body : req.params;
 
       await new DB().getSomeByName({
         "schema": MovieShort,
         "condition": {
           "key": key,
-          "value": movieName
+          "value": name
         },
         "limit": limit
       }).then(
