@@ -85,7 +85,7 @@ body: JSON.stringify({
 
 ## /api/movies/remove
 
-Removes movie by it id
+Removes movie by it`s id
 
 ### Example:
 
