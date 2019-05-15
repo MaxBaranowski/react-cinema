@@ -9,7 +9,7 @@ router.get("/movies", controller.getMovies);
 router.get("/movies/movie/:id", controller.getMovie);
 router.get("/movies/name", controller.getMoviesByName);
 
-router.delete("/movies/remove/:id", controller.removeMovie);
+router.get("/movies/remove/:id", controller.removeMovie);
 
 // router.get("/fillDataBaseWithMovies", controller.fillDataBaseWithMovies);
 // router.get("/fillMoviesWithTrailers", controller.fillMoviesWithTrailers);

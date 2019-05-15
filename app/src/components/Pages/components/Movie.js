@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Movie = (props) => {
+const Movie = props => {
   return (
     <React.Fragment>
       <div className="movie">
@@ -11,20 +11,20 @@ const Movie = (props) => {
             <img src={process.env.PUBLIC_URL + props.img} alt="" />
           </div>
           {/*<div className="movie-description">*/}
-            {/*<h3 className="movie-name">*/}
-              {/*{props.name}*/}
-            {/*</h3>*/}
-            {/*<p className="movie-genre">*/}
-              {/*{props.country}*/}
-            {/*</p>*/}
-            {/*<p className="movie-genre">*/}
-              {/*{props.year}*/}
-            {/*</p>*/}
+          {/*<h3 className="movie-name">*/}
+          {/*{props.name}*/}
+          {/*</h3>*/}
+          {/*<p className="movie-genre">*/}
+          {/*{props.country}*/}
+          {/*</p>*/}
+          {/*<p className="movie-genre">*/}
+          {/*{props.year}*/}
+          {/*</p>*/}
           {/*</div>*/}
         </Link>
       </div>
     </React.Fragment>
-  )
+  );
 };
 
 Movie.propTypes = {

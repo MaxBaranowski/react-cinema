@@ -104,7 +104,7 @@ export default class API {
   getMovies = async (req, res, next) => {
     try {
       const {
-        limit = 50,
+        limit = 1000,
         sortBy = "ReleasedUnix",
         order = order === "asc" ? 0 : -1,
         skip = 0
@@ -130,22 +130,22 @@ export default class API {
 
   removeMovie = async (req, res, next) => {
     try {
-      const { key = "imdbID", value } =
-        Object.keys(req.body).length > 0 ? req.body : req.query;
+      const { key = "imdbID", id = false } =
+        Object.keys(req.body).length > 0 ? req.body : req.params;
       await new DB()
         .remove({
           schema: MovieFull,
           condition: {
             key: key,
-            value: value
+            value: id
           }
         })
         .then(
-          await new DB().removeMovie({
+          await new DB().remove({
             schema: MovieShort,
             condition: {
               key: key,
-              value: value
+              value: id
             }
           })
         )

@@ -80,7 +80,7 @@ export default class Database extends DB {
     try {
       let result = await this.connect().then(() =>
         schema
-          .deleteMany({
+          .findOneAndDelete({
             [condition.key]: condition.value
           })
           .exec()
