@@ -5,10 +5,11 @@ const router = express.Router();
 const controller = new API_controller();
 
 router.get("/", controller.index);
+router.get("/movies", controller.getMovies);
 router.get("/movies/movie/:id", controller.getMovie);
-router.get("/movies/name/:name/:limit?/:key?", controller.getMoviesByName);
-router.get("/movies/:limit?/:sortBy?/:order?/:skip?", controller.getMovies);
-// router.delete("/movies/remove/:id", controller.removeMovie);
+router.get("/movies/name", controller.getMoviesByName);
+
+router.delete("/movies/remove/:id", controller.removeMovie);
 
 // router.get("/fillDataBaseWithMovies", controller.fillDataBaseWithMovies);
 // router.get("/fillMoviesWithTrailers", controller.fillMoviesWithTrailers);
