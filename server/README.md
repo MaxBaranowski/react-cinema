@@ -2,6 +2,8 @@
 
 ## /api/movies
 
+Returns array of objects (movies)
+
 ### Parametrs:
 
 ```javascript
@@ -32,6 +34,8 @@ body: JSON.stringify({
 
 ## /api/movies/movie
 
+Returns one object (movie)
+
 ### Parametrs:
 
 ```javascript
@@ -59,6 +63,8 @@ body: JSON.stringify({
 
 ## /api/movies/name
 
+Returns array of objects (movies) searched by name (movie title)
+
 ### Example:
 
 ```javascript
@@ -78,6 +84,8 @@ body: JSON.stringify({
 ```
 
 ## /api/movies/remove
+
+Removes movie by it id
 
 ### Example:
 
