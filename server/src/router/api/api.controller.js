@@ -88,7 +88,7 @@ export default class API {
             key: key,
             value: name
           },
-          limit: limit
+          limit: parseInt(limit)
         })
         .then(result => {
           res.json(result);

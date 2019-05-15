@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Redirect } from "react-router";
 
 import "./styles.scss";
@@ -11,32 +11,33 @@ export default class Movie extends Component {
       requestedMovie: this.props.match.params.id,
       isError: false
     };
-  };
+  }
 
   componentDidMount() {
     try {
-      fetch(`https://${window.location.hostname}:443/api/movie`, {
-        method: 'POST',
+      fetch(`https://${window.location.hostname}:443/api/movies/movie`, {
+        method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          id: this.state.requestedMovie,
+          id: this.state.requestedMovie
         })
-      })
-        .then(response =>
-          response.json()
-            .then(data => {
-              this.setState({
-                movie: data
-              });
-            }).catch(e => {
-              this.setState({
-                isError: e
-              });
-            })
-        )
+      }).then(response =>
+        response
+          .json()
+          .then(data => {
+            this.setState({
+              movie: data
+            });
+          })
+          .catch(e => {
+            this.setState({
+              isError: e
+            });
+          })
+      );
     } catch (e) {
       throw new Error("Error: ", e);
     }
@@ -46,21 +47,19 @@ export default class Movie extends Component {
     const { movie, isError } = this.state;
     if (isError) {
       //return <Redirect to='/404' />;
-      return <div>
-        <pre>{JSON.stringify(isError, null, 2)}</pre>
-      </div >
+      return (
+        <div>
+          <pre>{JSON.stringify(isError, null, 2)}</pre>
+        </div>
+      );
     } else if (movie) {
       return (
         <div>
           <pre>{JSON.stringify(movie, null, 2)}</pre>
-        </div >
+        </div>
       );
     } else {
-      return (
-        <>
-          Loading...
-        </>
-      )
+      return <>Loading...</>;
     }
   }
 }
