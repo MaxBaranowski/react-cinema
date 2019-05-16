@@ -27,7 +27,7 @@ export default class Database extends DB {
     }
   };
 
-  getSomeByName = async ({ schema, condition, limit }) => {
+  getSome = async ({ schema, condition, limit }) => {
     try {
       let result = await this.connect().then(() =>
         schema

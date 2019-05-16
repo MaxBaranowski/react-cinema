@@ -11,48 +11,6 @@ import {
 export default class API {
   constructor() {}
 
-  fillDataBaseWithMovies = async (req, res, next) => {
-    try {
-      makeMovies(req, res, next)
-        .then(result => {
-          return result;
-        })
-        .catch(err => {
-          throw new Error(err);
-        });
-    } catch (err) {
-      throw new Error(err);
-    }
-  };
-
-  fillMoviesWithTrailers = async (req, res, next) => {
-    try {
-      makeTrailers(req, res, next)
-        .then(result => {
-          return result;
-        })
-        .catch(err => {
-          throw new Error(err);
-        });
-    } catch (err) {
-      throw new Error(err);
-    }
-  };
-
-  fillMoviesWithUnixDate = async (req, res, next) => {
-    try {
-      makeUnixDate(req, res, next)
-        .then(result => {
-          return result;
-        })
-        .catch(err => {
-          throw new Error(err);
-        });
-    } catch (err) {
-      throw new Error(err);
-    }
-  };
-
   getMovie = async (req, res, next) => {
     try {
       const { id: movieId = "" } =
@@ -82,7 +40,7 @@ export default class API {
       const { name = "", key = "Title", limit = 5 } =
         Object.keys(req.body).length > 0 ? req.body : req.params;
       await new DB()
-        .getSomeByName({
+        .getSome({
           schema: MovieShort,
           condition: {
             key: key,
@@ -104,7 +62,7 @@ export default class API {
   getMovies = async (req, res, next) => {
     try {
       const {
-        limit = 1000,
+        limit = 50,
         sortBy = "ReleasedUnix",
         order = order === "asc" ? 0 : -1,
         skip = 0
@@ -164,5 +122,47 @@ export default class API {
 
   index = (req, res, next) => {
     res.status(200).render("api");
+  };
+
+  fillDataBaseWithMovies = async (req, res, next) => {
+    try {
+      makeMovies(req, res, next)
+        .then(result => {
+          return result;
+        })
+        .catch(err => {
+          throw new Error(err);
+        });
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+
+  fillMoviesWithTrailers = async (req, res, next) => {
+    try {
+      makeTrailers(req, res, next)
+        .then(result => {
+          return result;
+        })
+        .catch(err => {
+          throw new Error(err);
+        });
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+
+  fillMoviesWithUnixDate = async (req, res, next) => {
+    try {
+      makeUnixDate(req, res, next)
+        .then(result => {
+          return result;
+        })
+        .catch(err => {
+          throw new Error(err);
+        });
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 }
