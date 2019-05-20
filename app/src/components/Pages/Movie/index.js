@@ -13,6 +13,15 @@ export default class Movie extends Component {
     };
   }
 
+  // imags by film id
+  // https://allpeliculas.io/source/movies/poster/tt5177088/
+
+  // actors
+  // https://allpeliculas.io/source/actors/Anna-Camp/
+
+  // trilers
+  // https://v.traileraddict.com/124544
+
   componentDidMount() {
     try {
       fetch(`https://${window.location.hostname}:443/api/movies/movie`, {

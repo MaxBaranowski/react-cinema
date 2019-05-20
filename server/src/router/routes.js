@@ -19,7 +19,7 @@ router.use("/", Home);
 router.use("/api", API);
 // 404
 router.use((req, res, next) => {
-  return res.status(404).send({ message: "Route: " + req.url + " Not found." });
+  return res.status(404).json({ message: "Route: " + req.url + " Not found." });
 });
 
 // error logger will be hear
