@@ -7,14 +7,20 @@ import API from "./api/index";
 
 const router = express.Router();
 
-router.use(express.urlencoded({
-  extended: false,
-  limit: "100kb",
-  parameterLimit: 10
-}));
+router.use(
+  express.urlencoded({
+    extended: false,
+    limit: "100kb",
+    parameterLimit: 10
+  })
+);
 
 router.use("/", Home);
 router.use("/api", API);
+// 404
+router.use((req, res, next) => {
+  return res.status(404).send({ message: "Route: " + req.url + " Not found." });
+});
 
 // error logger will be hear
 router.use((err, req, res, next) => {
@@ -25,13 +31,12 @@ router.use((err, req, res, next) => {
 router.use(logger);
 
 router.use((err, req, res, next) => {
-  if (req.app.get("env") === 'development') {
+  if (req.app.get("env") === "development") {
     next(createError(500, err));
   } else {
     res.status(500);
-    res.json({ "error": err.message });
+    res.json({ error: err.message });
   }
-  // s
 });
 
 // development error showing

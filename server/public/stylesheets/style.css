@@ -54,4 +54,13 @@
     .button-group .button-grey:hover a {
       color: #fff; }
 
+.error {
+  max-width: 100vw;
+  word-break: break-all;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
 /*# sourceMappingURL=style.css.map */

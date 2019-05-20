@@ -25,7 +25,7 @@ export default class API {
           }
         })
         .then(result => {
-          res.json(result);
+          result ? res.status(200).json(result) : res.status(200).json({});
         })
         .catch(err => {
           return next(err);
@@ -49,7 +49,7 @@ export default class API {
           limit: parseInt(limit)
         })
         .then(result => {
-          res.json(result);
+          result ? res.status(200).json(result) : res.status(200).json({});
         })
         .catch(err => {
           return next(err);
@@ -76,7 +76,7 @@ export default class API {
           skip: skip
         })
         .then(result => {
-          res.json(result);
+          result ? res.status(200).json(result) : res.status(200).json({});
         })
         .catch(err => {
           return next(err);
