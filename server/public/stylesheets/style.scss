@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Luckiest+Guy");
+body {
+  padding: 0;
+  margin: 0;
+}
 
 .home-wrapper {
   display: flex;
@@ -34,7 +38,25 @@
   img:hover {
     color: red;
   }
+
+  &.page404 {
+    background-image: url(/images/404.bg.gif);
+    background-image: url(/images/404.bg.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    h1 {
+      font-size: 10em;
+      color: #000;
+      letter-spacing: 0.1em;
+    }
+    h2 {
+      font-size: 3em;
+      color: #000;
+      letter-spacing: 0.1em;
+    }
+  }
 }
+
 .button-group {
   margin-bottom: 35px;
   .button {

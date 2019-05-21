@@ -69,7 +69,7 @@ Returns array of objects (movies) searched by name (movie title)
 
 ```javascript
 // GET
-/movies/name/?name=alien?limit=2
+/movies/name/?name=alien&limit=2
 ```
 
 ```javascript

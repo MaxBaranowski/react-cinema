@@ -4,6 +4,7 @@ import logger from "../middleware/logger";
 
 import Home from "./public/home/index";
 import API from "./api/index";
+import Page404 from "./Page404";
 
 const router = express.Router();
 
@@ -17,10 +18,7 @@ router.use(
 
 router.use("/", Home);
 router.use("/api", API);
-// 404
-router.use((req, res, next) => {
-  return res.status(404).json({ message: "Route: " + req.url + " Not found." });
-});
+router.use(Page404);
 
 // error logger will be hear
 router.use((err, req, res, next) => {
