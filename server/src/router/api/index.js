@@ -15,6 +15,7 @@ router.get("/movies", validateMovies, controller.getMovies);
 router.get("/movies/movie/:id", validateMovie, controller.getMovie);
 router.get("/movies/name", validateMoviesName, controller.getMoviesByName);
 router.get("/movies/remove/:id", validateMovie, controller.removeMovie);
+router.get("/poster", controller.getMoviePoster);
 
 // router.get("/fillDataBaseWithMovies", controller.fillDataBaseWithMovies);
 // router.get("/fillMoviesWithTrailers", controller.fillMoviesWithTrailers);
@@ -25,6 +26,7 @@ router.post("/movies", validateMovies, controller.getMovies);
 router.post("/movies/movie", validateMovie, controller.getMovie);
 router.post("/movies/name", validateMoviesName, controller.getMoviesByName);
 router.post("/movies/remove", validateMovie, controller.removeMovie);
+router.post("/poster", controller.getMoviePoster);
 
 export default router;
 

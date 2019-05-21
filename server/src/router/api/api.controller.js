@@ -1,4 +1,5 @@
 import DB from "../../models/Database";
+import MoviePoster from "./models/moviePoster";
 import { MovieFull } from "./models/movieFull";
 import { MovieShort } from "./models/MovieShort";
 
@@ -117,6 +118,24 @@ export default class API {
         });
     } catch (err) {
       return next(err);
+    }
+  };
+
+  getMoviePoster = async (req, res, next) => {
+    try {
+      const { id = "imdbID" } =
+        Object.keys(req.body).length > 0 ? req.body : req.params;
+      await new MoviePoster({ id: id })
+        .get()
+        .then(result => {
+          res.json(result);
+        })
+        .catch(err => {
+          res.status(200).json([]); // there is no such movie
+          // throw new Error(err);
+        });
+    } catch (error) {
+      next(error);
     }
   };
 
