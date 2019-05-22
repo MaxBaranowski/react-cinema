@@ -315,8 +315,8 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    // background-color: $app-dark;
-    background-image: url("/images/shape-bg.jpg");
+    background-color: $app-dark;
+    // background-image: url("/images/shape-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     //background-position-x: -25px;
@@ -370,7 +370,7 @@
     transition: left 0.5s linear;
     animation-name: hide_bg_for_menu;
     animation-duration: -2s;
-    animation-delay: .5s;
+    animation-delay: 0.5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }

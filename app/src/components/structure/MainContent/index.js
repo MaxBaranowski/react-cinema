@@ -7,9 +7,7 @@ import "./styles.scss";
 export default class MainContent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    this.state = {};
     this.element = React.createRef();
   }
 
@@ -27,7 +25,6 @@ export default class MainContent extends Component {
           </section>
         </main>
       </CSSTransition>
-
-    )
+    );
   }
 }

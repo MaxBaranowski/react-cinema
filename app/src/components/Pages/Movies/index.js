@@ -79,7 +79,7 @@ export default class Movies extends Component {
             <main className="content-sections">
               <header>
                 <SearchPanel />
-                <main className="searchParams">
+                {/* <main className="searchParams">
                   <div className="filter genre">
                     <span>All genres</span>
                   </div>
@@ -95,7 +95,7 @@ export default class Movies extends Component {
                   <div className="filter popularity">
                     <span>By Popularity</span>
                   </div>
-                </main>
+                </main> */}
               </header>
               <section className="section">
                 <header>

@@ -21,7 +21,7 @@
   .main-wrapper {
     grid-template-columns: repeat(12, minmax(auto, 1fr));
     left: 250px;
-    margin: 0 25% 0 1%;
+    margin: 0 20% 0 1%;
   }
 
   // ================================================
@@ -119,6 +119,6 @@
     grid-template-columns: repeat(12, minmax(auto, 1fr));
     max-width: 95%;
     margin: 0 0 0 0;
-    padding: 1em .5em 1em 1em;
+    padding: 1em 0.5em 1em 1em;
   }
 }

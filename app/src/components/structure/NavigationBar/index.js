@@ -13,9 +13,9 @@ import "./styles.scss";
 
 export default class NavBar extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      windowBreakpoint: 1299,//1440,
+      windowBreakpoint: 1299, //1440,
       windowWidth: 0,
       windowHeight: 0
     };
@@ -28,15 +28,18 @@ export default class NavBar extends Component {
 
   componentDidMount() {
     this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
+    window.addEventListener("resize", this.updateWindowDimensions);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
+    window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
   updateWindowDimensions() {
-    this.setState({ windowWidth: window.innerWidth, windowHeight: window.innerHeight });
+    this.setState({
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    });
     // show menu if screen resolution changes
     if (this.state.windowWidth >= this.state.windowBreakpoint) {
       store.dispatch(showMenu(store.getState().showMenu));
@@ -57,7 +60,7 @@ export default class NavBar extends Component {
           timeout={0}
           classNames="menu"
         >
-          < aside className="menu-wrapper" ref={this.element}>
+          <aside className="menu-wrapper" ref={this.element}>
             <nav>
               <Avatar />
               <section className="menu-link-wrapper">
@@ -67,13 +70,15 @@ export default class NavBar extends Component {
                   <BottomLinks />
                 </div>
               </section>
-              {(this.state.windowWidth <= this.state.windowBreakpoint) &&
-                <span className="show-hide-nav" onClick={this.toggle}>&#9776;</span>}
+              {this.state.windowWidth <= this.state.windowBreakpoint && (
+                <span className="show-hide-nav" onClick={this.toggle}>
+                  &#9776;
+                </span>
+              )}
             </nav>
-          </ aside>
+          </aside>
         </CSSTransition>
       </React.Fragment>
-    )
+    );
   }
 }
-
