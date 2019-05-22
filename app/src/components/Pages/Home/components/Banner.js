@@ -13,32 +13,7 @@ export default class Banner extends Component {
 
   componentDidMount() {
     try {
-      fetch(`https://${window.location.hostname}:443/api/movies`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          sortBy: "ReleasedUnix",
-          order: "desc",
-          limit: 50
-        })
-      }).then(response =>
-        response
-          .json()
-          .then(data => {
-            this.setState({
-              movies: data
-            });
-            this.getPosters(); // add posters array to state movie
-          })
-          .catch(e => {
-            this.setState({
-              isError: true
-            });
-          })
-      );
+      this.getMovieForPoster();
     } catch (e) {
       throw new Error("Error: ", e);
     }
@@ -66,8 +41,38 @@ export default class Banner extends Component {
     }
   }
 
-  getPosters() {
-    let movie = this.state.movies[Math.floor(Math.random() * 9) + 1]; // chose random movie for banner
+  getMovieForPoster() {
+    fetch(`https://${window.location.hostname}:443/api/movies`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        sortBy: "ReleasedUnix",
+        order: "desc",
+        limit: 1,
+        skip: Math.floor(Math.random() * 50) + 1
+      })
+    }).then(response =>
+      response
+        .json()
+        .then(data => {
+          this.setState({
+            movies: data
+          });
+          this.getPostersList(); // add posters array to state movie
+        })
+        .catch(e => {
+          this.setState({
+            isError: true
+          });
+        })
+    );
+  }
+
+  getPostersList() {
+    let movie = this.state.movies[0]; // chose random movie for banner
     fetch(`https://${window.location.hostname}:443/api/poster`, {
       method: "POST",
       headers: {
@@ -81,7 +86,7 @@ export default class Banner extends Component {
       response.json().then(data => {
         if (data.length < 1) {
           //  chose new movie if no posters
-          this.getPosters(data);
+          this.getMovieForPoster();
           return;
         }
         movie["Posters"] = data;
