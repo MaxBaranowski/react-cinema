@@ -123,8 +123,7 @@ export default class API {
 
   getMoviePoster = async (req, res, next) => {
     try {
-      const { id = "imdbID" } =
-        Object.keys(req.body).length > 0 ? req.body : req.params;
+      const { id } = Object.keys(req.body).length > 0 ? req.body : req.params;
       await new MoviePoster({ id: id })
         .get()
         .then(result => {

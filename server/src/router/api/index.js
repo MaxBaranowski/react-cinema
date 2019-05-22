@@ -15,7 +15,7 @@ router.get("/movies", validateMovies, controller.getMovies);
 router.get("/movies/movie/:id", validateMovie, controller.getMovie);
 router.get("/movies/name", validateMoviesName, controller.getMoviesByName);
 router.get("/movies/remove/:id", validateMovie, controller.removeMovie);
-router.get("/poster", controller.getMoviePoster);
+router.get("/poster/:id", validateMovie, controller.getMoviePoster);
 
 // router.get("/fillDataBaseWithMovies", controller.fillDataBaseWithMovies);
 // router.get("/fillMoviesWithTrailers", controller.fillMoviesWithTrailers);
