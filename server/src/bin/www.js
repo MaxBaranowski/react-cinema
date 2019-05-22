@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-
 // Using Environment Variables
 import dotenv from "dotenv";
 dotenv.config();
@@ -12,17 +11,17 @@ dotenv.config();
 // var app = require('../index');
 // var debug = require('debug')('server:server');
 // var http = require('http');
-import app from '../app'
-import debugLib from 'debug';
+import app from "../app";
+import debugLib from "debug";
 // import http from 'http';
-const debug = debugLib('server:server');
+const debug = debugLib("server:server");
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+var port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
 
 /**
  * Create HTTP server.
@@ -32,9 +31,9 @@ import path from "path";
 import https from "https";
 
 var certOptions = {
-  key: fs.readFileSync(path.resolve('localhost.key')),
-  cert: fs.readFileSync(path.resolve('localhost.crt'))
-}
+  key: fs.readFileSync(path.resolve("localhost.key")),
+  cert: fs.readFileSync(path.resolve("localhost.crt"))
+};
 var server = https.createServer(certOptions, app);
 
 /**
@@ -42,10 +41,10 @@ var server = https.createServer(certOptions, app);
  */
 
 server.listen(port, () => {
-  console.log(`server running on https://localhost:${port}`)
+  console.log(`server running on https://localhost:${port}`);
 });
-server.on('error', onError);
-server.on('listening', onListening);
+server.on("error", onError);
+server.on("listening", onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -72,22 +71,20 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== 'listen') {
+  if (error.syscall !== "listen") {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
       process.exit(1);
       break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
       process.exit(1);
       break;
     default:
@@ -101,8 +98,6 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  debug("Listening on " + bind);
 }

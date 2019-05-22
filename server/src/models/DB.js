@@ -47,10 +47,20 @@ export default class DB {
   };
 
   disconnect = () => {
-    if (this.connection) {
-      this.connection.connection.close();
-    } else {
-      throw "To close DB connection, connection must be opened!";
+    try {
+      switch (this.env) {
+        case "development":
+          if (this.connection) {
+            this.connection.connection.close();
+          } else {
+            throw "To close DB connection, connection must be opened!";
+          }
+          break;
+        case "production":
+          break;
+      }
+    } catch (err) {
+      throw new Error(err);
     }
   };
 }
