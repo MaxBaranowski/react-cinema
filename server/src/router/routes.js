@@ -29,7 +29,7 @@ router.use((err, req, res, next) => {
 router.use(logger);
 
 router.use((err, req, res, next) => {
-  if (req.app.get("env") === "development") {
+  if (process.env.NODE_ENV === "development") {
     next(createError(500, err));
   } else {
     res.status(500);
@@ -41,7 +41,7 @@ router.use((err, req, res, next) => {
 router.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = process.env.NODE_ENV === "development" ? err : {};
   // render the error page
   res.status(err.status || 500);
   res.render("error");
