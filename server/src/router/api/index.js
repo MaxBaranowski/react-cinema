@@ -5,7 +5,7 @@ import {
   validateMovies,
   validateMovie,
   validateMoviesName
-} from "../validators/Movies.validator";
+} from "../../middleware/validators/Movies.validator";
 
 const router = express.Router();
 const controller = new API_controller();
