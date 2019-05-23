@@ -57,8 +57,14 @@ url = "/api/movies/movie";
 
 body: JSON.stringify({
   key: "imdbID",
-  value: "tt4669788"
+  id: "tt4669788"
 });
+```
+
+```javascript
+// CURL
+curl -X GET -v https://localhost/api/movies/movie/tt4669788
+curl -X POST https://localhost/api/movies/movie -H 'Content-Type: application/json' -d '{"id": "tt4669788"}'
 ```
 
 ## /api/movies/name
