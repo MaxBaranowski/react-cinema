@@ -7,11 +7,11 @@ passport.use(
       // options
       clientID: `158973815180-e5d8ffba8cbq7mld63iodlh2mpi1tdki.apps.googleusercontent.com`,
       clientSecret: `K62MAbbhYPd_Rr4l747O0m11`,
-      callbackURL: `/api`
+      callbackURL: `/api/auth/redirect`
     },
-    data => {
+    (accesToken, refreshToken, profile, done) => {
       // cb function
-      console.log(data);
+      console.log(profile._json);
     }
   )
 );

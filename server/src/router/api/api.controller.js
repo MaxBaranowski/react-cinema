@@ -1,5 +1,5 @@
 import DB from "../../models/Database";
-import MoviePoster from "./models/moviePoster";
+import MoviePoster from "./moviePoster";
 import { MovieFull } from "./models/movieFull";
 import { MovieShort } from "./models/MovieShort";
 

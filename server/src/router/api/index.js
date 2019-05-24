@@ -28,6 +28,14 @@ router.get("/auth/logout", (req, res, next) => {
 });
 
 router.get(
+  "/auth/redirect",
+  passport.authenticate("google"),
+  (req, res, next) => {
+    res.json("gogle redirect ");
+  }
+);
+
+router.get(
   "/auth/google",
   passport.authenticate("google", {
     scope: ["profile"]
