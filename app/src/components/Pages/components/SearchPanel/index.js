@@ -25,7 +25,7 @@ export default class SearchPanel extends Component {
     };
     
     this.makeResults = (movies) => {
-      if(movies.length < 1){
+      if (movies.length < 1) {
         return [];
       }
       let comp = [];

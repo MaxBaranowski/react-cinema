@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from "react-router-dom";
-import { store } from "./store";
+import {BrowserRouter as Router} from "react-router-dom";
+import {store} from "./store";
 import App from './components/App';
 import * as serviceWorker from './services/serviceWorker';
 
 const render = () => {
   ReactDOM.render(
     <Router>
-      <App />
+      <App/>
     </Router>,
     document.getElementById('app')
   );

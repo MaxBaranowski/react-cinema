@@ -10,7 +10,7 @@ export default class MoviePoster {
       console.log(error);
     }
   }
-
+  
   get() {
     return new Promise((resolve, reject) => {
       try {
@@ -26,7 +26,7 @@ export default class MoviePoster {
       }
     });
   }
-
+  
   getLinks(str) {
     return new Promise((resolve, reject) => {
       try {

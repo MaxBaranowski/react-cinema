@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SearchField(props) {
   const Search = React.createRef();
-
+  
   const handleSearchKeyUp = () => {
     let el = Search.current;
     console.log(el.value);
@@ -23,7 +23,7 @@ export default function SearchField(props) {
       )
       .catch(e => console.log(e));
   };
-
+  
   return (
     <div className="search-field">
       <input

@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 export default class Banner extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       movies: null,
       movie: null,
       isError: false
     };
   }
-
+  
   componentDidMount() {
     try {
       this.getMovieForPoster();
@@ -18,14 +18,14 @@ export default class Banner extends Component {
       throw new Error("Error: ", e);
     }
   }
-
+  
   render() {
     const movie = this.state.movie;
     if (movie) {
       return (
         <React.Fragment>
           <header className="home-banner">
-            <img src={this.setPoster()} alt="" />
+            <img src={this.setPoster()} alt=""/>
             <h1>{movie.Title}</h1>
             <h2>{movie.Year}</h2>
             <p>{movie.imdbRating}</p>
@@ -40,7 +40,7 @@ export default class Banner extends Component {
       );
     }
   }
-
+  
   getMovieForPoster() {
     fetch(`https://${window.location.hostname}:443/api/movies`, {
       method: "POST",
@@ -70,7 +70,7 @@ export default class Banner extends Component {
         })
     );
   }
-
+  
   getPostersList() {
     let movie = this.state.movies[0]; // chose random movie for banner
     fetch(`https://${window.location.hostname}:443/api/poster`, {
@@ -96,13 +96,13 @@ export default class Banner extends Component {
       })
     );
   }
-
+  
   setPoster() {
     const movie = this.state.movie;
     if (movie.hasOwnProperty("Posters")) {
       return movie.Posters[
-        Math.floor(Math.random() * movie.Posters.length) + 1
-      ];
+      Math.floor(Math.random() * movie.Posters.length) + 1
+        ];
     } else {
       return movie.Poster;
     }

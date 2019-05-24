@@ -10,4 +10,4 @@ export const timeStamp = {
       miliseconds = today.getMilliseconds();
     return `${day}.${month}.${year} ${hour}:${minute}:${seconds}:${miliseconds}`;
   }
-}
+};

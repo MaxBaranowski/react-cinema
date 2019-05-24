@@ -18,7 +18,7 @@ app.disable("x-powered-by");
 //Enable All CORS Requests
 app.use(cors());
 // read JSON content-type
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // set up session cookies

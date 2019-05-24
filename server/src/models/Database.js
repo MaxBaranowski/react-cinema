@@ -4,8 +4,8 @@ export default class Database extends DB {
   constructor(props) {
     super(props);
   }
-
-  getOne = async ({ schema, condition }) => {
+  
+  getOne = async ({schema, condition}) => {
     try {
       let result = await this.connect().then(() =>
         schema
@@ -26,14 +26,14 @@ export default class Database extends DB {
       throw new Error(err);
     }
   };
-
-  getSome = async ({ schema, condition, limit }) => {
+  
+  getSome = async ({schema, condition, limit}) => {
     try {
       let result = await this.connect().then(() =>
         schema
           .find()
           .where({
-            [condition.key]: { $regex: "(?i).*" + condition.value + ".*" } // case insensitive + search inside world
+            [condition.key]: {$regex: "(?i).*" + condition.value + ".*"} // case insensitive + search inside world
           })
           .limit(limit)
           .exec()
@@ -50,8 +50,8 @@ export default class Database extends DB {
       throw new Error(err);
     }
   };
-
-  getMany = async ({ schema, limit, sortBy, order, skip }) => {
+  
+  getMany = async ({schema, limit, sortBy, order, skip}) => {
     try {
       let result = await this.connect().then(() =>
         schema
@@ -75,8 +75,8 @@ export default class Database extends DB {
       throw new Error(err);
     }
   };
-
-  remove = async ({ schema, condition }) => {
+  
+  remove = async ({schema, condition}) => {
     try {
       let result = await this.connect().then(() =>
         schema
@@ -97,7 +97,7 @@ export default class Database extends DB {
       throw new Error(err);
     }
   };
-
+  
   // fillCollectionMovies = async ({ schema, data }) => {
   //   try {
   //     return new Promise((resolve, reject) => {
@@ -116,7 +116,7 @@ export default class Database extends DB {
   //     throw new Error(err);
   //   }
   // };
-
+  
   // fillCollectionTrailers = async ({ schema, data, movieID }) => {
   //   try {
   //     return new Promise((resolve, reject) => {
@@ -149,7 +149,7 @@ export default class Database extends DB {
   //     throw new Error(err);
   //   }
   // };
-
+  
   // fillCollectionUnixDate = async ({ schema, movieID }) => {
   //   try {
   //     return new Promise((resolve, reject) => {

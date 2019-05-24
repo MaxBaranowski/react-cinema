@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Movie = props => {
   return (
@@ -8,7 +8,7 @@ const Movie = props => {
       <div className="movie">
         <Link to={`/movie/` + props.id}>
           <div className="movie-body">
-            <img src={process.env.PUBLIC_URL + props.img} alt="" />
+            <img src={process.env.PUBLIC_URL + props.img} alt=""/>
           </div>
           {/*<div className="movie-description">*/}
           {/*<h3 className="movie-name">*/}

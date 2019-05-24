@@ -33,7 +33,7 @@ router.use((err, req, res, next) => {
     next(createError(500, err));
   } else {
     res.status(500);
-    res.json({ error: err.message });
+    res.json({error: err.message});
   }
 });
 

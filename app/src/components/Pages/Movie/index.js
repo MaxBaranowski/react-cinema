@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 // import { Redirect } from "react-router";
 
 import "./styles.scss";
@@ -6,22 +6,22 @@ import "./styles.scss";
 export default class Movie extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       requestedMovie: this.props.match.params.id,
       isError: false
     };
   }
-
+  
   // imags by film id
   // https://allpeliculas.io/source/movies/poster/tt5177088/
-
+  
   // actors
   // https://allpeliculas.io/source/actors/Anna-Camp/
-
+  
   // trilers
   // https://v.traileraddict.com/124544
-
+  
   componentDidMount() {
     try {
       fetch(`https://${window.location.hostname}:443/api/movies/movie`, {
@@ -51,9 +51,9 @@ export default class Movie extends Component {
       throw new Error("Error: ", e);
     }
   }
-
+  
   render() {
-    const { movie, isError } = this.state;
+    const {movie, isError} = this.state;
     if (isError) {
       //return <Redirect to='/404' />;
       return (

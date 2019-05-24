@@ -4,6 +4,6 @@ const ignoreFavicon = (req, res, next) => {
   } else {
     next();
   }
-}
+};
 
 export default ignoreFavicon;

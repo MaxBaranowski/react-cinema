@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 
 import asyncComponent from "./AsyncComponent";
 // import AppliedRoute from "./components/AppliedRoute";
@@ -18,7 +18,6 @@ const AsyncMovie = asyncComponent(() => import("./components/Pages/Movie"));
 // const Asyncfavorites = asyncComponent(() => import("./components/favorites"));
 // const AsyncSettings = asyncComponent(() => import("./components/Settings"));
 const AsyncNotFound = asyncComponent(() => import("./components/Pages/NotFound"));
-
 
 
 export default (childProps) => {
@@ -91,7 +90,7 @@ export default (childProps) => {
                 component={AsyncSettings}
                 props={childProps}
             />*/}
-      <Route component={AsyncNotFound} />
+      <Route component={AsyncNotFound}/>
     </Switch>
   )
 }

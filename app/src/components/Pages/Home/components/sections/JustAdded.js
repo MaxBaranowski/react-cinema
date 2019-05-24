@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 import Movie from "../../../components/Movie"
 
@@ -8,9 +8,9 @@ export default class JustAdded extends Component {
     this.state = {
       movies: []
     };
-
+    
   }
-
+  
   componentDidMount() {
     try {
       fetch(`https://${window.location.hostname}:443/api/movies`, {
@@ -30,19 +30,19 @@ export default class JustAdded extends Component {
               movies: this.props.createMoviesList(Movie, data)
             });
           }).catch(e => {
-            this.setState({
-              isError: true
-            });
-          })
+          this.setState({
+            isError: true
+          });
+        })
       )
     } catch (e) {
       throw new Error("Error: ", e);
     }
-
+    
   }
-
+  
   render() {
-    const { movies } = this.state;
+    const {movies} = this.state;
     if (movies) {
       return (
         <React.Fragment>

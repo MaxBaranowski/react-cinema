@@ -1,7 +1,7 @@
 import fs from "fs";
 import axios from "axios";
-import { MovieFull } from "./models/movieFull.model";
-import { MovieShort } from "./models/MovieShort.model";
+import {MovieFull} from "./models/movieFull.model";
+import {MovieShort} from "./models/MovieShort.model";
 import DB from "../../models/Database";
 
 export const makeMovies = async (req, res, next) => {
@@ -23,13 +23,13 @@ export const makeMovies = async (req, res, next) => {
       for (let movie of data.slice(9000, 10000)) {
         //9337
         i += 100;
-        (function(movie, i) {
-          setTimeout(function() {
+        (function (movie, i) {
+          setTimeout(function () {
             let url = `http://www.omdbapi.com/?t=${movie.title
               .split(" ")
               .join("+")}&y=${movie.year}&plot=full&apikey=${
               process.env.OM_DB_API_KEY_11
-            }`;
+              }`;
             axios(url)
               .then(result => {
                 let movieFull = result.data;
@@ -43,27 +43,30 @@ export const makeMovies = async (req, res, next) => {
                       schema: MovieShort,
                       data: movieFull
                     })
-                    .then(result => {})
+                    .then(result => {
+                    })
                     .catch(err => {
                       // next(err);
                       console.log(err.message);
                     });
-
+                  
                   new DB()
                     .fillCollectionMovies({
                       schema: MovieFull,
                       data: movieFull
                     })
-                    .then(result => {})
+                    .then(result => {
+                    })
                     .catch(err => {
                       console.log(err.message);
-
+                      
                       // next(err);
                     });
                 }
                 console.count("all: ");
               })
-              .catch(() => {});
+              .catch(() => {
+              });
           }, i);
         })(movie, i);
       }
@@ -89,12 +92,12 @@ export const makeTrailers = async (req, res, next) => {
           promises.push(
             new Promise((resolve, reject) => {
               i += 300;
-              setTimeout(function() {
+              setTimeout(function () {
                 let url = `https://api.themoviedb.org/3/movie/${
                   movie.imdbID
-                }/videos?api_key=${
+                  }/videos?api_key=${
                   process.env.THE_MOVIE_DB_API
-                }&language=en-US`;
+                  }&language=en-US`;
                 axios(url)
                   .then(result => {
                     let data = result.data.results;
@@ -156,16 +159,16 @@ export const makeUnixDate = async (req, res, next) => {
     data.forEach((movie) => {
       console.count(amount)
       promises.push(*/
-  new Promise((resolve, reject) => {
-    new DB()
-      .fillCollectionUnixDate({ schema: MovieShort })
-      .then(result => {
-        resolve(result);
-      })
-      .catch(err => {
-        reject(err);
-      });
-  }) /*,
+    new Promise((resolve, reject) => {
+      new DB()
+        .fillCollectionUnixDate({schema: MovieShort})
+        .then(result => {
+          resolve(result);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    }) /*,
         new Promise((resolve, reject) => {
           new DB().fillCollectionUnixDate({ "schema": MovieShort, "movieID": movie.imdbID })
             .then(
@@ -179,11 +182,11 @@ export const makeUnixDate = async (req, res, next) => {
     /*);
     });
 
-  })*/ .then(async () => {
-      // await Promise.all(promises);
-      res.send("done");
-    })
-    .catch(err => {
-      return next(err);
-    });
+  })*/.then(async () => {
+        // await Promise.all(promises);
+        res.send("done");
+      })
+      .catch(err => {
+        return next(err);
+      });
 };

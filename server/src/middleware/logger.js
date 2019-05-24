@@ -6,7 +6,7 @@ const router = express.Router();
 
 // logger
 router.use(logger('common', {
-  stream: fs.createWriteStream('./access.log', { flags: 'a' })
+  stream: fs.createWriteStream('./access.log', {flags: 'a'})
 }));
 router.use(logger('dev'));
 

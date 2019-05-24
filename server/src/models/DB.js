@@ -1,18 +1,18 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { credentials } from "../credentials";
-import { timeStamp } from "./time";
+import {credentials} from "../credentials";
+import {timeStamp} from "./time";
 
 dotenv.config();
 
 // disable mongoose buffers commands when the connection goes down until the driver manages to reconnect.
 mongoose.set("bufferCommands", true);
 mongoose.set("useCreateIndex", true);
-mongoose.connection.on("connected", function(ref) {
+mongoose.connection.on("connected", function (ref) {
   console.log(`DB connection opened: ${timeStamp.full()}`);
 });
 
-mongoose.connection.on("disconnected", function() {
+mongoose.connection.on("disconnected", function () {
   console.log(`DB connection closed: ${timeStamp.full()}`);
 });
 
@@ -24,7 +24,7 @@ export default class DB {
     this.env = process.env.NODE_ENV;
     this.connection = null;
   }
-
+  
   connect = async () => {
     try {
       switch (this.env) {
@@ -45,7 +45,7 @@ export default class DB {
       throw new Error(err);
     }
   };
-
+  
   disconnect = () => {
     try {
       switch (this.env) {
