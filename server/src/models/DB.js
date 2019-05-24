@@ -50,11 +50,11 @@ export default class DB {
     try {
       switch (this.env) {
         case "development":
-          if (this.connection) {
-            this.connection.connection.close();
-          } else {
-            throw "To close DB connection, connection must be opened!";
-          }
+          // if (this.connection) {
+          //   this.connection.connection.close();
+          // } else {
+          //   throw "To close DB connection, connection must be opened!";
+          // }
           break;
         case "production":
           break;

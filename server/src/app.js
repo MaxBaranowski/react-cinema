@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import ignoreFavIcon from "./middleware/ignoreFavIcon";
 import sassMiddleware from "node-sass-middleware";
 import cors from "cors";
-import "./authentication/google.strategy";
+import "./oauth/google.strategy";
 import session from "./middleware/session";
 import Router from "./router/routes";
 

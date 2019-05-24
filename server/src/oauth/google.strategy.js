@@ -1,6 +1,8 @@
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
 
+import { User } from "./models/user.model";
+
 passport.use(
   new GoogleStrategy(
     {
@@ -10,8 +12,13 @@ passport.use(
       callbackURL: `/api/auth/redirect`
     },
     (accesToken, refreshToken, profile, done) => {
-      // cb function
-      console.log(profile._json);
+      new User({
+        username: profile.displayName,
+        type: "Google",
+        id: profile.id
+      })
+        .save()
+        .then(user => console.log(user));
     }
   )
 );
