@@ -1,6 +1,8 @@
 import express from "express";
 import API_controller from "./api.controller";
 
+import passport from "passport";
+
 import {
   validateMovies,
   validateMovie,
@@ -16,6 +18,21 @@ router.get("/movies/movie/:id", validateMovie, controller.getMovie);
 router.get("/movies/name", validateMoviesName, controller.getMoviesByName);
 router.get("/movies/remove/:id", validateMovie, controller.removeMovie);
 router.get("/poster/:id", validateMovie, controller.getMoviePoster);
+
+router.get("/auth/login", (req, res, next) => {
+  res.render("login");
+});
+
+router.get("/auth/logout", (req, res, next) => {
+  res.send("logout");
+});
+
+router.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile"]
+  })
+);
 
 // router.get("/fillDataBaseWithMovies", controller.fillDataBaseWithMovies);
 // router.get("/fillMoviesWithTrailers", controller.fillMoviesWithTrailers);
