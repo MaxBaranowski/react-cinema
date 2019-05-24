@@ -31,7 +31,7 @@ router.get(
   "/auth/redirect",
   passport.authenticate("google"),
   (req, res, next) => {
-    res.json("gogle redirect ");
+    res.json(req.session);
   }
 );
 
