@@ -3,8 +3,7 @@
   "plugins": [
       ["@babel/transform-runtime",
         "replace-require", {
-        "GLOBAL_REQUIRE": "global.myBetterRequire",
-        "REQUIRED_REQUIRE": "require('require-from-somewhere-else')"
+        "GLOBAL_REQUIRE": "global.myBetterRequire"
       }]
   ]
 }
