@@ -9,9 +9,9 @@ var _fs = _interopRequireDefault(require("fs"));
 
 var _axios = _interopRequireDefault(require("axios"));
 
-var _movieFull = require("./models/movieFull.model");
+var _movieFull = require("./models/movieFull");
 
-var _MovieShort = require("./models/MovieShort.model");
+var _movieShort = require("./models/movieShort");
 
 var _Database = _interopRequireDefault(require("../../models/Database"));
 
@@ -64,7 +64,7 @@ function () {
             promises = [];
             _context3.next = 4;
             return new _Database.default().getMany({
-              schema: _MovieShort.MovieShort,
+              schema: _movieShort.MovieShort,
               limit: 0
             }).then(function (data) {
               var amount = data.length;
@@ -195,7 +195,7 @@ function () {
               promises.push(*/
               new Promise(function (resolve, reject) {
                 new _Database.default().fillCollectionUnixDate({
-                  schema: _MovieShort.MovieShort
+                  schema: _movieShort.MovieShort
                 }).then(function (result) {
                   resolve(result);
                 }).catch(function (err) {

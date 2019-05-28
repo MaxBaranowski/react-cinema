@@ -1,7 +1,7 @@
 import fs from "fs";
 import axios from "axios";
-import {MovieFull} from "./models/movieFull.model";
-import {MovieShort} from "./models/MovieShort.model";
+import {MovieFull} from "./models/movieFull";
+import {MovieShort} from "./models/movieShort";
 import DB from "../../models/Database";
 
 export const makeMovies = async (req, res, next) => {

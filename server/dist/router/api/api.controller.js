@@ -9,9 +9,9 @@ var _Database = _interopRequireDefault(require("../../models/Database"));
 
 var _moviePoster = _interopRequireDefault(require("../../models/moviePoster"));
 
-var _movieFull = require("./models/movieFull.model");
+var _movieFull = require("./models/movieFull");
 
-var _MovieShort = require("./models/MovieShort.model");
+var _movieShort = require("./models/movieShort");
 
 var _api_db_creted_methods = require("./api_db_creted_methods");
 
@@ -93,7 +93,7 @@ var API = function API() {
               _ref4 = Object.keys(req.body).length > 0 ? req.body : req.params, _ref4$name = _ref4.name, name = _ref4$name === void 0 ? "" : _ref4$name, _ref4$key = _ref4.key, key = _ref4$key === void 0 ? "Title" : _ref4$key, _ref4$limit = _ref4.limit, limit = _ref4$limit === void 0 ? 5 : _ref4$limit;
               _context2.next = 4;
               return new _Database.default().getSome({
-                schema: _MovieShort.MovieShort,
+                schema: _movieShort.MovieShort,
                 condition: {
                   key: key,
                   value: name
@@ -143,7 +143,7 @@ var API = function API() {
               _ref6 = Object.keys(req.body).length > 0 ? req.body : req.query, _ref6$limit = _ref6.limit, limit = _ref6$limit === void 0 ? 50 : _ref6$limit, _ref6$sortBy = _ref6.sortBy, sortBy = _ref6$sortBy === void 0 ? "ReleasedUnix" : _ref6$sortBy, _ref6$order = _ref6.order, order = _ref6$order === void 0 ? order === "asc" ? 0 : -1 : _ref6$order, _ref6$skip = _ref6.skip, skip = _ref6$skip === void 0 ? 0 : _ref6$skip;
               _context3.next = 4;
               return new _Database.default().getMany({
-                schema: _MovieShort.MovieShort,
+                schema: _movieShort.MovieShort,
                 limit: parseInt(limit),
                 sortBy: sortBy,
                 order: order,
@@ -199,7 +199,7 @@ var API = function API() {
               });
               _context4.next = 5;
               return new _Database.default().remove({
-                schema: _MovieShort.MovieShort,
+                schema: _movieShort.MovieShort,
                 condition: {
                   key: key,
                   value: id
