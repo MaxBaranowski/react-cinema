@@ -1,7 +1,5 @@
 import express from "express";
 import path from "path";
-import bodyParser from "body-parser";
-// import cookieParser from "cookie-parser";
 import cookieSession from "cookie-session";
 import ignoreFavIcon from "./middleware/ignoreFavIcon";
 import sassMiddleware from "node-sass-middleware";
@@ -17,9 +15,9 @@ const app = express();
 app.disable("x-powered-by");
 //Enable All CORS Requests
 app.use(cors());
-// read JSON content-type
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+// read JSON content-type (body parser built into express)
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 // set up session cookies
 app.use(
@@ -28,9 +26,10 @@ app.use(
     keys: ["cookie Secret"]
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(cookieParser());
+
 // ignore error with favicon 404
 app.use(ignoreFavIcon);
 
