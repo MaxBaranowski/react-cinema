@@ -1,5 +1,5 @@
 import express from "express";
-import session from "express-session";
+import session from "express-session"; //change this to  production sesscion https://www.npmjs.com/package/express-session
 import uuid from "uuid";
 
 const app = express();

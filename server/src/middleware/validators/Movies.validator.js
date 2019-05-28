@@ -1,4 +1,4 @@
-import Joi from "Joi";
+import Joi from "@hapi/joi";
 
 const validation = (req, res, next, schema) => {
   const params = Object.assign(req.query, req.body, req.params);
