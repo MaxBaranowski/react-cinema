@@ -37,13 +37,13 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/node": "^7.2.2",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
     "@babel/plugin-transform-async-to-generator": "^7.4.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-env": "^7.4.5",
     "babel-register": "^6.26.0",
-    "https-localhost": "^4.0.0",
-    "nodemon": "^1.18.10"
+    "https-localhost": "^4.1.1",
+    "nodemon": "^1.19.1"
   }
 }
