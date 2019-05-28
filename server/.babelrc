@@ -1,6 +1,10 @@
 {
   "presets": ["@babel/preset-env"],
   "plugins": [
-      ["@babel/transform-runtime"]
+      ["@babel/transform-runtime",
+        "replace-require", {
+        "GLOBAL_REQUIRE": "global.myBetterRequire",
+        "REQUIRED_REQUIRE": "require('require-from-somewhere-else')"
+      }]
   ]
 }
