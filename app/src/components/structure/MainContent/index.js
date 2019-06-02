@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Routes from "../../../Routes";
-import {CSSTransition} from "react-transition-group";
-import {store} from "../../../store";
+import { CSSTransition } from "react-transition-group";
+import { store } from "../../../store";
 import "./styles.scss";
 
 export default class MainContent extends Component {
@@ -10,7 +10,7 @@ export default class MainContent extends Component {
     this.state = {};
     this.element = React.createRef();
   }
-  
+
   render() {
     return (
       <CSSTransition
@@ -21,7 +21,7 @@ export default class MainContent extends Component {
       >
         <main className="main-wrapper" ref={this.element}>
           <section>
-            <Routes/>
+            <Routes />
           </section>
         </main>
       </CSSTransition>

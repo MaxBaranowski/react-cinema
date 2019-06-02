@@ -5,7 +5,6 @@
   left: 0;
   display: flex;
   position: relative;
-  // background-color: #0e0e0e;
   min-height: 100vh;
   height: 100%;
   z-index: 10;
@@ -13,19 +12,16 @@
 
   nav {
     display: flex;
-    position: relative;
+    position: fixed;
     max-width: 250px;
     height: 100vh;
     overflow: hidden;
-
-    //main {
-    //  display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    //position: absolute;
-    //height: 100vh;
     width: 100%;
+    background: #161616;
+    overflow: visible;
 
     header {
       display: flex;
@@ -49,9 +45,6 @@
 
       .user_hello {
         font-size: 1.5em;
-
-        #user_name {
-        }
       }
     }
 
@@ -101,287 +94,106 @@
   }
 }
 
+#show-hide {
+  display: block;
+  position: absolute;
+  height: 100vh;
+  width: 15px;
+  top: 0;
+  right: -15px;
+  background: #ffb441;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+  .show-hide-container {
+    position: absolute;
+    display: inline-block;
+    left: -30px;
+    top: calc(50% - 22.5px);
+    width: 45px;
+    overflow: hidden;
+    .dot {
+      height: 75px;
+      width: 100px;
+      background-color: #ffb441;
+      border-radius: 50%;
+      transform: scaleY(1.1);
+      &.active {
+        background-color: #091d23;
+      }
+
+      .show-hide-nav {
+        display: flex !important;
+        align-self: center;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(100%, -50%);
+        width: 10px;
+        cursor: pointer;
+        vertical-align: middle;
+        font-size: 2.3em;
+      }
+    }
+  }
+}
+
 // ================================================
 // ================================================
 // ================ Media Queries =================
 // ================================================
 // ================================================
 
-@media (min-width: 1300px) {
-  .menu-wrapper {
-    nav {
-      //main {
-      position: fixed;
-      width: 185px;
-      // background-color: #0e0e0e;
-      height: 100vh;
-      margin-left: 2.5em;
-
-      header {
-        //margin-left: 3em;
-      }
-
-      .menu-link-wrapper {
-        //height: 100%;
-        //
-        //.menu-scroll {
-        //  display: flex;
-        //  flex-direction: column;
-        //  justify-content: space-around;
-        //  max-height: 80%;
-        //  height: 100%;
-        //  width: 100%;
-        //}
-      }
-
-      //}
-    }
-  }
-
-  // ================================================
-  // ============== Animation classes ===============
-  // ================================================
-
-  .menu-enter.menu-enter-active {
-    left: -240px;
-  }
-
-  .menu-enter-done {
-    left: 0;
-    transition: all 0.5s linear;
-  }
-
-  .menu-exit.menu-exit-active {
-    left: 0;
-  }
-
-  .menu-exit-done {
-    left: -240px;
-    transition: all 0.5s linear;
-  }
-}
-
 @media (min-width: 992px) and (max-width: 1299px) {
   .menu-wrapper {
-    position: fixed;
-    left: -240px;
-    min-height: 100vh;
-
-    nav {
-      width: 250px;
-      height: 100vh;
-
-      //main {
-      //  width: 250px;
-
-      .menu-link-section {
-        width: 65%;
-      }
-
-      //}
-    }
-  }
-
-  // ================================================
-  // ============== Animation classes ===============
-  // ================================================
-
-  .menu-enter.menu-enter-active {
-    left: -240px;
-  }
-
-  .menu-enter-done {
-    left: 0;
-    transition: all 0.5s linear;
-  }
-
-  .menu-exit.menu-exit-active {
-    left: 0;
-  }
-
-  .menu-exit-done {
-    left: -240px;
-    transition: all 0.5s linear;
   }
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
   .menu-wrapper {
     position: fixed;
-    left: -240px;
-    min-height: 100vh;
-
-    nav {
-      width: 250px;
-      height: 100vh;
-
-      //main {
-      header {
-        margin: 0;
-      }
-
-      //width: 250px;
-
-      .menu-link-section {
-        width: 65%;
-      }
-
-      //}
-    }
-  }
-
-  // ================================================
-  // ============== Animation classes ===============
-  // ================================================
-
-  .menu-enter.menu-enter-active {
-    left: -240px;
-  }
-
-  .menu-enter-done {
-    left: 0;
-    transition: all 0.5s linear;
-  }
-
-  .menu-exit.menu-exit-active {
-    left: 0;
-  }
-
-  .menu-exit-done {
-    left: -240px;
-    transition: all 0.5s linear;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   .menu-wrapper {
     position: fixed;
-    left: -240px;
-    height: 100%;
-    // background-image: url("/images/shape-bg.jpg");
-    // background-size: cover;
-    // background-repeat: no-repeat;
-    nav {
-      header {
-        picture {
-          img {
-            max-width: 3em;
-          }
-        }
-      }
-
-      .menu-link-wrapper {
-        overflow: scroll;
-
-        .menu-scroll {
-          display: block;
-          height: 100%;
-
-          .menu-link-section {
-            max-height: unset;
-          }
-        }
-      }
-    }
   }
 
-  // ================================================
-  // ============== Animation classes ===============
-  // ================================================
-
-  .menu-enter.menu-enter-active {
-    left: -240px;
-  }
-
-  .menu-enter-done {
-    left: 0;
-    transition: all 0.5s linear;
-  }
-
-  .menu-exit.menu-exit-active {
-    left: 0;
-  }
-
-  .menu-exit-done {
-    left: -240px;
-    transition: all 0.5s linear;
+  .menu-wrapper.active {
   }
 }
 
 @media (min-width: 0px) and (max-width: 575px) {
   .menu-wrapper {
     position: fixed;
-    left: -240px;
-    min-height: 100vh;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    background-color: $app-dark;
-    // background-image: url("/images/shape-bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    //background-position-x: -25px;
-    nav {
-      min-width: 100vw;
-      height: 100vh;
-      width: 100%;
-      padding: 0.5em 1em 10vh 1em;
-
-      header {
-        margin: 0;
-      }
-
-      .menu-link-wrapper {
-        overflow: auto;
-        font-size: 2em;
-        display: block;
-        width: 100%;
-
-        .menu-link-section {
-          max-height: unset;
-        }
-      }
-
-      .show-hide-nav {
-        width: 15px;
-        font-size: 3em;
+    &.active {
+      nav {
+        max-width: 100%;
       }
     }
   }
-
-  // ================================================
-  // ============== Animation classes ===============
-  // ================================================
-
-  .menu-enter.menu-enter-active {
-    left: -240px;
+  #show-hide {
+    right: 0;
   }
+}
 
-  .menu-enter-done {
-    left: 0;
-    transition: left 0.5s linear;
-  }
+.menu-enter.menu-enter-active {
+  left: -250px;
+  // left: calc(-100% + 15px); //make this for mobile phone + rener method fires every time button clicked
+}
 
-  .menu-exit.menu-exit-active {
-    left: 0;
-  }
+.menu-enter-done {
+  left: 0;
+  transition: all 0.5s linear;
+}
 
-  .menu-exit-done {
-    left: calc(-100vw - -10px);
-    transition: left 0.5s linear;
-    animation-name: hide_bg_for_menu;
-    animation-duration: -2s;
-    animation-delay: 0.5s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-  }
+.menu-exit.menu-exit-active {
+  left: 0;
+}
 
-  @keyframes hide_bg_for_menu {
-    0% {
-      background-position-x: 0px;
-    }
-    100% {
-      background-position-x: -25px;
-    }
-  }
+.menu-exit-done {
+  left: -250px;
+  // left: calc(-100% + 15px);
+  transition: all 0.5s linear;
 }

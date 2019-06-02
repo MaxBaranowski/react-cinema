@@ -1,13 +1,13 @@
 .main-wrapper {
   display: grid;
-  grid-template-columns: repeat(12, minmax(83px, 1fr));
+  grid-template-columns: repeat(12, 1fr);
   justify-content: flex-start;
   position: relative;
   width: 100%;
   max-width: 1200px;
   min-height: 100vh;
   height: 100%;
-  margin: 0 25px 0 25px;
+  margin: 0 25px 0 45px;
   padding: 2em 1em;
   transition: all 0.5s linear;
   z-index: 9;
@@ -17,108 +17,46 @@
   }
 }
 
+// ================================================
+// ================================================
+// ================ Media Queries =================
+// ================================================
+// ================================================
+
 @media (min-width: 992px) and (max-width: 1299px) {
-  .main-wrapper {
-    grid-template-columns: repeat(12, minmax(auto, 1fr));
-    left: 250px;
-    margin: 0 20% 0 1%;
-  }
-
-  // ================================================
-  // ============== Animation classes ===============
-  // ================================================
-
-  .main-wrapper-enter.main-wrapper-enter-active {
-    left: 35px;
-  }
-
-  .main-wrapper-enter-done {
-    left: 250px;
-    transition: all 0.5s linear;
-  }
-
-  .main-wrapper-exit.main-wrapper-exit-active {
-    left: 250px;
-  }
-
-  .main-wrapper-exit-done {
-    left: 10px;
-    margin: 0 3% 0 1%;
-    transition: all 0.5s linear;
+  .main-wrapper/*.active*/{
+    margin: 0 25px 0 8%;
   }
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
-  .main-wrapper {
-    grid-template-columns: repeat(12, minmax(auto, 1fr));
-    // left: 250px;
-    max-width: 95%;
-    margin: 0 250px 0 0;
-  }
-
-  // ================================================
-  // ============== Animation classes ===============
-  // ================================================
-
-  .main-wrapper-enter.main-wrapper-enter-active {
-    left: 0;
-  }
-
-  .main-wrapper-enter-done {
-    left: 250px;
-    overflow-x: hidden;
-    transition: all 0.5s linear;
-  }
-
-  .main-wrapper-exit.main-wrapper-exit-active {
-    left: 250px;
-  }
-
-  .main-wrapper-exit-done {
-    left: 0;
-    margin: 0 0 0 0;
-    transition: all 0.5s linear;
-  }
+  
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-  .main-wrapper {
-    grid-template-columns: repeat(12, minmax(auto, 1fr));
-    max-width: 95%;
-    margin: 0 250px 0 0;
-    padding: 1em 0 0 1em;
-  }
-
-  // ================================================
-  // ============== Animation classes ===============
-  // ================================================
-
-  .main-wrapper-enter.main-wrapper-enter-active {
-    left: 0;
-  }
-
-  .main-wrapper-enter-done {
-    left: 250px;
-    padding: 0 5px 0 1em;
-    transition: all 0.5s linear;
-  }
-
-  .main-wrapper-exit.main-wrapper-exit-active {
-    left: 250px;
-  }
-
-  .main-wrapper-exit-done {
-    left: 0;
-    margin: 0 0 0 0;
-    transition: all 0.5s linear;
-  }
+ 
 }
 
 @media (min-width: 0px) and (max-width: 575px) {
-  .main-wrapper {
-    grid-template-columns: repeat(12, minmax(auto, 1fr));
-    max-width: 95%;
-    margin: 0 0 0 0;
-    padding: 1em 0.5em 1em 1em;
-  }
+ 
 }
+
+
+// .main-wrapper-enter.main-wrapper-enter-active {
+//   left: 35px;
+// }
+
+// .main-wrapper-enter-done {
+//   left: 250px;
+//   transition: all 0.5s linear;
+// }
+
+// .main-wrapper-exit.main-wrapper-exit-active {
+//   left: 250px;
+// }
+
+// .main-wrapper-exit-done {
+//   left: 10px;
+//   margin: 0 3% 0 1%;
+//   transition: all 0.5s linear;
+// }

@@ -1,8 +1,8 @@
-import React, {Component} from "react";
-import {CSSTransition} from "react-transition-group";
+import React, { Component } from "react";
+import { CSSTransition } from "react-transition-group";
 
-import {store} from "../../../store";
-import {showHideMenu, showMenu} from "../../../actions";
+import { store } from "../../../store";
+import { showHideMenu, showMenu } from "../../../actions";
 
 import Avatar from "./components/Avatar";
 import TopLinks from "./components/MainLinks";
@@ -19,22 +19,22 @@ export default class NavBar extends Component {
       windowWidth: 0,
       windowHeight: 0
     };
-    
+
     this.element = React.createRef();
-    
+
     this.toggle = this.toggle.bind(this);
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
-  
+
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
   }
-  
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
-  
+
   updateWindowDimensions() {
     this.setState({
       windowWidth: window.innerWidth,
@@ -45,11 +45,11 @@ export default class NavBar extends Component {
       store.dispatch(showMenu(store.getState().showMenu));
     }
   }
-  
+
   toggle() {
     store.dispatch(showHideMenu(store.getState().showMenu));
   }
-  
+
   render() {
     return (
       <React.Fragment>
@@ -60,25 +60,31 @@ export default class NavBar extends Component {
           timeout={0}
           classNames="menu"
         >
-          <aside className="menu-wrapper" ref={this.element}>
+          <aside className="menu-wrapper active" ref={this.element}>
             <nav>
-              <Avatar/>
+              <Avatar />
               <section className="menu-link-wrapper">
                 <div className="menu-scroll">
-                  <TopLinks/>
-                  <MiddleLinks/>
-                  <BottomLinks/>
+                  <TopLinks />
+                  <MiddleLinks />
+                  <BottomLinks />
                 </div>
               </section>
               {this.state.windowWidth <= this.state.windowBreakpoint && (
-                <span className="show-hide-nav" onClick={this.toggle}>
-                  &#9776;
-                </span>
+                <div id="show-hide">
+                  <div className="show-hide-container" onClick={this.toggle}>
+                    <div className="dot">
+                      <span className="show-hide-nav" >
+                        &#9776;
+                    </span>
+                    </div>
+                  </div>
+                </div>
               )}
             </nav>
           </aside>
-        </CSSTransition>
-      </React.Fragment>
+        </CSSTransition >
+      </React.Fragment >
     );
   }
 }
