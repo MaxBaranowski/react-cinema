@@ -42,6 +42,10 @@ router.get(
   })
 );
 
+router.post("/login", passport.authenticate("local"), function(req, res) {
+  res.redirect("/");
+});
+
 // router.get("/fillDataBaseWithMovies", controller.fillDataBaseWithMovies);
 // router.get("/fillMoviesWithTrailers", controller.fillMoviesWithTrailers);
 // router.get("/fillMoviesWithUnixDate", controller.fillMoviesWithUnixDate);

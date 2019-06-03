@@ -7,6 +7,7 @@ import sassMiddleware from "node-sass-middleware";
 import cors from "cors";
 import passport from "passport";
 
+import "./oauth/local.strategy";
 import "./oauth/google.strategy";
 import session from "./middleware/session";
 import Router from "./router/routes";

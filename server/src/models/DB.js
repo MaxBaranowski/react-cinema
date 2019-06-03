@@ -19,7 +19,7 @@ mongoose.connection.on("disconnected", function () {
 export default class DB {
   constructor() {
     if (this.constructor === DB) {
-      throw new Error("Abstract class");
+      throw new Error("This is Abstract class");
     }
     this.env = process.env.NODE_ENV;
     this.connection = null;

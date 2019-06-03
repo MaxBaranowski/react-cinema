@@ -1,7 +1,7 @@
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
 
-import {User} from "./models/user.model";
+import { User } from "./models/user";
 
 // serializeUser determines which data of the user object should be stored in the session.
 // The result of the serializeUser method is attached to the session as req.session.passport.user = {}
@@ -29,7 +29,7 @@ passport.use(
     },
     (accesToken, refreshToken, profile, done) => {
       // check for user existing
-      User.findOne({id: profile.id}).then(user => {
+      User.findOne({ id: profile.id }).then(user => {
         if (user) {
           done(null, user); //create new user
         } else {
