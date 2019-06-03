@@ -72,7 +72,7 @@ export default class NavBar extends Component {
               </section>
               {this.state.windowWidth <= this.state.windowBreakpoint && (
                 <div id="show-hide">
-                  <div className="show-hide-container" onClick={this.toggle}>
+                  <div className={"show-hide-container"+ (store.getState().showMenu ? " active" : " ")} onClick={this.toggle}>
                     <div className="dot">
                       <span className="show-hide-nav" >
                         &#9776;
@@ -83,8 +83,8 @@ export default class NavBar extends Component {
               )}
             </nav>
           </aside>
-        </CSSTransition >
-      </React.Fragment >
+        </CSSTransition>
+      </React.Fragment>
     );
   }
 }
