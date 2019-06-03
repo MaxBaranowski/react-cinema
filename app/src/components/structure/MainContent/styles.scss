@@ -24,39 +24,22 @@
 // ================================================
 
 @media (min-width: 992px) and (max-width: 1299px) {
-  .main-wrapper/*.active*/{
-    margin: 0 25px 0 8%;
+  .main-wrapper {
+    &.main-wrapper-enter-done {
+      margin: 0 1% 0 8%;
+    }
   }
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
-  
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
- 
 }
 
 @media (min-width: 0px) and (max-width: 575px) {
- 
+  .main-wrapper {
+    margin: 0 2% 0 5%;
+  }
 }
 
-
-// .main-wrapper-enter.main-wrapper-enter-active {
-//   left: 35px;
-// }
-
-// .main-wrapper-enter-done {
-//   left: 250px;
-//   transition: all 0.5s linear;
-// }
-
-// .main-wrapper-exit.main-wrapper-exit-active {
-//   left: 250px;
-// }
-
-// .main-wrapper-exit-done {
-//   left: 10px;
-//   margin: 0 3% 0 1%;
-//   transition: all 0.5s linear;
-// }

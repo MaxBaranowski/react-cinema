@@ -102,8 +102,8 @@
   top: 0;
   right: -15px;
   background: #ffb441;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  // border-top-right-radius: 15px;
+  // border-bottom-right-radius: 15px;
 
   .show-hide-container {
     position: absolute;
@@ -138,6 +138,24 @@
   }
 }
 
+.menu-enter.menu-enter-active {
+  left: -250px;
+}
+
+.menu-enter-done {
+  left: 0;
+  transition: all 0.5s linear;
+}
+
+.menu-exit.menu-exit-active {
+  left: 0;
+}
+
+.menu-exit-done {
+  left: -250px;
+  transition: all 0.5s linear;
+}
+
 // ================================================
 // ================================================
 // ================ Media Queries =================
@@ -146,6 +164,26 @@
 
 @media (min-width: 992px) and (max-width: 1299px) {
   .menu-wrapper {
+  }
+
+  // ================================================
+  // ============== react transition  ===============
+  // ================================================
+
+  .menu-enter.menu-enter-active {
+    width: 0;
+  }
+
+  .menu-enter-done {
+    width: 250px;
+  }
+
+  .menu-exit.menu-exit-active {
+    width: 250px;
+  }
+
+  .menu-exit-done {
+    width: 0;
   }
 }
 
@@ -158,9 +196,6 @@
 @media (min-width: 576px) and (max-width: 768px) {
   .menu-wrapper {
     position: fixed;
-  }
-
-  .menu-wrapper.active {
   }
 }
 
@@ -176,24 +211,26 @@
   #show-hide {
     right: 0;
   }
-}
 
-.menu-enter.menu-enter-active {
-  left: -250px;
-  // left: calc(-100% + 15px); //make this for mobile phone + rener method fires every time button clicked
-}
+  // ================================================
+  // ============== react transition  ===============
+  // ================================================
 
-.menu-enter-done {
-  left: 0;
-  transition: all 0.5s linear;
-}
+  .menu-enter.menu-enter-active {
+    width: 0;
+    left: calc(-100% + 15px); //make this for mobile phone + rener method fires every time button clicked
+  }
 
-.menu-exit.menu-exit-active {
-  left: 0;
-}
+  .menu-enter-done {
+    width: 250px;
+  }
 
-.menu-exit-done {
-  left: -250px;
-  // left: calc(-100% + 15px);
-  transition: all 0.5s linear;
+  .menu-exit.menu-exit-active {
+    width: 250px;
+  }
+
+  .menu-exit-done {
+    width: 0;
+    left: calc(-100% + 15px);
+  }
 }
