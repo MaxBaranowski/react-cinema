@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { store } from "../../../store";
-import { showHideMenu, showMenu } from "../../../actions";
+import { store } from "../../../redux/store";
+import { showHideMenu, showMenu } from "../../../redux/actions";
 
 import Avatar from "./components/Avatar";
 import TopLinks from "./components/MainLinks";

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Routes from "../../../Routes";
 import { CSSTransition } from "react-transition-group";
-import { store } from "../../../store";
+import { store } from "../../../redux/store";
 import "./styles.scss";
 
 export default class MainContent extends Component {

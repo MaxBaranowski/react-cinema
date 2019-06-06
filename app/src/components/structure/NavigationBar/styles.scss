@@ -20,7 +20,7 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    background: #161616;
+    // background: #161616;
     overflow: visible;
 
     header {
@@ -113,11 +113,11 @@
     width: 45px;
     overflow: hidden;
     animation-name: toggleOff;
-    animation-duration: .5s;
+    animation-duration: 0.5s;
     animation-fill-mode: forwards;
     &.active {
       animation-name: toggleOn;
-      animation-duration: .5s;
+      animation-duration: 0.5s;
     }
     .dot {
       height: 75px;
@@ -220,12 +220,18 @@
 @media (min-width: 769px) and (max-width: 991px) {
   .menu-wrapper {
     position: fixed;
+    nav {
+      background: #161616;
+    }
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   .menu-wrapper {
     position: fixed;
+    nav {
+      background: #161616;
+    }
   }
 }
 
@@ -235,6 +241,7 @@
     &.active {
       nav {
         max-width: 100%;
+        background: #161616;
       }
     }
   }

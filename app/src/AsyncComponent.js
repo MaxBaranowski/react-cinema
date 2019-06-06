@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import {store} from "./store";
-import {hideMenu} from "./actions";
+import {store} from "./redux/store";
+import {hideMenu} from "./redux/actions";
 
 export default function asyncComponent(importComponent) {
   class AsyncComponent extends Component {
