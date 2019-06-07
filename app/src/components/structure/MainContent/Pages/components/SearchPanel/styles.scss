@@ -1,37 +1,33 @@
 .searchBar {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 50px;
 
   main {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
     box-sizing: border-box;
     cursor: pointer;
     border: 2px solid;
-    border-color: transparent;
     padding: 10px 20px;
     border-radius: 50px;
-
-    &:hover {
-      border-color: #868686;
-    }
+    border-color: #868686;
+    z-index: 2;
 
     .search-icon {
       width: 30px;
       height: 30px;
-      flex: 0 0 3%;
     }
 
     .search-field {
-      width: 100%;
-      flex: 0 0 97%;
+      flex: 1;
+      padding: 0 15px;
 
       input[type="text"] {
         width: 100%;
-        margin: 0 0 0 2%;
-        padding: 0 10px;
         line-height: 30px;
         font-size: 1.5em;
         border: none;
@@ -40,28 +36,46 @@
       }
     }
 
-    &.searchBar-active {
-      border-color: #868686;
-    }
-
+    // &.searchBar-active {
+    //   border-color: #868686;
+    // }
   }
 
   .search-results {
     flex: 0 0 100%;
     display: flex;
     flex-direction: column;
-    margin: 0 25px 0 25px;
-    box-shadow: 0 15px 10px 5px #0000007a;
+    position: relative;
+    top: -25px;
+    width: 100%;
+    padding: 35px 25px 10px 25px;
+    box-shadow: 0 15px 10px 5px #161616;
+    background: #161616;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-color: #868686;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    z-index: 1;
 
     .search-results-item {
       display: flex;
       flex-direction: row;
-      background: #0000007a;
-      padding-bottom: 15px;
-
+      // background: #0000007a;
+      margin-bottom: 15px;
+      &:hover{
+        // background-color: #1f1f1f;
+        border-right: 5px solid #ffb441;
+      }
       img {
         align-self: center;
-        height: 150px;
+        height: 100px;
+        min-width: 65px;
+        background-image: url(/images/templates/cinema.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center; 
       }
 
       .search-result-description {
@@ -72,8 +86,15 @@
         width: 100%;
         height: auto;
         margin-left: 50px;
+
+        h1 {
+          margin: 10px 0;
+          font-size: 1.5em;
+        }
+        p {
+          font-size: 1em;
+        }
       }
     }
-
   }
 }
