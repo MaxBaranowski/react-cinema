@@ -8,7 +8,7 @@ import Poster from "./components/Poster";
 export default class Movie extends Component {
   constructor(props) {
     super(props);
-
+    console.log(this.props.match.params.id);
     this.state = {
       requestedMovie: this.props.match.params.id,
       isError: false
@@ -55,6 +55,7 @@ export default class Movie extends Component {
   }
 
   render() {
+    console.log(1)
     const { movie, isError } = this.state;
     if (isError) {
       //return <Redirect to='/404' />;

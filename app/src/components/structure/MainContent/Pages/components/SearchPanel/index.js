@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import Icon from "./components/Icon";
 import SearchField from "./components/Search";
@@ -31,15 +32,17 @@ export default class SearchPanel extends Component {
       let comp = [];
       for (let movie of movies) {
         comp.push(
-          <div key={movie.imdbID} className="search-results-item">
-            <img src={movie.Poster} alt="" />
-            <div className="search-result-description">
-              <h1 className="title">{movie.Title}</h1>
-              <p className="released">{movie.Released}</p>
-              <p className="genre">{movie.Genre}</p>
-              {/* <p className="rating">{movie.Ratings[0].Value}</p> */}
+          <Link key={movie.imdbID}  to={`/movies/` + movie.imdbID}>
+            <div className="search-results-item">
+              <img src={movie.Poster} alt="" />
+              <div className="search-result-description">
+                <h1 className="title">{movie.Title}</h1>
+                <p className="released">{movie.Released}</p>
+                <p className="genre">{movie.Genre}</p>
+                {/* <p className="rating">{movie.Ratings[0].Value}</p> */}
+              </div>
             </div>
-          </div>
+          </Link>
         );
       }
       return comp;
