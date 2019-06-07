@@ -1,5 +1,7 @@
 // show hide menu [ navigation bar ]
 export function showHideMenu(toggled) {
+  console.log(1)
+
   return {
     type: "SHOW_HIDE_MENU",
     showMenu: toggled
@@ -7,15 +9,19 @@ export function showHideMenu(toggled) {
 }
 
 //show  menu [ navigation bar ]
-export function showMenu(option) {
+export function showMenu() {
+  console.log(2)
+
   return {
     type: "SHOW_MENU",
-    showMenu: option
+    showMenu: true
   }
 }
 
 // hide menu [ navigation bar ]
-export function hideMenu(option) {
+export function hideMenu() {
+  console.log(3)
+
   return {
     type: "HIDE_MENU",
     showMenu: false

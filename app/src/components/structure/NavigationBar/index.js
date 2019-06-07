@@ -42,7 +42,7 @@ export default class NavBar extends Component {
     });
     // show menu if screen resolution changes
     if (this.state.windowWidth >= this.state.windowBreakpoint) {
-      store.dispatch(showMenu(store.getState().showMenu));
+      store.dispatch(showMenu());
     }
   }
 
@@ -60,7 +60,12 @@ export default class NavBar extends Component {
           timeout={0}
           classNames="menu"
         >
-          <aside className="menu-wrapper active" ref={this.element}>
+          <aside
+            className={
+              "menu-wrapper active" + (store.getState().showMenu ? " " : "  menu-exit-done")
+            }
+            ref={this.element}
+          >
             <nav>
               <Avatar />
               <section className="menu-link-wrapper">
@@ -72,11 +77,15 @@ export default class NavBar extends Component {
               </section>
               {this.state.windowWidth <= this.state.windowBreakpoint && (
                 <div id="show-hide">
-                  <div className={"show-hide-container"+ (store.getState().showMenu ? " active" : " ")} onClick={this.toggle}>
+                  <div
+                    className={
+                      "show-hide-container" +
+                      (store.getState().showMenu ? " active" : " ")
+                    }
+                    onClick={this.toggle}
+                  >
                     <div className="dot">
-                      <span className="show-hide-nav" >
-                        &#9776;
-                    </span>
+                      <span className="show-hide-nav">&#9776;</span>
                     </div>
                   </div>
                 </div>
