@@ -32,7 +32,7 @@ const MovieSchema = {
 
 const MoviesNameSchema = {
   name: Joi.string()
-    .alphanum()
+    // .alphanum()
     .required(),
   key: Joi.string()
     .alphanum()

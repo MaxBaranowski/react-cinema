@@ -8,10 +8,10 @@ import Poster from "./components/Poster";
 export default class Movie extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.match.params.id);
     this.state = {
       requestedMovie: this.props.match.params.id,
-      isError: false
+      movie: {},
+      isError: false,
     };
   }
 
@@ -24,38 +24,87 @@ export default class Movie extends Component {
   // trilers
   // https://v.traileraddict.com/124544
 
+
+  // componentDidUpdate will cause a re render on a setState call, which getDerivedStateFromProps will not
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(1, nextProps.match.params.id, prevState)
+    if (nextProps.match.params.id !== prevState.requestedMovie) {
+      return {
+        requestedMovie: nextProps.match.params.id
+      }
+    }
+    return null;// Return null to indicate no change to state.
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.someValue !== this.props.someValue) {
+      console.log(2, prevProps.match.params.id, prevState.requestedMovie)
+
+  //     //Perform some operation here
+  //     // this.setState({ someState: someValue });
+  //     // this. getmovie();
+  //   }
+  }
+
+  getmovie() {
+    fetch(`https://${window.location.hostname}:443/api/movies/movie`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: this.state.requestedMovie
+      })
+    }).then(response =>
+      response
+        .json()
+        .then(data => {
+          this.setState({
+            movie: data
+          });
+        })
+        .catch(e => {
+          this.setState({
+            isError: e
+          });
+        })
+    );
+  }
+
   componentDidMount() {
     try {
-      fetch(`https://${window.location.hostname}:443/api/movies/movie`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          id: this.state.requestedMovie
-        })
-      }).then(response =>
-        response
-          .json()
-          .then(data => {
-            this.setState({
-              movie: data
-            });
-          })
-          .catch(e => {
-            this.setState({
-              isError: e
-            });
-          })
-      );
+      this.getmovie();
+      // fetch(`https://${window.location.hostname}:443/api/movies/movie`, {
+      //   method: "POST",
+      //   headers: {
+      //     Accept: "application/json",
+      //     "Content-Type": "application/json"
+      //   },
+      //   body: JSON.stringify({
+      //     id: this.state.requestedMovie
+      //   })
+      // }).then(response =>
+      //   response
+      //     .json()
+      //     .then(data => {
+      //       this.setState({
+      //         movie: data
+      //       });
+      //     })
+      //     .catch(e => {
+      //       this.setState({
+      //         isError: e
+      //       });
+      //     })
+      // );
     } catch (e) {
       throw new Error("Error: ", e);
     }
   }
 
   render() {
-    console.log(1)
     const { movie, isError } = this.state;
     if (isError) {
       //return <Redirect to='/404' />;

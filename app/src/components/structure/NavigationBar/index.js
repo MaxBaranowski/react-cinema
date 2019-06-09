@@ -16,8 +16,8 @@ export default class NavBar extends Component {
     super(props);
     this.state = {
       windowBreakpoint: 1299, //1440,
-      windowWidth: 0,
-      windowHeight: 0
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
     };
 
     this.element = React.createRef();

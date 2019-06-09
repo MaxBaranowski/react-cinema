@@ -32,7 +32,7 @@ export default class SearchPanel extends Component {
       let comp = [];
       for (let movie of movies) {
         comp.push(
-          <Link key={movie.imdbID}  to={`/movies/` + movie.imdbID}>
+          <Link key={"search-link-" +movie.imdbID}  to={`/movie/` + movie.imdbID}>
             <div className="search-results-item">
               <img src={movie.Poster} alt="" />
               <div className="search-result-description">
