@@ -11,7 +11,7 @@ export default class Movie extends Component {
     this.state = {
       requestedMovie: this.props.match.params.id,
       movie: {},
-      isError: false,
+      isError: false
     };
   }
 
@@ -24,81 +24,27 @@ export default class Movie extends Component {
   // trilers
   // https://v.traileraddict.com/124544
 
-
   // componentDidUpdate will cause a re render on a setState call, which getDerivedStateFromProps will not
-
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(1, nextProps.match.params.id, prevState)
+    //console.log(1, nextProps.match.params.id, prevState);
     if (nextProps.match.params.id !== prevState.requestedMovie) {
       return {
         requestedMovie: nextProps.match.params.id
-      }
+      };
     }
-    return null;// Return null to indicate no change to state.
+    // Return null to indicate no change to state.
+    return null;
   }
 
   componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.someValue !== this.props.someValue) {
-      console.log(2, prevProps.match.params.id, prevState.requestedMovie)
-
-  //     //Perform some operation here
-  //     // this.setState({ someState: someValue });
-  //     // this. getmovie();
-  //   }
-  }
-
-  getmovie() {
-    fetch(`https://${window.location.hostname}:443/api/movies/movie`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        id: this.state.requestedMovie
-      })
-    }).then(response =>
-      response
-        .json()
-        .then(data => {
-          this.setState({
-            movie: data
-          });
-        })
-        .catch(e => {
-          this.setState({
-            isError: e
-          });
-        })
-    );
+    if (prevProps.match.params.id !== this.state.requestedMovie) {
+      this.getmovie();
+    }
   }
 
   componentDidMount() {
     try {
       this.getmovie();
-      // fetch(`https://${window.location.hostname}:443/api/movies/movie`, {
-      //   method: "POST",
-      //   headers: {
-      //     Accept: "application/json",
-      //     "Content-Type": "application/json"
-      //   },
-      //   body: JSON.stringify({
-      //     id: this.state.requestedMovie
-      //   })
-      // }).then(response =>
-      //   response
-      //     .json()
-      //     .then(data => {
-      //       this.setState({
-      //         movie: data
-      //       });
-      //     })
-      //     .catch(e => {
-      //       this.setState({
-      //         isError: e
-      //       });
-      //     })
-      // );
     } catch (e) {
       throw new Error("Error: ", e);
     }
@@ -125,5 +71,31 @@ export default class Movie extends Component {
     } else {
       return <>Loading...</>;
     }
+  }
+
+  getmovie() {
+    fetch(`https://${window.location.hostname}:443/api/movies/movie`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: this.state.requestedMovie
+      })
+    }).then(response =>
+      response
+        .json()
+        .then(data => {
+          this.setState({
+            movie: data
+          });
+        })
+        .catch(e => {
+          this.setState({
+            isError: e
+          });
+        })
+    );
   }
 }
