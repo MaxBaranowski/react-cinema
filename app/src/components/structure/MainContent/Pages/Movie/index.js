@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import "./styles.scss";
 import SearchPanel from "../components/SearchPanel/index";
 import Poster from "./components/Poster";
+import Body from "./components/Body";
+import Sidebar from "./components/Sidebar";
 
 export default class Movie extends Component {
   constructor(props) {
@@ -61,12 +63,16 @@ export default class Movie extends Component {
       );
     } else if (movie) {
       return (
-        <div>
+        <>
           <header>
             <SearchPanel />
           </header>
-          <Poster movie={movie} />
-        </div>
+          <section className="movie-container">
+            <Poster movie={movie} />
+            <Body movie={movie} />
+            <Sidebar movie={movie} />
+          </section>
+        </>
       );
     } else {
       return <>Loading...</>;

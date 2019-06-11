@@ -1,12 +1,15 @@
 import React from "react";
 
+import Button from "./Button";
+
 export default function Poster(props) {
   const { movie } = props;
   return (
-    <div>
-      poster
-      <img src="" alt="" />
-      <pre>{JSON.stringify(movie, null, 2)}</pre>
-    </div>
+    <figure className="movie-poster">
+      <div className="movie-poster-container">
+        <img src={movie.Poster} alt="" />
+      </div>
+      <Button btnVal={"Watch Trailer"} bntAction={""} />
+    </figure>
   );
 }

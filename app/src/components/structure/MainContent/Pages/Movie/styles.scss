@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700,900&display=swap&subset=latin-ext');
+
+.movie-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background: #161616;
+  font-family: 'Nunito', sans-serif;
+  & * {
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.movie-poster {
+  width: 25%;
+  margin: 0;
+  padding: 0 5px 10px 5px;
+
+  .movie-poster-container {
+    display: inline-block;
+    width: 100%;
+    min-height: 150px;
+    background-image: url(/images/templates/cinema.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .btn-trailer {
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
+.movie-main {
+  width: 60%;
+  padding: 0 2%;
+
+  .movie-tab-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      text-transform: uppercase;
+      a {
+        color: #868686;
+        border-bottom-style: solid;
+        border-bottom-width: 2px;
+        padding: 0 0 10px 0;
+      }
+      &.active > a {
+        color: #dcf836;
+        border-color: #dcf836;
+      }
+    }
+  }
+}
+
+.movie-sidebar {
+  width: 15%;
+}
+
+.btn-trailer {
+  background-color: #dd003f;
+  border: none;
+  border: 2px solid #dd003f;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  &:hover {
+    border: 2px solid #555555;
+    background-color: #555555;
+    color: white;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1299px) {
+
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+}
+
+@media (min-width: 0px) and (max-width: 575px) {
+}
