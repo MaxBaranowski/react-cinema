@@ -14,6 +14,7 @@ export default class SearchPanel extends Component {
     };
 
     this.SearchBar = React.createRef();
+    this.SearchFieldRef = {};
 
     this.searchResults = data => {
       this.setState({
@@ -23,6 +24,7 @@ export default class SearchPanel extends Component {
 
     this.handleSearchOnFocus = this.handleSearchOnFocus.bind(this);
     this.handleSearchOnBlur = this.handleSearchOnBlur.bind(this);
+    this.getSearchFieldRef = this.getSearchFieldRef.bind(this);
   }
 
   render() {
@@ -35,16 +37,23 @@ export default class SearchPanel extends Component {
           <SearchField
             returnSearchResultsToParent={this.searchResults}
             onFocus={this.handleSearchOnFocus}
-            onBlur={this.handleSearchOnBlur}
+            returnToParent={this.getSearchFieldRef}
           />
         </main>
         {isSearchBarOnFocus && searchResults.length > 0 && (
-          <aside className="search-results">
+          <aside
+            className="search-results"
+            onMouseLeave={this.handleSearchOnBlur}
+          >
             {this.makeResults(searchResults)}
           </aside>
         )}
       </section>
     );
+  }
+
+  getSearchFieldRef(el) {
+    return (this.SearchFieldRef = el.current);
   }
 
   makeResults(movies) {
@@ -54,7 +63,11 @@ export default class SearchPanel extends Component {
     let comp = [];
     for (let movie of movies) {
       comp.push(
-        <Link key={"search-link-" + movie.imdbID} to={`/movie/` + movie.imdbID}>
+        <Link
+          key={"search-link-" + movie.imdbID}
+          to={`/movie/` + movie.imdbID}
+          onClick={this.handleSearchOnBlur}
+        >
           <div className="search-results-item">
             <img src={movie.Poster} alt="" />
             <div className="search-result-description">
@@ -71,12 +84,11 @@ export default class SearchPanel extends Component {
   }
 
   handleSearchOnFocus() {
-    // this.SearchBar.current.classList.toggle("searchBar-active");
     this.setState({ isSearchBarOnFocus: true });
   }
 
   handleSearchOnBlur() {
-    // this.SearchBar.current.classList.toggle("searchBar-active");
     this.setState({ isSearchBarOnFocus: false });
+    this.SearchFieldRef.blur();
   }
 }

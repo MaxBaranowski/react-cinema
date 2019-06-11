@@ -1,15 +1,27 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default function SearchField(props) {
-  const Search = React.createRef();
+export default class SearchField extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
 
-  const handleSearchKeyUp = () => {
-    let el = Search.current;
+    this.SearchField = React.createRef();
+    
+    this.handleSearchKeyUp = this.handleSearchKeyUp.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.returnToParent(this.SearchField);
+  }
+
+  handleSearchKeyUp() {
+    let el = this.SearchField.current;
+    const { returnSearchResultsToParent } = this.props;
     // this will clear input resuls if no were typed in
     if (el.value.length < 1) {
-      return props.returnSearchResultsToParent([]);
+      return returnSearchResultsToParent([]);
     }
-    // console.log(el.value);
+
     fetch(`https://${window.location.hostname}:443/api/movies/name`, {
       method: "POST",
       headers: {
@@ -22,22 +34,23 @@ export default function SearchField(props) {
     })
       .then(response =>
         response.json().then(data => {
-          props.returnSearchResultsToParent(data);
+          returnSearchResultsToParent(data);
         })
       )
       .catch(e => console.log(e));
-  };
+  }
 
-  return (
-    <div className="search-field">
-      <input
-        className=""
-        type="text"
-        onFocus={props.onFocus}
-        onBlur={props.onBlur}
-        onKeyUp={handleSearchKeyUp}
-        ref={Search}
-      />
-    </div>
-  );
+  render() {
+    return (
+      <div className="search-field">
+        <input
+          className=""
+          type="text"
+          onFocus={this.props.onFocus}
+          onKeyUp={this.handleSearchKeyUp}
+          ref={this.SearchField}
+        />
+      </div>
+    );
+  }
 }
