@@ -6,6 +6,8 @@ import SearchPanel from "../components/SearchPanel/index";
 import Poster from "./components/Poster";
 import Body from "./components/Body";
 import Sidebar from "./components/Sidebar";
+// + to do
+import { getPostersList } from "../../../../../redux/actions";
 
 export default class Movie extends Component {
   constructor(props) {
@@ -45,11 +47,7 @@ export default class Movie extends Component {
   }
 
   componentDidMount() {
-    try {
-      this.getmovie();
-    } catch (e) {
-      throw new Error("Error: ", e);
-    }
+    this.getmovie();
   }
 
   render() {
@@ -63,7 +61,7 @@ export default class Movie extends Component {
       );
     } else if (movie) {
       return (
-        <>
+        <section>
           <header>
             <SearchPanel />
           </header>
@@ -72,7 +70,7 @@ export default class Movie extends Component {
             <Body movie={movie} />
             <Sidebar movie={movie} />
           </section>
-        </>
+        </section>
       );
     } else {
       return <>Loading...</>;
@@ -93,8 +91,11 @@ export default class Movie extends Component {
       response
         .json()
         .then(data => {
-          this.setState({
-            movie: data
+          getPostersList(data.imdbID).then(posters => {
+            data["Posters"] = posters;
+            this.setState({
+              movie: data
+            });
           });
         })
         .catch(e => {

@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Sidebar(props) {
-  console.log(props);
   const { Director, Writer, Released, Runtime, Awards, Genre } = props.movie;
 
   const makeOverView = () => {

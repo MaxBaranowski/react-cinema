@@ -3,7 +3,7 @@ import React from "react";
 export default function Body(props) {
   const { movie } = props;
   return (
-    <main className="movie-main">
+    <section className="movie-main">
       <header>
         <ul className="movie-tab-links">
           <li className="active">
@@ -22,8 +22,11 @@ export default function Body(props) {
             <a href="#reviews">Reviews</a>
           </li>
         </ul>
+        <main>
+        <pre className="code">{JSON.stringify(movie, null, 2)}</pre>
+        </main>
       </header>
-      {/* <pre>{JSON.stringify(movie, null, 2)}</pre> */}
-    </main>
+      
+    </section>
   );
 }

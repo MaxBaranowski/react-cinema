@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700,900&display=swap&subset=latin-ext');
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,400,700,900&display=swap&subset=latin-ext");
 
 .movie-container {
   display: flex;
   flex-direction: row;
   width: 100%;
   background: #161616;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   & * {
     box-sizing: border-box;
     outline: none;
@@ -26,11 +26,11 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 15px;
     overflow: hidden;
 
     img {
       width: 100%;
+      border-radius: 15px;
     }
   }
 
@@ -69,6 +69,17 @@
 
 .movie-sidebar {
   width: 15%;
+  .overview {
+    margin-bottom: 0.9em;
+    font-size: 0.9em;
+    .overview-title {
+      color: #abb7c4;
+      margin-bottom: 0.5em;
+    }
+    .overview-text {
+      color: #ffffff;
+    }
+  }
 }
 
 .btn-trailer {
@@ -94,7 +105,6 @@
 }
 
 @media (min-width: 992px) and (max-width: 1299px) {
-
 }
 
 @media (min-width: 769px) and (max-width: 991px) {

@@ -1,3 +1,6 @@
+// Reducer jest to funkcja, która zwraca nowy stan bazując na starym. 
+// Przyjmuje dwa argumenty, poprzedni stan oraz akcje,
+
 export default (state, action) => {
   switch (action.type) {
     case "SHOW_HIDE_MENU":
