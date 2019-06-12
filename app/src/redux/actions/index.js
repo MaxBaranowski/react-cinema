@@ -25,6 +25,9 @@ export function hideMenu() {
   };
 }
 
+
+//https://daveceddia.com/where-fetch-data-redux/
+
 export function getPostersList(movieId) {
   return fetch(`https://${window.location.hostname}:443/api/poster`, {
     method: "POST",
