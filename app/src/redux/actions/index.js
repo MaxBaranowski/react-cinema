@@ -25,27 +25,36 @@ export function hideMenu() {
   };
 }
 
-
 //https://daveceddia.com/where-fetch-data-redux/
 
+export function getBg(BG) {
+  return {
+    type: "BG",
+    background: BG
+  };
+}
+
 export function getPostersList(movieId) {
-  return fetch(`https://${window.location.hostname}:443/api/poster`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      id: movieId
-    })
-  })
-    .then(response =>
-      response.json().then(data => {
-        if (data.length < 1) {
-          return [];
-        }
-        return data;
+  return dispatch => {
+    return fetch(`https://${window.location.hostname}:443/api/poster`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: movieId
       })
-    )
-    .catch(error => console.log(error));
+    })
+      .then(response =>
+        response.json().then(posters => {
+          if (posters.length < 1) {
+            dispatch(getBg(""));
+          }
+          let poster = posters[Math.floor(Math.random() * posters.length) + 1];
+          dispatch(getBg(poster));
+        })
+      )
+      .catch(error => console.log(error));
+  };
 }

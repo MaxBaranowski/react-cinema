@@ -1,4 +1,4 @@
-// Reducer jest to funkcja, która zwraca nowy stan bazując na starym. 
+// Reducer jest to funkcja, która zwraca nowy stan bazując na starym.
 // Przyjmuje dwa argumenty, poprzedni stan oraz akcje,
 
 export default (state, action) => {
@@ -18,8 +18,12 @@ export default (state, action) => {
         ...state,
         showMenu: false
       };
+    case "BG":
+      return {
+        ...state,
+        background: action.background
+      };
     default:
       return state;
   }
 };
-

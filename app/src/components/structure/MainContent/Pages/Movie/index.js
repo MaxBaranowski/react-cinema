@@ -7,9 +7,10 @@ import Poster from "./components/Poster";
 import Body from "./components/Body";
 import Sidebar from "./components/Sidebar";
 // + to do
+import { connect } from "react-redux";
 import { getPostersList } from "../../../../../redux/actions";
 
-export default class Movie extends Component {
+class Movie extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,9 +49,11 @@ export default class Movie extends Component {
 
   componentDidMount() {
     this.getmovie();
+    this.props.dispatch(getPostersList(this.state.requestedMovie));
   }
 
   render() {
+    console.log(this.props.background);
     const { movie, isError } = this.state;
     if (isError) {
       //return <Redirect to='/404' />;
@@ -65,6 +68,7 @@ export default class Movie extends Component {
           <header>
             <SearchPanel />
           </header>
+          bakcground = {this.props.background}
           <section className="movie-container">
             <Poster movie={movie} />
             <Body movie={movie} />
@@ -91,12 +95,11 @@ export default class Movie extends Component {
       response
         .json()
         .then(data => {
-          getPostersList(data.imdbID).then(posters => {
-            data["Posters"] = posters;
-            this.setState({
-              movie: data
-            });
+          //   data["Posters"] = posters;
+          this.setState({
+            movie: data
           });
+          // });
         })
         .catch(e => {
           this.setState({
@@ -106,3 +109,9 @@ export default class Movie extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  background: state.background
+});
+
+export default connect(mapStateToProps)(Movie);
