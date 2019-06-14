@@ -1,32 +1,36 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default function Body(props) {
-  const { movie } = props;
-  return (
-    <section className="movie-main">
-      <header>
-        <ul className="movie-tab-links">
-          <li className="active">
-            <a href="#overview">Overview</a>
-          </li>
-          <li>
-            <a href="#media">Media</a>
-          </li>
-          <li>
-            <a href="#cast">Cast</a>
-          </li>
-          <li>
-            <a href="#moviesrelated">Related Movies</a>
-          </li>
-          <li>
-            <a href="#reviews">Reviews</a>
-          </li>
-        </ul>
-        <main>
-        <pre className="code">{JSON.stringify(movie, null, 2)}</pre>
-        </main>
-      </header>
-      
-    </section>
-  );
+import Tabs from "./Tabs";
+
+export default class Body extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movie: this.props.movie
+    };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.movie !== prevState.movie) {
+      return { movie: nextProps.movie };
+    } else return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.movie!==this.props.movie){
+      this.setState({movie: this.props.movie});
+    }
+  }
+
+  render() {
+    const { movie } = this.state;
+
+    return (
+      <section className="movie-main">
+        <header>
+          <Tabs movie={movie} />
+        </header>
+      </section>
+    );
+  }
 }

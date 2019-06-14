@@ -61,7 +61,7 @@ class Movie extends Component {
   }
 
   render() {
-    console.log(this.props.background);
+    // console.log(this.props.background);
     const { movie, isError } = this.state;
     if (isError) {
       //return <Redirect to='/404' />;
