@@ -15,7 +15,8 @@
     padding: 10px 20px;
     border-radius: 50px;
     border-color: #868686;
-    background-color: #161616;
+    // background-color: #161616;
+    background-color: rgba(22, 22, 22, 0.55);
     z-index: 2;
 
     .search-icon {
@@ -66,7 +67,7 @@
       // background: #0000007a;
       cursor: pointer;
       margin-bottom: 15px;
-      &:hover{
+      &:hover {
         // background-color: #1f1f1f;
         border-right: 5px solid #ffb441;
       }
@@ -78,7 +79,7 @@
         background-image: url(/images/templates/cinema.png);
         background-size: contain;
         background-repeat: no-repeat;
-        background-position: center; 
+        background-position: center;
       }
 
       .search-result-description {

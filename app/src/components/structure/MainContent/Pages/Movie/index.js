@@ -49,7 +49,15 @@ class Movie extends Component {
 
   componentDidMount() {
     this.getmovie();
-    this.props.dispatch(getPostersList(this.state.requestedMovie));
+    this.props
+      .dispatch(getPostersList(this.state.requestedMovie))
+      .then(bgimg => {
+        document.body.style.backgroundImage = `url(${this.props.background})`;
+      });
+  }
+
+  componentWillUnmount() {
+    document.body.style.backgroundImage = `url()`;
   }
 
   render() {

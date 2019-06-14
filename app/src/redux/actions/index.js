@@ -50,9 +50,11 @@ export function getPostersList(movieId) {
         response.json().then(posters => {
           if (posters.length < 1) {
             dispatch(getBg(""));
+            //return "";
           }
           let poster = posters[Math.floor(Math.random() * posters.length) + 1];
           dispatch(getBg(poster));
+          //return poster;
         })
       )
       .catch(error => console.log(error));
