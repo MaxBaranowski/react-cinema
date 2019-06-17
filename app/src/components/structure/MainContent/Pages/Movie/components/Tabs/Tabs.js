@@ -20,7 +20,6 @@ export default class Tabs extends Component {
     const onClickTab = this.onClickTab;
     return (
       <div className="tabs">
-        {/* {JSON.stringify(this.props.movie)} */}
         <ul className="movie-tab-links">
           {tabs.map(tab => {
             let { label } = tab.props;

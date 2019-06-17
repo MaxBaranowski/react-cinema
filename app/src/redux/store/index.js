@@ -10,4 +10,8 @@ const state = {
   showMenu: false // show hide menu
 };
 
-export const store = createStore(reducer, state,  composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore(
+  reducer,
+  state,
+  composeWithDevTools(applyMiddleware(thunk))
+);

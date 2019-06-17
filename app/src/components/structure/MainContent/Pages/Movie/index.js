@@ -8,7 +8,7 @@ import Body from "./components/Body";
 import Sidebar from "./components/Sidebar";
 // + to do
 import { connect } from "react-redux";
-import { getPostersList } from "../../../../../redux/actions";
+import { getPostersList } from "redux/actions";
 
 class Movie extends Component {
   constructor(props) {
@@ -44,6 +44,11 @@ class Movie extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.id !== this.state.requestedMovie) {
       this.getmovie();
+      this.props
+        .dispatch(getPostersList(this.state.requestedMovie))
+        .then(bgimg => {
+          document.body.style.backgroundImage = `url(${this.props.background})`;
+        });
     }
   }
 
@@ -61,7 +66,6 @@ class Movie extends Component {
   }
 
   render() {
-    // console.log(this.props.background);
     const { movie, isError } = this.state;
     if (isError) {
       //return <Redirect to='/404' />;
@@ -76,7 +80,6 @@ class Movie extends Component {
           <header>
             <SearchPanel />
           </header>
-          bakcground = {this.props.background}
           <section className="movie-container">
             <Poster movie={movie} />
             <Body movie={movie} />
@@ -103,11 +106,9 @@ class Movie extends Component {
       response
         .json()
         .then(data => {
-          //   data["Posters"] = posters;
           this.setState({
             movie: data
           });
-          // });
         })
         .catch(e => {
           this.setState({

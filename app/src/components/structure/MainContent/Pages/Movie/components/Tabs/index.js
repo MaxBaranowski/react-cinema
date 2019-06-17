@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { store } from "redux/store/";
 
 import Tabs from "./Tabs";
 import Test from "./test";
@@ -29,8 +30,9 @@ export default class index extends Component {
   }
 
   render() {
-    console.log("R", this.state.movie);
-    return (
+    const { movie } = this.state;
+
+    return Object.keys(movie).length > 0 ? (
       <Tabs movie={this.state.movie}>
         <div label="Overview">
           <p>1</p>
@@ -40,7 +42,7 @@ export default class index extends Component {
           </h1>
         </div>
         <div label="Media">
-          <Test movie={this.state.movie}/>
+          <Test movie={movie} />
         </div>
         <div label="Cast">
           <p>3</p>
@@ -52,6 +54,6 @@ export default class index extends Component {
           <p>5</p>
         </div>
       </Tabs>
-    );
+    ) : ( <span>Loading...</span>);
   }
 }
