@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { store } from "redux/store/";
 
 import Tabs from "./Tabs";
-import Test from "./test";
+import Overview from "./Overview";
 
 export default class index extends Component {
   constructor(props) {
@@ -35,15 +35,9 @@ export default class index extends Component {
     return Object.keys(movie).length > 0 ? (
       <Tabs movie={this.state.movie}>
         <div label="Overview">
-          <p>1</p>
-          <h1>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-            doloribus nam autem cum porro in?
-          </h1>
+          <Overview movie={movie} />
         </div>
-        <div label="Media">
-          <Test movie={movie} />
-        </div>
+        <div label="Media">media will be here</div>
         <div label="Cast">
           <p>3</p>
         </div>
@@ -54,6 +48,8 @@ export default class index extends Component {
           <p>5</p>
         </div>
       </Tabs>
-    ) : ( <span>Loading...</span>);
+    ) : (
+      <span>Loading...</span>
+    );
   }
 }

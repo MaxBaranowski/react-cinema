@@ -17,8 +17,8 @@ export default class Body extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.movie!==this.props.movie){
-      this.setState({movie: this.props.movie});
+    if (prevProps.movie !== this.props.movie) {
+      this.setState({ movie: this.props.movie });
     }
   }
 
@@ -27,9 +27,7 @@ export default class Body extends Component {
 
     return (
       <section className="movie-main">
-        <header>
-          <Tabs movie={movie} />
-        </header>
+        <Tabs movie={movie} />
       </section>
     );
   }

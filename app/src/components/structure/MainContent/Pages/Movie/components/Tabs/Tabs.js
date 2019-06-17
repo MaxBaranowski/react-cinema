@@ -19,22 +19,23 @@ export default class Tabs extends Component {
     const { tabs, active } = this.state;
     const onClickTab = this.onClickTab;
     return (
-      <div className="tabs">
-        <ul className="movie-tab-links">
-          {tabs.map(tab => {
-            let { label } = tab.props;
-            return (
-              <Tab
-                active={active}
-                key={label}
-                label={label}
-                onClick={onClickTab}
-              />
-            );
-          })}
-        </ul>
+      <div className="movie-tabs">
+        <header>
+          <ul className="movie-tab-links">
+            {tabs.map(tab => {
+              let { label } = tab.props;
+              return (
+                <Tab
+                  active={active}
+                  key={label}
+                  label={label}
+                  onClick={onClickTab}
+                />
+              );
+            })}
+          </ul>
+        </header>
         <main className="movie-tab-content">
-          <p>content</p>
           {tabs.map(tab => {
             if (tab.props.label !== active) return undefined;
             return tab.props.children;

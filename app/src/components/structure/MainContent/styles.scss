@@ -7,10 +7,12 @@
   max-width: 1200px;
   min-height: 100vh;
   height: 100%;
-  margin: 0 25px 0 45px;
+  // margin: 0 25px 0 45px;
+  margin: 0 25px 0 54px;
   padding: 2em 1em;
   transition: all 0.5s linear;
   z-index: 9;
+  background-color: rgba(22, 22, 22, 0.82);
 
   section {
     grid-column: 1/-1;
