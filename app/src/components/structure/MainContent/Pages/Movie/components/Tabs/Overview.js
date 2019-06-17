@@ -41,3 +41,8 @@ export default class test extends Component {
     );
   }
 }
+
+
+// getting cast 
+// https://www.traileraddict.com/AQUAMAN
+// itemprop="name">(.+?)<\/
