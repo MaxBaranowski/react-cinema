@@ -6,12 +6,26 @@ export default class SearchField extends Component {
     this.state = {};
 
     this.SearchField = React.createRef();
-    
+
     this.handleSearchKeyUp = this.handleSearchKeyUp.bind(this);
   }
 
   componentDidMount() {
     this.props.returnToParent(this.SearchField);
+  }
+
+  render() {
+    return (
+      <div className="search-field">
+        <input
+          className=""
+          type="text"
+          onFocus={this.props.onFocus}
+          onKeyUp={this.handleSearchKeyUp}
+          ref={this.SearchField}
+        />
+      </div>
+    );
   }
 
   handleSearchKeyUp() {
@@ -38,19 +52,5 @@ export default class SearchField extends Component {
         })
       )
       .catch(e => console.log(e));
-  }
-
-  render() {
-    return (
-      <div className="search-field">
-        <input
-          className=""
-          type="text"
-          onFocus={this.props.onFocus}
-          onKeyUp={this.handleSearchKeyUp}
-          ref={this.SearchField}
-        />
-      </div>
-    );
   }
 }

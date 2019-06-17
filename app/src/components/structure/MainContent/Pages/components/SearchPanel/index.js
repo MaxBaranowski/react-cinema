@@ -17,9 +17,12 @@ export default class SearchPanel extends Component {
     this.SearchFieldRef = {};
 
     this.searchResults = data => {
-      this.setState({
-        searchResults: data
-      });
+      this.setState(
+        {
+          searchResults: data
+        }
+      );
+
     };
 
     this.handleSearchOnFocus = this.handleSearchOnFocus.bind(this);
@@ -32,17 +35,23 @@ export default class SearchPanel extends Component {
 
     return (
       <section className="searchBar">
-        <main ref={this.SearchBar}>
+        <main
+          className={isSearchBarOnFocus && searchResults.length ? "active" : ""}
+          ref={this.SearchBar}
+        >
           <Icon />
           <SearchField
             returnSearchResultsToParent={this.searchResults}
             onFocus={this.handleSearchOnFocus}
             returnToParent={this.getSearchFieldRef}
+            // isFocus={isSearchBarOnFocus}
           />
         </main>
-        {isSearchBarOnFocus && searchResults.length > 0 && (
+        {isSearchBarOnFocus && (
           <aside
-            className="search-results"
+            className={
+              "search-results" + (searchResults.length > 0 ? " active" : "")
+            }
             onMouseLeave={this.handleSearchOnBlur}
           >
             {this.makeResults(searchResults)}
