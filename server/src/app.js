@@ -1,4 +1,4 @@
-import '@babel/polyfill';
+import "@babel/polyfill";
 import express from "express";
 import path from "path";
 import cookieSession from "cookie-session";
@@ -18,7 +18,7 @@ app.disable("x-powered-by");
 //Enable All CORS Requests
 app.use(cors());
 // read JSON content-type (body parser built into express)
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // set up session cookies
@@ -67,5 +67,9 @@ app.use(session);
 
 // Routes
 app.use(Router);
+
+import M from "./models/MovieAdditional";
+const movie = new M({movieName:"MISSION: IMPOSSIBLE - FALLOUT"});
+movie.getTrailer();
 
 export default app;

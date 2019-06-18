@@ -46,3 +46,4 @@ export default class test extends Component {
 // getting cast 
 // https://www.traileraddict.com/AQUAMAN
 // itemprop="name">(.+?)<\/
+//itemprop="name">([a-zA-Z -]*)<
