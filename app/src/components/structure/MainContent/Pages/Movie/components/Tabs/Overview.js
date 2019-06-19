@@ -1,8 +1,31 @@
 import React, { Component } from "react";
 
-export default class test extends Component {
+export default class Overview extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movie: this.props.movie
+    };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.movie !== prevState.movie) {
+      console.log(2, this.state.movie.Cast);
+      return { movie: nextProps.movie };
+    } else return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.movie !== this.props.movie) {
+      // get cast for current movie
+      this.setState({ movie: this.props.movie }, this.getCast());
+      console.log(3, this.state.movie.Cast);
+    }
+  }
+
   render() {
-    const { Title, Plot } = this.props.movie;
+    const { Title, Plot, Cast } = this.state;
+    console.log(1, this.state.movie.Cast);
     return (
       <section>
         <div className="tab-inner-section">
@@ -26,7 +49,7 @@ export default class test extends Component {
             <h2 className="to-full-tab">View all cast</h2>
           </header>
           <hr />
-          <p>team</p>
+          <p>{this.createCast({ Cast })}</p>
         </div>
         <div className="tab-inner-section">
           <header>
@@ -40,10 +63,18 @@ export default class test extends Component {
       </section>
     );
   }
+
+  createCast(cast) {
+    console.log(4, cast);
+    // let CastTepmlate = [];
+    // for (var person of cast) {
+    //   CastTepmlate.push(<li key={"cast_" + person.actor}>{person.actor}</li>);
+    // }
+    // return <ul>{CastTepmlate}</ul>;
+  }
 }
 
-
-// getting cast 
+// getting cast
 // https://www.traileraddict.com/AQUAMAN
 // itemprop="name">(.+?)<\/
 //itemprop="name">([a-zA-Z -]*)<

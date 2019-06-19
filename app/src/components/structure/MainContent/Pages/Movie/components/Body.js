@@ -18,7 +18,8 @@ export default class Body extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.movie !== this.props.movie) {
-      this.setState({ movie: this.props.movie });
+      // get cast for current movie
+      this.setState({ movie: this.props.movie }, this.getCast());
     }
   }
 
@@ -30,5 +31,29 @@ export default class Body extends Component {
         <Tabs movie={movie} />
       </section>
     );
+  }
+
+  getCast() {
+    const { movie } = this.state;
+    fetch(`https://${window.location.hostname}:443/api/cast`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: movie.imdbID
+      })
+    })
+      .then(response =>
+        response.json().then(data => {
+          movie["Cast"] = data;
+          this.setState({
+            movie: movie
+          });
+          console.log(this.state.movie)
+        })
+      )
+      .catch(e => console.log(e));
   }
 }
