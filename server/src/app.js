@@ -68,8 +68,4 @@ app.use(session);
 // Routes
 app.use(Router);
 
-import M from "./models/MovieAdditional";
-const movie = new M({ movieID: "tt5848272" });
-movie.getCast()//.then(data => console.log(data));
-
 export default app;

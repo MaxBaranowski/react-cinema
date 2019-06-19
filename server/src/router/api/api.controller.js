@@ -1,7 +1,8 @@
 import DB from "../../models/Database";
 import MoviePoster from "../../models/moviePoster";
-import {MovieFull} from "./models/movieFull";
-import {MovieShort} from "./models/movieShort";
+import { MovieFull } from "./models/movieFull";
+import { MovieShort } from "./models/movieShort";
+import Cast from "../../models/MovieAdditional";
 
 import {
   makeMovies,
@@ -10,14 +11,13 @@ import {
 } from "./api_db_creted_methods";
 
 export default class API {
-  constructor() {
-  }
-  
+  constructor() {}
+
   getMovie = async (req, res, next) => {
     try {
-      const {id: movieId = ""} =
+      const { id: movieId = "" } =
         Object.keys(req.body).length > 0 ? req.body : req.params;
-      
+
       await new DB()
         .getOne({
           schema: MovieFull,
@@ -36,10 +36,10 @@ export default class API {
       return next(err);
     }
   };
-  
+
   getMoviesByName = async (req, res, next) => {
     try {
-      const {name = "", key = "Title", limit = 5} =
+      const { name = "", key = "Title", limit = 5 } =
         Object.keys(req.body).length > 0 ? req.body : req.params;
       await new DB()
         .getSome({
@@ -60,7 +60,7 @@ export default class API {
       return next(err);
     }
   };
-  
+
   getMovies = async (req, res, next) => {
     try {
       const {
@@ -87,10 +87,10 @@ export default class API {
       return next(err);
     }
   };
-  
+
   removeMovie = async (req, res, next) => {
     try {
-      const {key = "imdbID", id = false} =
+      const { key = "imdbID", id = false } =
         Object.keys(req.body).length > 0 ? req.body : req.params;
       await new DB()
         .remove({
@@ -121,11 +121,11 @@ export default class API {
       return next(err);
     }
   };
-  
+
   getMoviePoster = async (req, res, next) => {
     try {
-      const {id} = Object.keys(req.body).length > 0 ? req.body : req.params;
-      await new MoviePoster({id: id})
+      const { id } = Object.keys(req.body).length > 0 ? req.body : req.params;
+      await new MoviePoster({ id: id })
         .get()
         .then(result => {
           res.json(result);
@@ -138,11 +138,28 @@ export default class API {
       next(error);
     }
   };
-  
+
+  getMovieCast = async (req, res, next) => {
+    try {
+      const { id } = Object.keys(req.body).length > 0 ? req.body : req.params;
+      await new Cast({ movieID: id })
+        .getCast()
+        .then(result => {
+          res.json(result);
+        })
+        .catch(err => {
+          res.status(200).json([]); // there is no such movie
+          // throw new Error(err);
+        });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   index = (req, res, next) => {
     res.status(200).render("api");
   };
-  
+
   fillDataBaseWithMovies = async (req, res, next) => {
     try {
       makeMovies(req, res, next)
@@ -156,7 +173,7 @@ export default class API {
       throw new Error(err);
     }
   };
-  
+
   fillMoviesWithTrailers = async (req, res, next) => {
     try {
       makeTrailers(req, res, next)
@@ -170,7 +187,7 @@ export default class API {
       throw new Error(err);
     }
   };
-  
+
   fillMoviesWithUnixDate = async (req, res, next) => {
     try {
       makeUnixDate(req, res, next)

@@ -18,6 +18,7 @@ router.get("/movies/movie/:id", validateMovie, controller.getMovie);
 router.get("/movies/name", validateMoviesName, controller.getMoviesByName);
 router.get("/movies/remove/:id", validateMovie, controller.removeMovie);
 router.get("/poster/:id", validateMovie, controller.getMoviePoster);
+router.get("/cast/:id", controller.getMovieCast);
 
 router.get("/auth/login", (req, res, next) => {
   res.render("login");
@@ -56,6 +57,7 @@ router.post("/movies/movie", validateMovie, controller.getMovie);
 router.post("/movies/name", validateMoviesName, controller.getMoviesByName);
 router.post("/movies/remove", validateMovie, controller.removeMovie);
 router.post("/poster", controller.getMoviePoster);
+router.post("/cast", controller.getMovieCast);
 
 export default router;
 
