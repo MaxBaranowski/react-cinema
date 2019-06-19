@@ -2,18 +2,19 @@ import axios from "axios";
 
 export default class MovieAdditional {
   // from https://www.traileraddict.com/
-  constructor({ movieName }) {
-    this.movieName =
-      movieName && typeof movieName === "string"
-        ? cleanMovieName(movieName)
+  constructor({ movieID }) {
+    this.movieID =
+      movieID && typeof movieID === "string"
+        ? cleanmovieID(movieID)
         : "";
     this.htmlTrailerURI = `https://www.traileraddict.com/${
-      this.movieName
+      this.movieID
     }/trailer`;
-    this.htmlURI = `https://www.traileraddict.com/${this.movieName}`;
+    // this.htmlURI = `https://www.traileraddict.com/${this.movieID}`;
+    this.htmlURI = `https://www.imdb.com/title/${this.movieID}/`;
     this.html = ``;
-console.log(this.htmlTrailerURI)
-    cleanMovieName.bind(this);
+    console.log(this.htmlTrailerURI);
+    cleanmovieID.bind(this);
   }
 
   getTrailer() {
@@ -21,8 +22,7 @@ console.log(this.htmlTrailerURI)
     return new Promise(async (resolve, reject) => {
       try {
         await this.getHTML({ url: this.htmlTrailerURI });
-        this.getDataFromHtml(regex, "trailer").then(data => {
-          console.log(data);
+        this.getDataFromHtml(regex).then(data => {
           resolve(data);
         });
       } catch (error) {
@@ -32,11 +32,13 @@ console.log(this.htmlTrailerURI)
   }
 
   getCast() {
-    const regex = /itemprop="actor"><span itemprop="name">(?<actor>[a-zA-Z -]*)</gm;
+    //const regex = /itemprop="actor"><span itemprop="name">(?<actor>[a-zA-Z -]*)</gm;
+    const regex = /primary_photo[\s\S]*?alt="(?<actor>\w+\s\S+\s?\w+)"[\s\S]*?src="(?<image>[a-zA-z0-9:/.-]+)/gm;
+    //
     return new Promise(async (resolve, reject) => {
       try {
         await this.getHTML({ url: this.htmlURI });
-        this.getDataFromHtml(regex, "actor").then(data => {
+        this.getDataFromHtml(regex).then(data => {
           resolve(data);
         });
       } catch (error) {
@@ -62,7 +64,7 @@ console.log(this.htmlTrailerURI)
     });
   }
 
-  getDataFromHtml(regex, group) {
+  getDataFromHtml(regex) {
     return new Promise(async (resolve, reject) => {
       try {
         let m;
@@ -73,9 +75,7 @@ console.log(this.htmlTrailerURI)
           if (m.index === regex.lastIndex) {
             regex.lastIndex++;
           }
-          console.log(1, m.groups[group]);
-          // The result can be accessed through the `m`-variable.
-          trailerURI.push(m.groups[group]);
+          trailerURI.push(JSON.parse(JSON.stringify(m.groups)));
         }
         resolve(trailerURI);
       } catch (error) {
@@ -85,15 +85,15 @@ console.log(this.htmlTrailerURI)
   }
 }
 
-function cleanMovieName(movieName) {
+function cleanmovieID(movieID) {
   // to lowwercase
-  movieName = movieName.toLowerCase();
+  movieID = movieID.toLowerCase();
   // remove non wprd character
-  movieName = movieName.replace(/[^a-zA-Z0-9]/gm, " ");
+  movieID = movieID.replace(/[^a-zA-Z0-9]/gm, " ");
   // remove double spaces
-  movieName = movieName.replace(/[ ]{2,}/gm, " ");
+  movieID = movieID.replace(/[ ]{2,}/gm, " ");
   // replace spaces with dash
-  movieName = movieName.replace(/[ ]/gm, "-");
+  movieID = movieID.replace(/[ ]/gm, "-");
 
-  return movieName;
+  return movieID;
 }
