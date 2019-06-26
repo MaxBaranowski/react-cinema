@@ -16,10 +16,11 @@ export default class Body extends Component {
     } else return null;
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     if (prevProps.movie !== this.props.movie) {
       // get cast for current movie
-      this.setState({ movie: this.props.movie }, this.getCast());
+      await this.setState({ movie: this.props.movie });
+      this.getCast();
     }
   }
 
@@ -33,9 +34,11 @@ export default class Body extends Component {
     );
   }
 
-  getCast() {
+  async getCast() {
     const { movie } = this.state;
-    fetch(`https://${window.location.hostname}:443/api/cast`, {
+    let result;
+
+    await fetch(`https://${window.location.hostname}:443/api/cast`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -48,12 +51,14 @@ export default class Body extends Component {
       .then(response =>
         response.json().then(data => {
           movie["Cast"] = data;
-          this.setState({
-            movie: movie
-          });
-          console.log(this.state.movie)
+          result = movie;
+          console.log("cast loading", this.state.movie.Cast);
         })
       )
       .catch(e => console.log(e));
+    // set updated data
+    this.setState({
+      movie: result
+    });
   }
 }

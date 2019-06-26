@@ -4,13 +4,15 @@ export default class Overview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: this.props.movie
+      movie: props.movie
     };
+    console.log(props.movie)
+
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.movie !== prevState.movie) {
-      console.log(2, this.state.movie.Cast);
+      console.log(2, this.state.movie);
       return { movie: nextProps.movie };
     } else return null;
   }
@@ -18,14 +20,17 @@ export default class Overview extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.movie !== this.props.movie) {
       // get cast for current movie
-      this.setState({ movie: this.props.movie }, this.getCast());
-      console.log(3, this.state.movie.Cast);
+      this.setState({ movie: this.props.movie });
+      console.log(1, this.state.movie);
     }
   }
 
+  componentDidMount() {
+    this.setState({ movie: this.props.movie });
+  }
+
   render() {
-    const { Title, Plot, Cast } = this.state;
-    console.log(1, this.state.movie.Cast);
+    const { Title, Plot, Cast } = this.state.movie;
     return (
       <section>
         <div className="tab-inner-section">
@@ -49,7 +54,7 @@ export default class Overview extends Component {
             <h2 className="to-full-tab">View all cast</h2>
           </header>
           <hr />
-          <p>{this.createCast({ Cast })}</p>
+          <pre className="code">{JSON.stringify(Cast, null, 2)}</pre>
         </div>
         <div className="tab-inner-section">
           <header>
@@ -59,13 +64,13 @@ export default class Overview extends Component {
           <hr />
           <p>here will be last review to this movie</p>
         </div>
-        <pre className="code">{JSON.stringify(this.props.movie, null, 2)}</pre>
+        {/* <pre className="code">{JSON.stringify(this.props.movie, null, 2)}</pre> */}
       </section>
     );
   }
 
   createCast(cast) {
-    console.log(4, cast);
+    // console.log(4, cast);
     // let CastTepmlate = [];
     // for (var person of cast) {
     //   CastTepmlate.push(<li key={"cast_" + person.actor}>{person.actor}</li>);

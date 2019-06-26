@@ -10,16 +10,18 @@ export default class Tabs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabs: this.props.children,
-      active: this.props.children[0].props.label
+      tabs: props.children,
+      active: props.children[0].props.label
     };
+    console.log(props.movie.cast);
   }
 
   render() {
-    const { tabs, active } = this.state;
+    const { tabs, active, movie } = this.state;
     const onClickTab = this.onClickTab;
     return (
       <div className="movie-tabs">
+        {/* <pre className="code">{JSON.stringify(this.props.movie, null, 2)}</pre> */}
         <header>
           <ul className="movie-tab-links">
             {tabs.map(tab => {
