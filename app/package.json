@@ -1,6 +1,8 @@
 {
   "name": "app",
   "version": "0.1.0",
+  "author": "Max Baranowski",
+  "homepage": "https://react-cinema.dev8.pl/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
@@ -11,7 +13,7 @@
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.5",
+    "react-scripts": "^3.1.1",
     "react-transition-group": "^2.6.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
