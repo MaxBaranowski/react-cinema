@@ -1,0 +1,2 @@
+(window.webpackJsonpapp=window.webpackJsonpapp||[]).push([[7],{70:function(n,e,a){},74:function(n,e,a){"use strict";a.r(e);var t=a(0),o=a.n(t);a(70);e.default=function(){return o.a.createElement("div",{className:"NotFound"},o.a.createElement("h3",null,"Sorry, page not found!"))}}}]);
+//# sourceMappingURL=7.421ed7db.chunk.js.map
