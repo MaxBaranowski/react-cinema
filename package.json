@@ -15,7 +15,7 @@
   },
   "main": "./dist/bin/www.js",
   "engines": {
-    "node": "10.x"
+    "node": "10.13.0"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
@@ -41,14 +41,7 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1",
     "rimraf": "^2.6.3",
-    "uuid": "^3.3.2",
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/node": "^7.4.5",
-    "@babel/plugin-transform-async-to-generator": "^7.4.4",
-    "@babel/polyfill": "^7.6.0",
-    "@babel/preset-env": "^7.4.5",
-    "babel-register": "^6.26.0"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
