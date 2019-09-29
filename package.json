@@ -20,7 +20,8 @@
     "devWindows": "set HTTPS=true&&npm start",
     "devMac": "HTTPS=true npm start",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run move",
+    "move": "cp _redirects ./build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

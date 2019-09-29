@@ -13,7 +13,7 @@ export default class JustAdded extends Component {
   
   componentDidMount() {
     try {
-      fetch(`https://${window.location.hostname}:443/api/movies`, {
+      fetch(`https://react-cinema-server.herokuapp.com/api/movies`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

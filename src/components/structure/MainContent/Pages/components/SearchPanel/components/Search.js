@@ -6,7 +6,7 @@ export default function SearchField(props) {
   const handleSearchKeyUp = () => {
     let el = Search.current;
     console.log(el.value);
-    fetch(`https://${window.location.hostname}:443/api/movies/name`, {
+    fetch(`https://react-cinema-server.herokuapp.com/api/movies/name`, {
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -24,7 +24,7 @@ export default class Movie extends Component {
   
   componentDidMount() {
     try {
-      fetch(`https://${window.location.hostname}:443/api/movies/movie`, {
+      fetch(`https://react-cinema-server.herokuapp.com/api/movies/movie`, {
         method: "POST",
         headers: {
           Accept: "application/json",
