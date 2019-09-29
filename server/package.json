@@ -3,14 +3,19 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "npm run prod",
+    "start": "node ./dist/bin/www",
     "server": "babel-node ./src/bin/www",
     "server:prod": "node ./dist/bin/www",
     "dev": "npm-run-all server",
     "clean": "rimraf dist",
     "build": "babel ./src --out-dir dist",
+    "build-production": "NODE_ENV=production npm-run-all clean build",
     "prod": "NODE_ENV=production npm-run-all clean build server:prod",
     "watch": "nodemon server"
+  },
+  "main": "./dist/bin/www.js",
+  "engines": {
+    "node": "10.x"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
